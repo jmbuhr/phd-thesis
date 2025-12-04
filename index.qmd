@@ -200,11 +200,11 @@ I would like to open with a small historical story.
 
 ### A journey on the HMS Salisbury {#sec-salisbury}
 
-It is the 20th of May, 1747.
+It is the 20th of May 1747.
 You are a sailor in the British Royal Navy.
 As you stand on the deck of the HMS Salisbury (@fig-salisbury), you overlook the English Channel you have been patrolling for months now.
 The creaking of the rigging on the three wooden masts mixes with the moaning of your crewmates who have fallen sick with that all too common ailment: scurvy.
-At first they had felt lethargic, short of breath and couldn't keep up with the hustle and bustle aboard the vessel.
+At first, they had felt lethargic, short of breath and couldn't keep up with the hustle and bustle aboard the vessel.
 They felt a pain in their bones, bruised easily, and the usual smaller injuries sustained from working a physically demanding job just would not heal.
 As you bring fresh water down into their cabin, your crewmates muster a faint smile, exposing their reddened gums.
 Some are already losing teeth and you know they are not long for this world.
@@ -216,7 +216,7 @@ But something was different that day.
 You observe your ship surgeon James Lind take 12 of the scurvy-ridden sailors and divide them into groups of two.
 He then administers each group a different remedy that had been suggested as a cure.
 The first got cider, the second vitriol, the third vinegar.
-The fourth got citrus fruits such as oranges and lemons, and again the next just a pint of sea water, while the last group got a paste made of balsam of Peru, garlic, myrrh, mustard seed, and radish root [@lindTreatiseScurvyThree1772].
+The fourth got citrus fruits such as oranges and lemons, and again the next just a pint of seawater, while the last group got a paste made of balsam of Peru, garlic, myrrh, mustard seed, and radish root [@lindTreatiseScurvyThree1772].
 As the HMS Salisbury makes its way back to Plymouth at the end of May, the citrus fruits have run out, but the two sailors that had been assigned them as a cure have already recovered.
 
 ![The ability icon for "REMOVE SCURVY", ©Riot\ Games.](img/orange.png){#fig-remove-scurvy .column-margin fig-scap="Remove scurvy." width=30%}
@@ -401,7 +401,7 @@ The challenge is now to find a representation in which it becomes feasible to de
 
 As the phrase, usually attributed to statistician George Box, goes: "All models are wrong, but some are useful."
 So let us start with one of the most simplified ones that will allow us to simulate large systems.
-Afterwards, we will add more detail and then finally combine both methods.
+Afterward, we will add more detail and then finally combine both methods.
 
 We can describe our system as a collection of all the atomic positions $\vec{r}$ in 3-dimensional space and their momenta $\vec{p}$, where both vectors are of length 3N with N being the number of atoms.
 If we can propagate this system through time, we get a path through the 6N-dimensional phase space that we call a trajectory.
@@ -567,7 +567,7 @@ Type 1 would indicate a geometric average, while type 2, as in this example, use
 
 $$
 \begin{array}{rcl}
-\sigma_{ij}   &=& \left({\sigma_{ii} \, \sigma_{jj}}\right)^{1/2}        \\
+\sigma_{ij}   &=& \left({\sigma_{ii} \, \sigma_{jj}}\right)^{1/2} \\
 \epsilon_{ij} &=& \left({\epsilon_{ii} \, \epsilon_{jj}}\right)^{1/2}
 \end{array}
 $${#eq-lbrule}
@@ -1174,7 +1174,7 @@ The dynamic nature of the protons in the QM region (meaning they can hop between
 
 ### Initial structure preparation
 
-The triple helix initial structure is a cut-out from a _Homo sapiens_ collagen type I fibril without crosslinks that was obtained from ColBuilder [@obarska-kosinskaColBuilderServerBuild2021].
+The triple helix initial structure is a cut-out from a _Homo sapiens_ collagen type I fibril without cross-links that was obtained from ColBuilder [@obarska-kosinskaColBuilderServerBuild2021].
 It is composed of three chains (A, B, and C) with individual lengths of 45, 43, and 45 amino acids, respectively (@fig-render-triple-single).
 The N-terminus (displayed on the left of each molecular render, @fig-render-triple-single, @fig-sites, @fig-qm-system) was acetyl-capped (ACE), while the C-terminus was capped with an N-methyl group (NME) in PyMOL [@PyMOL] to account for the fact that the actual collagen protein is longer than the cut-out simulated here.
 From this point onwards, everything is handled by my custom automated simulation and analysis pipeline.
@@ -1212,7 +1212,7 @@ The triple helix configuration gains additional rotational restraints to prevent
 This mimics it being packed inside of a fibril and restrained by the surrounding triple helices.
 The length of the equilibration was found to be sufficient by observing the distances of the pull groups (@fig-eq-pull).
 
-![The distance between the pull groups for the external force as a function of time for the equilibration of the triple helix under $1\,nN$.](./plots/qm/triple_equilibration.png){#fig-eq-pull .column-margin fig-scap="Pulling equilibration."}
+![The distance between the pull groups for the external force as a function of time for the equilibration of the triple helix under 1\ nN.](./plots/qm/triple_equilibration.png){#fig-eq-pull .column-margin fig-scap="Pulling equilibration."}
 
 :::: {#fig-render-triple-single layout="[[7,9], [7,9], [1]]" layout-valign="bottom" fig-scap="Single chain and triple helix systems before and after force equilibration."}
 ![The triple helix before equilibration under force.](./figures/render-triple-tubes-cpk.png){#fig-render-triple}
@@ -1686,7 +1686,7 @@ The `Topology` supports breaking bonds, creating bonds, and deleting hydrogen at
 For all of these actions, the interaction terms, like bonds, angles, dihedrals, pair exclusions etc., are updated accordingly.
 Furthermore, it identifies, and keeps track of possible radicals and whether it needs parametrization due to some modifications.
 Creating bonds, deleting bonds, and moving atoms do not change the index of the atoms stored in the topology.
-This ensures compatibility with standard analysis techniques, but residues are not necessarily continuous in the resulting topology afterwards.
+This ensures compatibility with standard analysis techniques, but residues are not necessarily continuous in the resulting topology afterward.
 If continuous residues are needed, the `Topology` provides a function to re-index itself.
 After an atom is deleted, the topology is re-indexed by default.
 To use the `Topology` in an MD simulation, a new `top` file is generated from the internal topology object.
@@ -1955,10 +1955,10 @@ In the KIMMDY plugin for hydrolysis, the choice between experimental and theoret
 ![Experimental (AFM) and theoretical (QM) reaction rates used as an input to the hydrolysis plugin as a function of force. Points represent the averages of the AFM experiments [@pillMechanicalActivationDrastically2019].](./plots/kimmdy/force-response.png){#fig-force-response width=50% fig-scap="Hydrolysis reaction rates fit."}
 
 Crucially, the hydrolysis plugin can not simply use the difference of the bond extension to the equilibrium distance defined in the force field to relate to externally applied forces.
-When forces are applied just like in @fig-render-triple-single, an externally applied force of 0\,nN should relate to a force of 0\,nN in the model from the AFM experiments.
-However, when no force is applied, the average equilibrium bond distances of all bonds are not equal to the equilibrium distance of the morse potential from the force field.
+When forces are applied just like in @fig-render-triple-single, an externally applied force of 0\ nN should relate to a force of 0\ nN in the model from the AFM experiments.
+However, when no force is applied, the average equilibrium bond distances of all bonds are not equal to the equilibrium distance of the Morse potential from the force field.
 This is due to the entropic contributions in the simulation and statistical mechanics:
-The probability $P_i$ of finding a system in a state $i$ is given by the Boltzmann distribution as a function of the states energy $E_i$ by @eq-boltzman.
+The probability $P_i$ of finding a system in a state $i$ is given by the Boltzmann distribution as a function of the states' energy $E_i$ by @eq-boltzman.
 
 $$
 P_{i}\propto e^{(-{\frac {E_{i}}{k_{\mathrm{B}} T}})}
@@ -2007,7 +2007,7 @@ Once a peptide bond has been chosen to react by the kMC step, the hydrolysis plu
 
 In addition to the single chain and triple helix systems as introduced for @sec-main-qm (just without the QM/MM), a complete collagen fibril is introduced.
 It is an all-atom model of a _Rattus norvegicus_ collagen fibril (PDB ID: 3HR2) comprised of 41 triple helices spanning one central overlap and one gap region for a total of roughly 320 000 protein atoms.
-ColBuilder [@obarska-kosinskaColBuilderServerBuild2021] was used to generate a model with N- and C-terminal Pyridinoline (PYD) crosslinks with a connectivity of 9.C-5.B-944.B and 1047.C-1047.A-98.B, respectively.
+ColBuilder [@obarska-kosinskaColBuilderServerBuild2021] was used to generate a model with N- and C-terminal Pyridinoline (PYD) cross-links with a connectivity of 9.C-5.B-944.B and 1047.C-1047.A-98.B, respectively.
 Furthermore, all Phe and Tyr residues were randomly mutated to either dihydroxyphenylalanine (DOPA) deprotonated at the C$\epsilon$ (DO1) or C$\zeta$ (DO2) hydroxy group.
 
 ![A collagen fibril.](./figures/render-fibril-black-cropped.png){#fig-fibril2 .column-margin}
@@ -2063,8 +2063,8 @@ More quantitatively, plotting the SASA against the radial distance from the cent
 ![SASA of the peptide bonds in the overlap region of the collagen fibril (z-coordinate between 30 and 60\ nN) plotted against their radial distance from the center in the x-y plane. Black lines are linear models. 1\ nN refers to the 1\ nN shear pulling setup.](./plots/kimmdy/sasa_radial_distance.png){#fig-sasa-r}
 
 I discarded the hypothesis that pulling would "squeeze out" water from the fibril, as instead the extension of the chains creates more surface area.
-Thus the SASA remains high and the influence of nearby triple helices can be assumed negligible for a large fraction of the peptide bonds.
-Still it can be explored in more detail with regards to the unique properties of collagen in the next section, @sec-prolines.
+Thus, the SASA remains high and the influence of nearby triple helices can be assumed negligible for a large fraction of the peptide bonds.
+Still it can be explored in more detail with regard to the unique properties of collagen in the next section, @sec-prolines.
 
 \clearpage
 
@@ -2201,7 +2201,7 @@ The first is the familiar dihydroxyphenylalanine or DOPA (@fig-dopa), which form
 The second is a new face, the pyridinoline cross-link (PYD, @fig-pyd).
 It can also form a stable radical at its hydroxide, as BDE calculations then revealed (@fig-hat-bdes).
 Furthermore, when Daniel Sucerquia calculated the expected EPR spectrum of the PYD radical it makes up for part of the missing intensity that is seen in experimental spectra compared to just using DOPA.
-This is an exciting discovery, because it suggests that not only is collagen more likely to break at or near the crosslinks [@rennekampHybridKineticMonte2020], nature also came prepared with a radical scavenger in the very vicinity.
+This is an exciting discovery, because it suggests that not only is collagen more likely to break at or near the cross-links [@rennekampHybridKineticMonte2020], nature also came prepared with a radical scavenger in the very vicinity.
 
 ![phenylalanine](./img/phenylalanine.svg){#fig-phe .column-margin width=50%}
 
@@ -2227,7 +2227,7 @@ Analysis of the DOPA and PYD radicals.
 # Concluding thoughts and next steps
 
 I set out to answer how two reactions, peptide bond hydrolysis and homolytic bond scission, compete under external force in complex biological systems,
-specifically in our most important structural protein, collagen, with its unique multi scale structure (@fig-collagen-structure).
+specifically in our most important structural protein, collagen, with its unique multiscale structure (@fig-collagen-structure).
 To address this question, I used and developed two complementary methods.
 
 Hybrid quantum mechanics/molecular mechanics simulations provided atomistic insights into the reaction mechanisms of base-catalyzed hydrolysis.
@@ -2249,12 +2249,12 @@ However, due to the complexity of the reaction mechanism, this still poses a con
 The homolysis reaction on the other hand could also be modeled more accurately, by using more information about the chemical environment than just the current bond stretching and the BDE.
 
 Beyond the specific question of hydrolysis versus homolysis, KIMMDY enabled the simulation of radical dynamics through hydrogen atom transfer reactions.
-This led to the discovery that pyridinoline crosslinks can act as radical scavengers, complementing DOPA, which helped explaining previously unaccounted features in experimental EPR spectra.
+This led to the discovery that pyridinoline cross-links can act as radical scavengers, complementing DOPA, which helped explain previously unaccounted features in experimental EPR spectra.
 The finding that nature has placed radical scavengers in the very vicinity where bonds are most likely to break [@rennekampCollagenBreaksWeak2023] reveals an elegant protective mechanism.
 
 The forces at which homolysis reactions become prevalent in simulations remain orders of magnitude higher than experimentally measured tissue stresses,
 suggesting that additional factors beyond what can be captured even in large-scale fibril simulations contribute to force amplification in biological systems.
-Thus it would be a great opportunity in the future to build a model that bridges the missing scale between all-atom molecular dynamics simulations and real tissue samples.
+Thus, it would be a great opportunity in the future to build a model that bridges the missing scale between all-atom molecular dynamics simulations and real tissue samples.
 Coarse grained force fields such as Martini3 [@souzaMartini3General2021] provide a way of simulating larger systems by merging multiple atoms into a combined representation and KIMMDY is already prepared to work with such topologies.
 This leaves only the reaction plugins to be adapted to the coarse grained representation.
 An even more ambitious approach would be to couple KIMMDY with finite element models [@hrennikoffSolutionProblemsElasticity2021;@courantVariationalMethodsSolution1943] of entire tissues [@freutelFiniteElementModeling2014], which would allow for simulating tendons or ligaments, albeit at a lower resolution.
@@ -2269,7 +2269,7 @@ Combining this with the experimental setup of Pill et al. [@pillMechanicalActiva
 Quite a while ago I was working on my Bachelor's thesis in the lab of Matthias Mayer at the Center for Molecular Biology of Heidelberg University (ZMBH).
 During a group meeting I presented my findings and came across two seemingly contradictory data points, about which I then stated: "... and now I'm just confused."
 Matthias immediately jumped in to say: "That's brilliant! Being confused is always the first step."
-Since then I cherish those moments of confusion, those drivers of discovery.
+Since then, I cherish those moments of confusion, those drivers of discovery.
 What I didn't fully grasp at that time is that every next step after the first, simultaneously has the potential to be the first step of something new.
 I sincerely hope that in this thesis, I provided some answers and built a tool to find more in the future, but more importantly, also opened up many new questions, so that we can all revel in confusion together.
 
