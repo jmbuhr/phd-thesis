@@ -344,7 +344,7 @@ The reaction goes through a tetrahedral intermediate and eventually leads to the
 It is explained in greater detail in @sec-main-qm.
 Force-induced homolysis, on the other hand, requires no additional molecules.
 Bonds along the vector of the applied force are weakened by the energy put into them by the external force, which puts them closer to their bond dissociation energy (BDE).
-This increases the probability of rupture, whereby the electrons of the scissile bond are split equally between the two binding partners, resulting in unpaired electrons, i.e. radicals.
+This increases the probability of rupture, whereby the electrons of the scissile bond are split equally between the two binding partners, resulting in unpaired electrons, i.e., radicals.
 The reaction probability for a particular bond depends on the BDE and the distribution of force through the bonds.
 How one emulates both reactions with a physical model is explained in more detail in @sec-hyd-hom-plugins.
 
@@ -417,7 +417,7 @@ $$
 \end{array}
 $${#eq-hamilton}
 
-where the Hamiltonian operator $H$ is the total energy operator and $r_i$ is one value of $\vec{r}$, i.e. the position of one atom along one axis and likewise for $p_i$.
+where the Hamiltonian operator $H$ is the total energy operator and $r_i$ is one value of $\vec{r}$, i.e., the position of one atom along one axis and likewise for $p_i$.
 
 Or we can use Newton's equations of motion @eq-newton
 
@@ -446,7 +446,7 @@ $$
 $${#eq-frog}
 
 Because different initial conditions lead to different trajectories, one often runs multiple such computational runs in parallel.
-For ergodic properties, i.e. those for which the ergodic hypothesis holds, stating that the time average is equal to the ensemble average [@boltzmannVorlesungenUeberGastheorie1896], this can drastically improve sampling.
+For ergodic properties, i.e., those for which the ergodic hypothesis holds, stating that the time average is equal to the ensemble average [@boltzmannVorlesungenUeberGastheorie1896], this can drastically improve sampling.
 
 ## Molecular mechanics
 
@@ -487,7 +487,7 @@ Finally, bonded connections between four atoms give rise to dihedral angles that
 
 $$V_{cosine}(\phi) = k( 1 + \cos(n \phi - \phi_0))$${#eq-energy-cosine}
 
-Sometimes additional bonded terms labelled "improper dihedrals" are used to e.g. enforce planarity of certain molecules by adding potential energy for out-of-plane bending.
+Sometimes additional bonded terms labelled "improper dihedrals" are used to, e.g., enforce planarity of certain molecules by adding potential energy for out-of-plane bending.
 
 In addition to those bonded terms, we have the non-bonded terms split into electrostatic interactions and Van der Waals interactions.
 
@@ -790,7 +790,7 @@ $$
 P(\xi) = \sum_{i=1}^{n} w_i P_i^{\mathrm{bias}}(\xi)
 $${#eq-wham}
 
-This makes it another self-consistent method, aided by the fact the umbrella windows or rather their histograms along the reaction coordinate $\xi$ overlap.
+This makes it another self-consistent method, aided by the fact the umbrella windows, or rather their histograms along the reaction coordinate, $\xi$ overlap.
 The more the umbrella windows agree on the resulting unbiased probability distribution in a region $\Delta\xi$, the higher the convergence.
 The result is a free energy profile and the histograms of the umbrella windows, which can be used to visualize overlap.
 Bootstrapping allows for an estimate of the uncertainty of the free energy profile by comparing the predictions with varying holdouts [@hubG_whamAFreeWeighted2010].
@@ -818,8 +818,8 @@ For example, a harmonic bond may start with a spring constant $k_\mathrm{A}$ and
 
 ## Quantum mechanics and density functional theory
 
-A key limitation of MM is that bonds can not form or break, i.e. chemistry can not happen, because all connectivity and parameters thereof have to be defined ahead of the simulation.
-So, let us take a look at a more detailed, but also computationally expensive technique.
+A key limitation of MM is that bonds can not form or break, i.e., chemistry can not happen, because all connectivity and parameters thereof have to be defined ahead of the simulation.
+So, let us take a look at a more detailed but also computationally expensive technique.
 In Quantum mechanical (QM) simulations, we are no longer treating atoms as indivisible units and instead also simulate the electrons around the nuclei to some extent.
 To what extent depends on the concrete method and implementation.
 We will be looking at density functional theory (DFT) in particular, but first we need to lay some groundwork.
@@ -833,15 +833,15 @@ $$
 \hat{H}\Psi=E\Psi
 $${#eq-schroedinger}
 
-This is an eigenvalue equation where the eigenvalue of the Hamilton operator $\hat{H}$ acting on the wave function $\Psi$ (a set of eigenfunctions of the Hamiltonian) is the total energy $E$.
+This is an eigenvalue equation where the eigenvalue of the Hamilton operator $\hat{H}$ acting on the wavefunction $\Psi$ (a set of eigenfunctions of the Hamiltonian) is the total energy $E$.
 For each eigenfunction $\Psi_n$ we have an associated energy $E_n$.
-The wave function describes the matter wave of each particle, where according to de Broglie the wavelength $\lambda$ of the wave is the Planck constant $h$ divided by the momentum $p$ (@eq-debroglie) [@debroglieRecherchesTheorieQuanta1924].
+The wavefunction describes the matter wave of each particle, where, according to de Broglie, the wavelength $\lambda$ of the wave is the Planck constant $h$ divided by the momentum $p$ (@eq-debroglie) [@debroglieRecherchesTheorieQuanta1924].
 
 $$
 \lambda = {\frac{h}{p}}
 $${#eq-debroglie}
 
-Furthermore, the Born rule [@bornZurQuantenmechanikStossvorgaenge1926] tells us that the wave function times its own complex conjugate results in a probability density.
+Furthermore, the Born rule [@bornZurQuantenmechanikStossvorgaenge1926] tells us that the wavefunction times its own complex conjugate results in a probability density.
 So the probability of finding a particle in a volume slice $dr$ is equal to the integral over $dr$, normalized such that @eq-born-rule holds:
 
 $$
@@ -875,7 +875,7 @@ where $T$ is the kinetic energy of the electrons (or respectively $\hat{T}$ is t
 $N$ is the number of electrons.
 
 This equation, although looking deceptively simple, is still near impossible to solve for any real-world system.
-The next step is to find easier to solve-for formulations of the wavefunction.
+The next step is to find easier-to-solve-for formulations of the wavefunction.
 
 ### Hartree product
 
@@ -886,9 +886,9 @@ $$
 $${#eq-hartree-product}
 
 where $x$ is the state of an electron given by its position $r$ and spin $\omega$.
-This is not quite sufficient, because, as fermions, electrons are meant to be indistinguishable and their wavefunction is meant to be antisymmetric, meaning it should change sign upon exchange of any two coordinates.
+This is not quite sufficient, because, as fermions, electrons are meant to be indistinguishable, and their wavefunction is meant to be antisymmetric, meaning it should change sign upon exchange of any two coordinates.
 We can enforce this by writing the wavefunction a bit differently.
-For a two particle system this looks like @eq-two-particle-slater:
+For a two-particle system this looks like @eq-two-particle-slater:
 
 $$
 \Psi(x_1,x_2) = \frac{1}{\sqrt{2}}\left[ \psi_1(x_1) \psi_2(x_2) - \psi_1(x_2) \psi_2(x_1) \right],
@@ -918,10 +918,10 @@ But how do we find the correct functions?
 
 ### The Hartree-Fock method
 
-The Hartree-Fock method [@fockNaeherungsmethodeZurLoesung1930] now assumes that the electronic energy eigenfunctions can be described as a single Slater determinant made up of individual one-electron wave functions.
-Each such one-electron wave function (a molecular orbital) is built up from a finite set of basis functions and is thus a linear combination of atomic orbitals (LCAO).
+The Hartree-Fock method [@fockNaeherungsmethodeZurLoesung1930] now assumes that the electronic energy eigenfunctions can be described as a single Slater determinant made up of individual one-electron wavefunctions.
+Each such one-electron wavefunction (a molecular orbital) is built up from a finite set of basis functions and is thus a linear combination of atomic orbitals (LCAO).
 The orbitals are then varied such that the Hartree-Fock energy is minimized under the assumption that each electron only interacts with the average charge density of all other electrons (variational method and mean-field approximation).
-This is also called self-consistent field method.
+This is also called the self-consistent field method.
 
 ### Hohenberg-Kohn theorems
 
@@ -937,19 +937,19 @@ we can apply the basic principles to larger systems, because we now "only" have 
 
 ### Kohn-Sham density functional theory
 
-In Kohn-Sham Density Functional Theory (KS DFT) [@kohnSelfConsistentEquationsIncluding1965] we compute the energy of electrons by assuming that the density consists of a single Slater determinant (non-interacting limit) (@eq-ks-dft), which we can then treat like in the Hartree-Fock method (i.e. with a variational, self-consistent field approach).
+In Kohn-Sham Density Functional Theory (KS DFT) [@kohnSelfConsistentEquationsIncluding1965] we compute the energy of electrons by assuming that the density consists of a single Slater determinant (non-interacting limit) (@eq-ks-dft), which we can then treat like in the Hartree-Fock method (i.e., with a variational, self-consistent field approach).
 
 $$
 E[\rho ]=T[\rho ]+\int d\mathbf {r} \,v_{\text{ext}}(\mathbf {r} )\rho (\mathbf {r} )+E_{\text{coulomb}}[\rho ]+E_{\text{xc}}[\rho],
 $${#eq-ks-dft}
 
-with electron density $\rho$, kinetic energy $T$, external potential $v$, position in space $\mathbf{r}$, and the errors from electron-electron exchange and correlation lumped into an exchange correlation Energy $E_{\text{xc}}$.
+with electron density $\rho$, kinetic energy $T$, external potential $v$, position in space $\mathbf{r}$, and the errors from electron-electron exchange and correlation lumped into an exchange correlation energy $E_{\text{xc}}$.
 The type of exchange correlation functional (XC) used has a large impact on computational cost and accuracy of the calculations.
 XC functionals can be ordered in terms of their accuracy.
-The local density approximation (LDA), where the functional only depends on the local electron density at a given point is exceeded by the
-generalized gradient approximation (GGA), where the functional also depends on the local gradient of the density (e.g. LYP after Lee, Yang and Parr [@leeDevelopmentColleSalvettiCorrelationenergy1988]).
+The local density approximation (LDA), where the functional only depends on the local electron density at a given point, is exceeded by the
+generalized gradient approximation (GGA), where the functional also depends on the local gradient of the density (e.g., LYP after Lee, Yang, and Parr [@leeDevelopmentColleSalvettiCorrelationenergy1988]).
 Adding a second derivative leads to meta-GGA and
-hybrid DFT mixes in exact exchange (e.g. B3LYP after Becke 3-parameter and LYP [@beckeDensityfunctionalThermochemistryIII1993;@leeDevelopmentColleSalvettiCorrelationenergy1988] or PBE0 after Perdew–Burke–Ernzerhof [@perdewRationaleMixingExact1996;@adamoReliableDensityFunctional1999]).
+hybrid DFT mixes in exact exchange (e.g., B3LYP after Becke 3-parameter and LYP [@beckeDensityfunctionalThermochemistryIII1993;@leeDevelopmentColleSalvettiCorrelationenergy1988] or PBE0 after Perdew–Burke–Ernzerhof [@perdewRationaleMixingExact1996;@adamoReliableDensityFunctional1999]).
 Lastly, double-hybrid methods such as MP2 [@head-gordonMP2EnergyEvaluation1988] add Møller–Plesset perturbation theory [@mollerNoteApproximationTreatment1934] electron correlation as well.
 
 ### Basis sets
@@ -957,27 +957,27 @@ Lastly, double-hybrid methods such as MP2 [@head-gordonMP2EnergyEvaluation1988] 
 A collection of basis functions that we can use in DFT is called a basis set.
 A linear combination of basis functions makes up a molecular orbital (MO) for one electron, which is then combined with other MOs in one Slater determinant for the whole system.
 For the basis functions, we have the choice between Slater-type orbitals (STO), which are the typical atomic orbitals
-$Nx^a y^b z^c e^{-\zeta r}$ (where $N$ is a normalization constant, $a,b,c$ control the angular momentum and $\zeta$ controls the width)
-and gaussian type orbitals (GTO) $Nx^a y^b z^c e^{-\zeta r^2}$.
-Gaussians have the added benefit that the product of two gaussians is another gaussian, which makes them mathematically favored to work with, even though they are less physical.
+$Nx^a y^b z^c e^{-\zeta r}$ (where $N$ is a normalization constant, $a,b,c$ control the angular momentum, and $\zeta$ controls the width)
+and Gaussian-type orbitals (GTO) $Nx^a y^b z^c e^{-\zeta r^2}$.
+Gaussians have the added benefit that the product of two gaussians is another Gaussian, which makes them mathematically favored to work with, even though they are less physical.
 Contracting multiple GTOs via a linear combination (CGTO) is used to mimic a single STO at lower computational cost.
 
 A minimal basis set encompasses one basis function for each atomic orbital (AO).
 Using two basis functions per AO is called double-zeta (and so forth).
 This allows one to more accurately capture interactions between atoms.
 Doing so only for the valence AOs and keeping the core AOs at single-zeta is called a split valence basis set.
-Allowing AOs to be polarized by interactions with other atoms needs mixing each AO with an orbital of a higher angular momentum (l+1) e.g. mixing s orbitals with p orbitals.
+Allowing AOs to be polarized by interactions with other atoms requires mixing each AO with an orbital of a higher angular momentum (l+1), e.g., mixing s orbitals with p orbitals.
 This is then called a polarized basis set.
 
 ## Quantum mechanics/molecular mechanics {#sec-meth-qmmm}
 
 While it is feasible to simulate millions of atoms with molecular mechanics, DFT can only reach orders of thousands of atoms at great computational cost.
-We need a method that not only can simulate a large enough portion of a collagen fibril with sufficient sampling time, but can also model the chemistry of hydrolysis.
+We need a method that not only can simulate a large enough portion of a collagen fibril with sufficient sampling time but can also model the chemistry of hydrolysis.
 Quantum mechanics/molecular mechanics (QM/MM) combines both methods.
 A large system is simulated by molecular mechanics, while a small subsystem is treated quantum mechanically.
 
 There are different ways of combining the two systems.
-The method used in this thesis is called gaussian expansion of the electrostatic potential (GEEP) [@lainoEfficientRealSpace2005] and is a form of electrostatic embedding.
+The method used in this thesis is called Gaussian expansion of the electrostatic potential (GEEP) [@lainoEfficientRealSpace2005] and is a form of electrostatic embedding.
 While in a purely mechanical embedding the electrostatic interactions between MM and QM atoms would only be treated by molecular mechanics terms,
 in an electrostatic (or electronic) embedding the QM subsystem also sees the charges of the MM atoms and can be polarized by those.
 One step up from that would be a polarized embedding, where the MM subsystem can also be polarized by the QM region.
@@ -1269,7 +1269,7 @@ where $BD$ is the Bürgi-Dunitz angle and $FL$ is the angle between the projecti
 Thus, first the 15 ^[technically this is also an input parameter.] solvent molecules closest to the carbonyl $\ce{C}$ are chosen, and out of those, the one with the lowest penalty is designated as the attack hydroxide.
 The remaining 14 solvent molecules are also designated as QM atoms in the QM/MM scheme.
 All atoms of both residues that make up the target peptide bond are marked as QM atoms.
-@fig-qm-system shows a close-up render of the QM/MM setup for the site Gly842-Leu843 (i.e. the peptide bond between glycine with residue ID 842 and leucine with ID 843) in the single peptide configuration.
+@fig-qm-system shows a close-up render of the QM/MM setup for the site Gly842-Leu843 (i.e., the peptide bond between glycine with residue ID 842 and leucine with ID 843) in the single peptide configuration.
 Black atoms are MM atoms and non-QM solvent molecules are not shown.
 Added forces are signified with the symbol $\text{F}$.
 It is worth noting that in addition to the constant external force applied to the ends of the peptide and the force from the harmonic potential that will pull the hydroxide onto the carbonyl C, there is an additional potential on the COM of the QM water molecules to keep them centered around the target peptide bond.
@@ -1279,7 +1279,7 @@ Note that the hydroxide is also part of this pull group, as otherwise it would a
 ![The QM subsystem (in color) embedded in the MM system (in black) with arrows for the forces involved at the start of the attack of the hydroxide for the single peptide system at a Glycine-Leucine site. MM water molecules are not shown.](./figures/render-qm-far-annotations.png){#fig-qm-system fig-scap="The QM/MM subsystems, initial state."}
 
 Once the QM atoms and the hydroxide have been designated by the workflow, the QM/MM system is set up.
-To this end, it creates the necessary index files that GROMACS uses to label groups of atoms as e.g. QM atoms or pull groups and fills templates for other input files such as `mdp` for GROMACS and `inp` for CP2K
+To this end, it creates the necessary index files that GROMACS uses to label groups of atoms as, e.g., QM atoms or pull groups and fills templates for other input files such as `mdp` for GROMACS and `inp` for CP2K
 A short 100 step QM/MM warm-up simulation with a small delta t of just 0.2\ fs increases the stability of the system before the actual approach trajectory is run.
 During the warm-up the hydroxide is kept at its original distance by an umbrella potential.
 The workflow then checks for successful warm-ups and continues with the approach simulation.
@@ -1552,7 +1552,7 @@ As such, sections of text will be similar and may only have minor adaptions for 
 Let us picture a user who has a new type of reaction that they want to simulate within MD.
 They are already familiar with their MD engine GROMACS and have the files to simulate their system without any reactions.
 After going to our documentation website they install KIMMDY.
-KIMMDY can just be install from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g. with `uv tool install -p 3.11 kimmdy`.
+KIMMDY can just be install from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g., with `uv tool install -p 3.11 kimmdy`.
 Now the `kimmdy` command is available on the command line.
 Typing `kimmdy --help` brings up more options:
 
@@ -1625,7 +1625,7 @@ Various features of modern text editors working with a `kimmdy.yml` file.
 
 The user then sets up the configuration file (the config) and decides on a `sequence`, a series of tasks that KIMMDY will run.
 This could be for example different MD simulations, such as an equilibration and a production run, followed by sampling for reactions, and a slow-growth simulation (see below) to equilibrate after each reaction.
-The sequence can include nested tasks and tasks with a multiplicity, i.e. tasks that are run multiple times.
+The sequence can include nested tasks and tasks with a multiplicity, i.e., tasks that are run multiple times.
 Each task gets its own output subdirectory in the KIMMDY run output directory and KIMMDY tracks the latest version of each type of file.
 This means that if one task runs an MD trajectory, the next task will continue after the trajectory (or in the middle of it, if a reaction should occur at a certain time point) and if a task modifies the topology, the next task will use the modified topology.
 
@@ -1718,7 +1718,7 @@ By default, only the first moleculetype of a system is available for reactions, 
 However, one can easily configure includes and excludes for the `Reactive` moleculetype (see @fig-kmdy-yml).
 When multiple molecules of the same moleculetype are included, such as 100 water molecules in addition to the protein (@lst-molecules), KIMMDY creates new atoms, bonds etc. for each instance of the moleculetype with increasing atom- and residue-numbers.
 In doing so, the atom ids in the topology file (`.top`) and the line numbers of the coordinate file (`.gro`) always line up.
-This is important, as the atom indices written in a `gro` file may be wrong due to the fixed-width nature of the format (they wrap around at 1 million); only their order (i.e. line number) is guaranteed to be unique.
+This is important, as the atom indices written in a `gro` file may be wrong due to the fixed-width nature of the format (they wrap around at 1 million); only their order (i.e., line number) is guaranteed to be unique.
 
 ```{.ini #lst-molecules lst-cap='A topology molecules section.' .column-margin}
 [ molecules ]
@@ -1816,7 +1816,7 @@ This is where slow-growth comes in.
 For creating an initial structure of the reaction product state, minimizing and equilibrating the molecular systems is viable.
 However, this may take a long time for large systems, resulting in inefficient simulations.
 We use the slow-growth method implemented in the GROMACS free-energy module to interpolate between product and reactant state for continuous parameter and coordinate changes.
-Subsequently, a short equilibration ensures the states are Markovian, i.e. sampling happens from the Boltzmann distribution of the new state.
+Subsequently, a short equilibration ensures the states are Markovian, i.e., sampling happens from the Boltzmann distribution of the new state.
 
 To this end, KIMMDY generates a merged topology that transitions between state A (educt) and state B (product).
 KIMMDY supports two modes of slow-growth.
@@ -1915,7 +1915,7 @@ $${#eq-force-morse}
 
 with $\beta=\sqrt{k / (2~D)}$,the spring constant $k$, and the dissociation energy $D$.
 
-![The derivative of the Morse potential, i.e. the force as a function of the bond distance r.](./img/morse-force.png){#fig-morse-force .column-margin fig-scap="Derivative of the Morse potential."}
+![The derivative of the Morse potential, i.e., the force as a function of the bond distance r.](./img/morse-force.png){#fig-morse-force .column-margin fig-scap="Derivative of the Morse potential."}
 
 The effective potential (@eq-v-eff)
 
@@ -1975,7 +1975,7 @@ The values for one such bond are plotted in @fig-stretch-force and the reaction 
 ![](./plots/kimmdy/force-response-homolysis.png){#fig-force-hyd-hom}
 
 Force response of the homolysis and hydrolysis reaction rates.
-(a) The force that has performed work on a bond as a function of bond stretching, i.e. $r-r_0$.
+(a) The force that has performed work on a bond as a function of bond stretching, i.e., $r-r_0$.
 (b) Reaction rates for hydrolysis (experimental model) and homolysis (physical model) as a function of force. For homolysis, the rates depends on the BDE, so two exemplary lines are shown. The lower line for a C-C bond in a protein backbone with a BDE of 341 kJ/mol and the upper line for a C-C bond in a Pyridinoline (PYD) cross-link with a BDE of 282 kJ/mol.
 ::::
 
@@ -2015,7 +2015,7 @@ The equilibration was followed by 2\ ns of sampling simulations, during which bo
 Likewise, a single triple helix out of a collagen fibril and a single peptide out of the same triple helix where solvated in TIP3 water, neutralized with 0.15\ M NaCl, energy minimized and equilibrated under NVT and NPT ensembles at a temperature of 300\ K.
 The same temperature is used in the rate calculations for all reactions.
 The external forces applied range from no external force to 3\ nN.
-In the case of the complete collagen fibril, an additional, more physiological, sheared pulling was introduced by sampling the force on each triple helix from a gaussian distribution with a standard deviation of 30\ \% of the mean force centered around the nominal external force.
+In the case of the complete collagen fibril, an additional, more physiological, sheared pulling was introduced by sampling the force on each triple helix from a Gaussian distribution with a standard deviation of 30\ \% of the mean force centered around the nominal external force.
 This mimics the effect of unequal loading under strain in a real tendon or ligament.
 
 \clearpage
@@ -2031,7 +2031,7 @@ Please note that some of the results of this section have also already been disc
 With KIMMDY it is now possible to rapidly sample variations of various parameters, one of which is the pH value.
 This is visualized in extended data @fig-ext-hyd-ph, which explores the impact of external force and the pH value on the two systems already introduced for QM/MM in @sec-main-qm, the single peptide chain and the triple helix.
 At this time, the pH value only enters the rate calculation as a global input parameter and is not affected by the outcome of the molecular dynamics sampling step.
-So by just looking at @eq-hydrolysis-rate, we can calculate that a drop in pH from 7.4 to pH 7.0, as one would expect to see physiologically e.g. in muscle tissue during exercise [@streetInterstitialPHHuman2001], is expected to reduce the rate by a factor of 2.5.
+So by just looking at @eq-hydrolysis-rate, we can calculate that a drop in pH from 7.4 to pH 7.0, as one would expect to see physiologically, e.g., in muscle tissue during exercise [@streetInterstitialPHHuman2001], is expected to reduce the rate by a factor of 2.5.
 This is because it only contributes linearly to the pre-exponential factor.
 
 ### Solvent accessibility of peptide bonds in the fibril is diverse {#sec-sasa}
@@ -2303,7 +2303,7 @@ The effect of filtering out side reactions for one affected example.
 ::::{#fig-add-hyd layout="[1,1]"}
 ![Hydrolysis reaction rates for increasing forces and varying pH values in the single peptide chain and triple helix systems as sampled with KIMMDY. \break \break \break ](./plots/kimmdy/rates-triple-vs-single.png){#fig-ext-hyd-ph}
 
-![SASA in 1\ nN shear pulling fibril simulation plotted against the Mean Excess Force, i.e. the force derived from bond extension in each peptide bond after accounting for average bond forces in the baseline, 0\ nN simulations.](./plots/kimmdy/sasa_vs_mean_force.png){#fig-sasa-f}
+![SASA in 1\ nN shear pulling fibril simulation plotted against the Mean Excess Force, i.e., the force derived from bond extension in each peptide bond after accounting for average bond forces in the baseline, 0\ nN simulations.](./plots/kimmdy/sasa_vs_mean_force.png){#fig-sasa-f}
 
 Extended hydrolysis results from KIMMDY runs.
 ::::
@@ -2450,7 +2450,7 @@ Ala: alanine \
 AO: atomic orbital \
 BD: Bürgi-Dunitz angle \
 BDE: bond dissociation energy \
-CGTO: contracted gaussian type orbitals \
+CGTO: contracted Gaussian-type orbitals \
 CLI: command-line interface \
 COM: Center of Mass \
 cryo-EM: cryo-electron microscopy \
@@ -2458,18 +2458,20 @@ CSA: cross-sectional area \
 DAG: directed acyclic graph \
 DFT: density functional theory \
 DOPA: dihydroxyphenylalanine \
+e.g.: exempli gratia \
 EM: electron microscopy \
 EPR: electron paramagnetic resonance \
 ER: endoplasmic reticulum \
-GEEP: gaussian expansion of the electrostatic potential \
+GEEP: Gaussian expansion of the electrostatic potential \
 GGA: generalized gradient approximation \
 Gly: glycine \
-GTO: gaussian type orbitals \
+GTO: Gaussian-type orbitals \
 HAT: hydrogen atom transfer \
 HITS: Heidelberg Institute for Theoretical Studies \
 HPC: high performance computing \
 Hyp: hydroxyproline \
 ID: identifier \
+i.e.: id est \
 kMC: kinetic Monte Carlo \
 KS: Kohn-Sham \
 LCAO: linear combination of atomic orbitals \
