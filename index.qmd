@@ -1502,7 +1502,7 @@ The KIMMDY schema that Denis Kieswetter made for @kimmdy2025.
 Given an initial state at $t_0$, KIMMDY generates an ensemble, typically via MD.
 Reaction plugins then provide rates for their potential reactions.
 KIMMDY then chooses a reaction and updates the global time.
-Next it effects the reaction, adapting the topology and coordinates of the system to the new state after the reaction.
+Next, it effects the reaction, adapting the topology and coordinates of the system to the new state after the reaction.
 A new round of sampling can begin.
 ](./figures/kimmdy-schema){#fig-kimmdy-schema width=60% fig-scap="KIMMDY schema."}
 
@@ -1510,27 +1510,27 @@ KIMMDY stands for Kinetic Monte Carlo Molecular Dynamics, a concept that was fir
 The core idea is this:
 Molecular dynamics simulations, in force field based methods, allow simulating and sampling large systems over relatively long periods of time. However, they lack the key feature of life, chemistry.
 Bonds can not break or form in these simulations, so no reactions can occur.
-Furthermore, even new reactive simulation methods like reactive force fields [@vanduinReaxFFReactiveForce2001;@senftleReaxFFReactiveForcefield2016], or machine-learned potentials [@schuttSchNetDeepLearning2018;@behlerGeneralizedNeuralNetworkRepresentation2007;@smithANI1ExtensibleNeural2017;@NEURIPS2022_4a36c3c5;@musaelianLearningLocalEquivariant2023;@mazitovPETMADUniversalInteratomic2025], reach a fundamental limit when it comes to reactions whose dwell-time exceeds the time that can reasonably be simulated by orders of magnitude.
+Furthermore, even new reactive simulation methods like reactive force fields [@vanduinReaxFFReactiveForce2001;@senftleReaxFFReactiveForcefield2016], or machine-learned potentials [@schuttSchNetDeepLearning2018;@behlerGeneralizedNeuralNetworkRepresentation2007;@smithANI1ExtensibleNeural2017;@NEURIPS2022_4a36c3c5;@musaelianLearningLocalEquivariant2023;@mazitovPETMADUniversalInteratomic2025], reach a fundamental limit when it comes to reactions whose dwell time exceeds the time that can reasonably be simulated by orders of magnitude.
 This was previously solved by my colleague Benedikt for force-dependent homolysis, by viewing a molecular dynamics simulation as a sampling step in a Monte Carlo scheme, during which the bond lengths are recorded and used in a physical model of homolysis that converts forces acting on bonds into activation energies for the homolysis.
 Those activation energies are then converted to reaction rates with the Arrhenius equation (@eq-arrhenius).
-A set of python scripts then realized the scheme to sample with a MD simulation, wait for the simulation to complete and calculate the predicted rupture rates for all backbone bonds.
+A set of Python scripts then realized the scheme to sample with an MD simulation, wait for the simulation to complete, and calculate the predicted rupture rates for all backbone bonds.
 A reaction was then chosen with the Monte Carlo scheme (see @sec-kmc) and the topology of the system was modified to accommodate the change.
 This then allows for the next sampling MD and looking for follow-up reactions.
 
-When my colleagues Kai Riedmiller, Eric Hartmann and I heard of this, we decided that such a scheme should be applicable not just to homolysis, but to all possible chemical reactions.
-The name KIMMDY was kept, but it was now realized as a user-friendly, extensible and powerful framework written in python and accessible via the command line and configuration files.
+When my colleagues Kai Riedmiller, Eric Hartmann, and I heard of this, we decided that such a scheme should be applicable not just to homolysis, but to all possible chemical reactions.
+The name KIMMDY was kept, but it was now realized as a user-friendly, extensible, and powerful framework written in Python and accessible via the command line and configuration files.
 Some of the figures I will show in this chapter have already been published in our manuscript, which is available on BioRxiv [@kimmdy2025] and at the time of writing under review at Nature Communications.
-As not only a joint first author paper, but also a collaborative software project with tens of thousands of lines of code added, removed and changed, it is not straightforward to pin any given feature on a single one of us.
+As not only a joint first author paper, but also a collaborative software project with tens of thousands of lines of code added, removed, and changed, it is not straightforward to pin any given feature on a single one of us.
 For this thesis, I will do my best to highlight especially the parts on which I had a particular focus, but nonetheless it remains the product of an incredibly fruitful collaboration.
 
 @fig-kimmdy-schema shows an overview of how KIMMDY works.
 KIMMDY is based on a plugin architecture.
-Possible reactions, such as bond rupture, hydrolysis, or hydrogen atom transfer (HAT) are implemented as plugins that report back reaction rates.
+Possible reactions, such as bond rupture, hydrolysis, or hydrogen atom transfer (HAT), are implemented as plugins that report back reaction rates.
 KIMMDY then takes care of executing the chosen reaction, stabilizing the system, and running the sampling simulations.
-In practice those are MD simulations, though KIMMDY is agnostic with regards to the type of simulation that generates the ensembles.
+In practice those are MD simulations, though KIMMDY is agnostic with regard to the type of simulation that generates the ensembles.
 The reaction plugins are also free to use any method necessary to obtain reaction rates based on the state of the system.
-This could be a heuristic fit to experimental data, a physical model or a machine learned one.
-All are present in the currently available plugins, such as the machine learned model predicting HAT by Kai, a plugin based on Benedikt's original physical model for homolysis or my heuristic model for peptide bond hydrolysis.
+This could be a heuristic fit to experimental data, a physical model, or a machine learned one.
+All are present in the currently available plugins, such as the machine learned model predicting HAT by Kai, a plugin based on Benedikt's original physical model for homolysis, or my heuristic model for peptide bond hydrolysis.
 But most importantly, we provide extensive documentation to enable any user to write their own reaction plugin and get started with KIMMDY: [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/).
 
 The structure of our documentation is based on the Diátaxis framework developed by Daniele Procida, who explains it further on [diataxis.fr](https://diataxis.fr/) [@Procida_Diataxis_documentation_framework].
@@ -1549,14 +1549,14 @@ Then I will apply KIMMDY to the biological question posed in the very beginning,
 ## Running KIMMDY: implementation and usage
 
 Note: the implementation details of KIMMDY have already been described by me and edited by my co-authors in the supplementary materials of @kimmdy2025.
-As such, sections of text will be similar and may only have minor adaptions for the context of this thesis.
+As such, sections of text will be similar and may only have minor adaptations for the context of this thesis.
 
 ### Installation
 
 Let us picture a user who has a new type of reaction that they want to simulate within MD.
 They are already familiar with their MD engine GROMACS and have the files to simulate their system without any reactions.
-After going to our documentation website they install KIMMDY.
-KIMMDY can just be install from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g., with `uv tool install -p 3.11 kimmdy`.
+After going to our documentation website, they install KIMMDY.
+KIMMDY can just be installd from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g., with `uv tool install -p 3.11 kimmdy`.
 Now the `kimmdy` command is available on the command line.
 Typing `kimmdy --help` brings up more options:
 
@@ -2196,7 +2196,7 @@ Eric Hartmann and Denis Kiesewetter then applied this to the large collagen syst
 
 ![Schema of successive HAT reactions after homolytic bond scission simulated in KIMMDY.](./figures/kimmdy/kimmdy-hat-schema.png){#fig-hat-schema}
 
-After many consecutive HAT reactions, the dwell-time for the residues was analyzed and two compounds stood out.
+After many consecutive HAT reactions, the dwell time for the residues was analyzed and two compounds stood out.
 The first is the familiar dihydroxyphenylalanine or DOPA (@fig-dopa), which forms a stable radical at one of the hydroxides.
 The second is a new face, the pyridinoline cross-link (PYD, @fig-pyd).
 It can also form a stable radical at its hydroxide, as BDE calculations then revealed (@fig-hat-bdes).
