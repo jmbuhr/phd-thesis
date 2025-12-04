@@ -107,7 +107,7 @@ If you are reading this notice, this thesis is not yet defended.
 :::: {.content-visible when-format="pdf"}
 You are reading the print version of this thesis.
 If you don't like page breaks, you can also read the web version at [jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis).
-It also provides interactive molecule displays, videos and handy features like preview windows for hovered figure, equation, or citation-references.
+It also provides interactive molecule displays, videos, and handy features like preview windows for hovered figure, equation, or citation references.
 ::::
 
 {{< pagebreak >}}
@@ -145,16 +145,15 @@ Mittels KIMMDY zeige ich, wie Kraftkonzentration in komplexen, quervernetzten Ko
 ## Abstract {-}
 
 Collagen is our most important structural protein.
-As the chief component of tendons, ligaments and other connective tissue it experiences extreme forces and exhibits interesting chemistry under external stress.
+As the chief component of tendons, ligaments, and other connective tissue, it experiences extreme forces and exhibits interesting chemistry under external stress.
 Earlier investigations found mechanoradicals in tensed collagen fibers through the use of electron paramagnetic resonance.
-However, it was still unclear how homolytic cleavage, the reaction that produces these radicals, competes with other, non-radical, reactions that would be more expected in an aqueous medium such as the body.
+However, it was still unclear how homolytic cleavage, the reaction that produces these radicals, competes with other, non-radical reactions that would be more expected in an aqueous medium such as the body.
 Base-catalyzed hydrolysis was recently shown to be greatly accelerated even by small forces, which would favor it in the competition.
 In this thesis, I resolve these seemingly contradictory findings with two complementary computational methods.
-Hybrid quantum mechanics / molecular mechanics simulations unveil the complexity of the hydrolysis reaction and show, how the chemical environment of the solvent is crucial and that the unique collagen structure increases the reaction barrier of base-catalyzed hydrolysis.
+Hybrid quantum mechanics/molecular mechanics simulations unveil the complexity of the hydrolysis reaction and show how the chemical environment of the solvent is crucial and that the unique collagen structure increases the reaction barrier of base-catalyzed hydrolysis.
 Then, I showcase a new method I developed in collaboration with two colleagues to tackle the comparison at scale:
 KIMMDY (Kinetic Monte Carlo Molecular Dynamics) allows simulating reactions in molecular dynamics simulations in a way that bridges time scales and is a flexible framework that can easily be extended to novel chemistries.
 With KIMMDY, I reveal how force concentration in complex cross-linked collagen fibrils can push forces to regimes where homolysis outcompetes hydrolysis.
-
 
 \clearpage
 
@@ -163,17 +162,16 @@ With KIMMDY, I reveal how force concentration in complex cross-linked collagen f
 ## Acknowledgments {-}
 
 Firstly, I want to thank Frauke and the past and present members of our research group that were part of my journey.
-I couldn't have chosen a better environment for my PhD and am grateful for the perfect mix of advice, support and freedom for my research.
+I couldn't have chosen a better environment for my PhD and am grateful for the perfect mix of advice, support, and freedom for my research.
 Special thanks go to my colleagues Eric Hartmann and Kai Riedmiller for being a great team when developing KIMMDY and many insightful scientific discussions.
 
-I would like to thank the additional members of my Thesis Advisory Committee, Ada Cavalcanti-Adam and Dirk-Peter Herten, for helping to keep me on track
-and especially Fabio Lolicato for jumping in as a last-minute member.
-I would like to thank the members of my defense committee, Eva Blasco, Robert Russell and Ursula Kummer for giving their time and expertise to evaluate my thesis and especially Rob for agreeing to be my second referee.
+I would like to thank the additional members of my Thesis Advisory Committee, Ada Cavalcanti-Adam and Dirk-Peter Herten, for helping to keep me on track, and especially Fabio Lolicato for jumping in as a last-minute member.
+I would like to thank the members of my defense committee, Eva Blasco, Robert Russell, and Ursula Kummer, for giving their time and expertise to evaluate my thesis, and especially Rob for agreeing to be my second referee.
 I am grateful to the Heidelberg Institute for Theoretical Studies (HITS) and the Max-Planck-Institute for Polymer Research (MPI-P) for providing the resources and environment to conduct my research.
 I would like to thank Dmitry Morozov and Gerrit Groenhof for hosting me in Jyväskylä and teaching me the ins and outs of QM/MM simulations in GROMACS.
 
-Finally, I wouldn't be close to where I am today without the support of my family and friends and the greatest thanks goes to them.
-To my friends, who provide the much needed work-life balance with board games (both on- and offline), bouldering or acrobatics.
+Finally, I wouldn't be close to where I am today without the support of my family and friends, and the greatest thanks goes to them.
+To my friends, who provide the much-needed work-life balance with board games (both on- and offline), bouldering, or acrobatics.
 To my parents and my brother, who put me into the position where I never even had to question whether something is possible, because I know we would always have each other's backs.
 _"Das macht man so in einer Herde."_
 And to my partner Franzi for accepting me into her pack and making me so inconceivably happy by just existing.
@@ -183,9 +181,9 @@ And to my partner Franzi for accepting me into her pack and making me so inconce
 ## AI statement {-}
 
 While there exist many valid use cases for machine learning (ML) and large language models (LLMs) in particular,
-creating genuine human communication and in doing so respecting you, the reader, by crafting a text that is worth reading, are not among them.
+creating genuine human communication and, in doing so, respecting you, the reader, by crafting a text that is worth reading, are not among them.
 This is why, even though machine learning techniques are featured in my research and even play a central role in the software that came out of it, the text of this thesis was not generated by an LLM.
-The only exceptions to this are the list of abbreviations in the appendix, which was completed by a script written by an LLM, as well as spell checking.
+The only exceptions to this are the list of abbreviations in the appendix, which was completed by a script written by an LLM, as well as spell-checking.
 So, dear reader, I thank you for your time in advance and sincerely hope you will not regret investing it.
 
 \clearpage
@@ -198,17 +196,17 @@ So, dear reader, I thank you for your time in advance and sincerely hope you wil
 
 I would like to open with a small historical story.
 
-![The Capture of Chandernagore, March 1757 by Dominic Serres, the Elder in 1771, oil on canvas. The HMS Salisbury can be seen on the left.](img/salisbury.png){#fig-salisbury .column-margin fig-scap='The Capture of Chandernagore.'}
+![The Capture of Chandernagore, March 1757, by Dominic Serres the Elder in 1771, oil on canvas. The HMS Salisbury can be seen on the left.](img/salisbury.png){#fig-salisbury .column-margin fig-scap='The Capture of Chandernagore.'}
 
 ### A journey on the HMS Salisbury {#sec-salisbury}
 
 It is the 20th of May, 1747.
 You are a sailor in the British Royal Navy.
 As you stand on the deck of the HMS Salisbury (@fig-salisbury), you overlook the English Channel you have been patrolling for months now.
-The creaking of the rigging on the three wooden masts mixes with the moaning of your crew mates who have fallen sick with that all too common ailment: scurvy.
+The creaking of the rigging on the three wooden masts mixes with the moaning of your crewmates who have fallen sick with that all too common ailment: scurvy.
 At first they had felt lethargic, short of breath and couldn't keep up with the hustle and bustle aboard the vessel.
-They felt a pain in their bones, bruised easily and the usual smaller injuries sustained from working a physically demanding job just would not heal.
-As you bring fresh water down into their cabin, your crew mates muster a faint smile, exposing their reddened gums.
+They felt a pain in their bones, bruised easily, and the usual smaller injuries sustained from working a physically demanding job just would not heal.
+As you bring fresh water down into their cabin, your crewmates muster a faint smile, exposing their reddened gums.
 Some are already losing teeth and you know they are not long for this world.
 They would eventually die from internal bleeding.
 This was not unusual.
@@ -218,19 +216,19 @@ But something was different that day.
 You observe your ship surgeon James Lind take 12 of the scurvy-ridden sailors and divide them into groups of two.
 He then administers each group a different remedy that had been suggested as a cure.
 The first got cider, the second vitriol, the third vinegar.
-The fourth got citrus fruits such as oranges and lemons, and again the next just a pint of sea water, while the last group got a paste made of balsam of Peru, garlic, myrrh, mustard seed and radish root [@lindTreatiseScurvyThree1772].
-As the HMS Salisbury makes its way back to Plymouth at the end of May, the citrus fruits had run out, but the two sailors that had been assigned them as a cure had already recovered.
+The fourth got citrus fruits such as oranges and lemons, and again the next just a pint of sea water, while the last group got a paste made of balsam of Peru, garlic, myrrh, mustard seed, and radish root [@lindTreatiseScurvyThree1772].
+As the HMS Salisbury makes its way back to Plymouth at the end of May, the citrus fruits have run out, but the two sailors that had been assigned them as a cure have already recovered.
 
 ![The ability icon for "REMOVE SCURVY", ©Riot\ Games.](img/orange.png){#fig-remove-scurvy .column-margin fig-scap="Remove scurvy." width=30%}
 
-James Lind was neither the first to use citrus fruits as a cure, nor the first to conduct such an experiment [@baronSailorsScurvyJames2009]; however, he is widely regarded as the first to include control groups.
+James Lind was neither the first to use citrus fruits as a cure nor the first to conduct such an experiment [@baronSailorsScurvyJames2009]; however, he is widely regarded as the first to include control groups.
 This arguably makes it the first clinical trial in history.
 I leave the details for historians to debate.
 
 ![The Brazen Buccaneer card from Riftbound, the League of Legends trading card game, ©Riot\ Games.](./img/riftbound-buccaneer.png){#fig-rifbound .column-margin width=80%}
 
 At that time, nobody knew the true cause of scurvy and even Lind himself had various incorrect theories as to the cause and why specifically citrus fruits helped.
-But they did help and their ability to treat and prevent scurvy has even made it into popular culture to an extent where there are video game characters that include citrus fruits as part of their appearance to signify them being sea-faring.
+But they did help, and their ability to treat and prevent scurvy has even made it into popular culture to the extent that there are video game characters that include citrus fruits as part of their appearance to signify them being seafaring.
 Some of those even include a reference to the disease as well.
 The League of Legends champion "Gangplank", a pirate character, comes with an ability to "remove scurvy", whereby he eats an orange to be healed of negative status effects (@fig-remove-scurvy)
 and the "Brazen Buccaneer" (@fig-rifbound) in the card game "Riftbound", also by Riot Games, is seen in his artwork handing out oranges.
@@ -238,11 +236,11 @@ and the "Brazen Buccaneer" (@fig-rifbound) in the card game "Riftbound", also by
 As we now know, scurvy is a result of vitamin C deficiency, which in turn leads to issues with the biosynthesis of collagen.
 This thesis is not about scurvy directly, but it is about collagen.
 
-Collagen is the most abundant protein in mammals (going by mass that is; serum albumin fans may disagree on the counting method) [@verzarAgingCollagenFiber1964].
-As our primary structural protein, it makes up connective tissue, cartilage, skin and tendons.
+Collagen is the most abundant protein in mammals (going by mass, that is; serum albumin fans may disagree on the counting method) [@verzarAgingCollagenFiber1964].
+As our primary structural protein, it makes up connective tissue, cartilage, skin, and tendons.
 Fascinatingly, it is both a component in structures that need stability, such as bones, as well as in those that need flexibility, such as blood vessels.
-The prevalence and necessity of properly formed collagen explains many of the symptoms of scurvy and also why I chose this obscure 18th century ailment as a small introductory story from history.
-But to understand the relationship at a molecular level we need to look into how collagen is made.
+The prevalence and necessity of properly formed collagen explains many of the symptoms of scurvy and also why I chose this obscure 18th-century ailment as a small introductory story from history.
+But to understand the relationship at a molecular level, we need to look into how collagen is made.
 
 ### The biosynthesis of collagen {#sec-synth}
 
@@ -262,26 +260,26 @@ We now have the collagen pro-peptide (pro-collagen).
 
 ![Hydroxylysine.](img/hydroxylysine.svg){#fig-hydroxylysine .column-margin width=50%}
 
-At the ER, two enzymes, prolyl- and lysyl-hydroxylase, do their work and turn some of the lysines (@fig-lysine) and prolines into hydroxylysines (@fig-hydroxylysine) and hydroxyprolines respectively.
+At the ER, two enzymes, prolyl and lysyl hydroxylase, do their work and turn some of the lysines (@fig-lysine) and prolines into hydroxylysines (@fig-hydroxylysine) and hydroxyprolines, respectively.
 Both of these enzymes need vitamin C as a cofactor, so remember to eat your oranges.
-Pro-collagen consists of a triplehelix made up of the individual processed pro-peptides, where two strands share the same composition (alpha 1) and a third has a different composition (alpha 2).
-Pro-collagen is processed once more in the Golgi apparatus with the addition of oligosaccharides, until finally being secreted to the outside of the cell.
+Pro-collagen consists of a triple helix made up of the individual processed pro-peptides, where two strands share the same composition (alpha 1) and a third has a different composition (alpha 2).
+Pro-collagen is processed once more in the Golgi apparatus with the addition of oligosaccharides until finally being secreted to the outside of the cell.
 
 Due to the high content of glycine (@fig-glycine), proline (@fig-proline) and hydroxyproline (@fig-hydroxyproline), collagen peptides, and by extension also the tropo-collagen triple helices, can be wound very tightly.
-This is because glycine is the smallest amino acid and proline brings unusual stiffness due to its $\Phi$ dihedral angle being locked at -65° by the peptide bond Nitrogen ($\ce{N}$) being part of a ring structure.
+This is because glycine is the smallest amino acid and proline brings unusual stiffness due to its $\Phi$ dihedral angle being locked at -65° by the peptide bond nitrogen ($\ce{N}$) being part of a ring structure.
 This makes collagen an excellent candidate as a structural protein.
 
 At this point it is worth noting that there are currently 28 known members of the collagen family.
 All of which contain at least one such triple helix, but what happens after varies.
 For this work the most important members are of the fibrillar type (type I to VI, excluding IV), where understandably the early numbers also constitute the most common forms.
-More specifically, we will be looking at collagen type I, which is the chief component of tendons, bones, skin and blood vessels.
+More specifically, we will be looking at collagen type I, which is the chief component of tendons, bones, skin, and blood vessels.
 
 Collagen peptidases (collagenases) on the outer membrane of the cell cleave off the ends, leaving us with tropo-collagen.
 Many tropo-collagen triple helices assemble into fibrillar structures, in which the triple helices are cross-linked to various degrees depending on type and age.
-The enzyme lysyl-oxidase is responsible for creating many of those cross-links.
-It turns lysine into allysine (its aldehyde), which can then react in an aldol condensation with the hydroxylysines created earlier by lysyl-hydroxylase, netting pyridinoline cross-links (PYD).
+The enzyme lysyl oxidase is responsible for creating many of those cross-links.
+It turns lysine into allysine (its aldehyde), which can then react in an aldol condensation with the hydroxylysines created earlier by lysyl hydroxylase, netting pyridinoline cross-links (PYD).
 This is where the connection to scurvy lies.
-A lack in vitamin C leads to a lack of hydroxylated residues, which leads to a lack of collagen cross-links.
+A lack of vitamin C leads to a lack of hydroxylated residues, which leads to a lack of collagen cross-links.
 Thus, scurvy serves to show how crucial the cross-linked, fibrillar structure of collagen is by painting a grim picture of what happens when it is improperly formed.
 
 :::{#fig-collagen-structure layout="[[1,1,1],[2,1]]"}
@@ -313,7 +311,7 @@ This propagates up to the larger fibrils and is thus visible in electron microsc
 ## A rather radical discovery: mechanoradicals in collagen {#sec-intro-mech}
 
 As a structural protein, collagen can be under a lot of stress, especially in tendons [@fangExperimentalEvaluationMultiscale2017] (@fig-tendon).
-Take for example the Semimembranosus muscle, the medial of the three hamstring muscles in the thigh.
+Take, for example, the semimembranosus muscle, the medial of the three hamstring muscles in the thigh.
 Its namesake tendon has a cross-sectional area (CSA) of around 100\ mm^2^ [@sahinisReliabilityDistalHamstring2021] and has to transfer forces up to 1\ kN [@besierKneeMuscleForces2009], which leads to a stress of 10\ MPa.
 More demanding or rapid exercises can lead to even higher forces, such as 4\ kN on the Achilles tendon during vertical jumping [@fukashiroComparisonDirectlyMeasured1993].
 In this case it also has a higher CSA of around 450\ mm^2^ [@sponbeckAchillesTendonCross2017], so nature is coming prepared,
@@ -322,7 +320,7 @@ Or the patellar tendon, which in countermovement jumps has to withstand peak for
 These stresses can become even higher when you take into account the effective CSA, that is the collagen content of the tendon (the part that actually transduces forces), excluding the water content of around 60% [@chimichWaterContentAlters1992].
 One just has to wonder: What do these forces do to the molecular structure of collagen?
 
-![Simplified view of the bones, tendons and ligaments of the foot. The Achilles tendon can be seen attaching the calf muscles to the heel bone. Image Source: cropped version of "Magnified view of a tendon" by Scientfic Animations, <https://scientificanimations.com/wiki-images/>, CC BY-SA 4.0.](./img/Magnified_view_of_a_Tendon_cropped.png){#fig-tendon .column-margin fig-scap="Achilles tendon render."}
+![Simplified view of the bones, tendons, and ligaments of the foot. The Achilles tendon can be seen attaching the calf muscles to the heel bone. Image Source: cropped version of "Magnified view of a tendon" by Scientfic Animations, <https://scientificanimations.com/wiki-images/>, CC BY-SA 4.0.](./img/Magnified_view_of_a_Tendon_cropped.png){#fig-tendon .column-margin fig-scap="Achilles tendon render."}
 
 It has long been known that mechanical forces can lead to homolytic bond scission and thus so-called mechanoradicals in polymers [@kauzmannViscousFlowLarge1940] and the field of mechanochemistry is well established by now [@beyerMechanochemistryMechanicalActivation2005].
 For decades this thinking had only been applied to synthetic polymers.
@@ -333,7 +331,7 @@ Overlooking biopolymers as candidates for mechanoradicals seems natural still in
 After all, they tend to be solvated in aqueous medium, where other reactions should be more prevalent.
 One such reaction is hydrolysis, specifically base-catalyzed hydrolysis of the peptide bond of proteins.
 It was first assumed that such a reaction would be insensitive to external force due to the rate-limiting step being the attack of the hydroxide [@xiaBaseCatalyzedPeptideHydrolysis2011].
-This made intuitive sense as an explanation as to why we are able to measure radicals in collagen under force, when a protein could also hydrolyse instead.
+This made intuitive sense as an explanation as to why we are able to measure radicals in collagen under force, when a protein could also hydrolyze instead.
 However, a later study looked deeper into peptide hydrolysis and was able to experimentally show its force-dependence through the use of atomic force microscopy (AFM), supplemented with quantum mechanical (QM) calculations of their own [@pillMechanicalActivationDrastically2019].
 
 How can we reconcile seeing radicals in tensed collagen with a peptide bond hydrolysis reaction that is also highly force-dependent?
@@ -346,7 +344,7 @@ The reaction goes through a tetrahedral intermediate and eventually leads to the
 It is explained in greater detail in @sec-main-qm.
 Force-induced homolysis, on the other hand, requires no additional molecules.
 Bonds along the vector of the applied force are weakened by the energy put into them by the external force, which puts them closer to their bond dissociation energy (BDE).
-This increases the probability of rupture, whereby the electrons of the scissile bond are split equally between the two binding partners, resulting in unpaired electrons i.e. radicals.
+This increases the probability of rupture, whereby the electrons of the scissile bond are split equally between the two binding partners, resulting in unpaired electrons, i.e. radicals.
 The reaction probability for a particular bond depends on the BDE and the distribution of force through the bonds.
 How one emulates both reactions with a physical model is explained in more detail in @sec-hyd-hom-plugins.
 
@@ -357,17 +355,17 @@ Furthermore, the wet conditions required for peptide bond hydrolysis are not con
 EPR measurements require the sample to be dried, because residual water would otherwise be heated up by the microwaves used during measurement and evaporate the sample.
 I wanted to look deeply at the two competing reactions at a molecular level and thus turned to molecular simulations, the types of which are explained in detail in the [Methods and theory](#sec-methods) section.
 
-The goals of this thesis are two-fold.
+The goals of this thesis are twofold.
 Firstly, there is the biological question at hand.
 How do the reaction rates of homolysis and hydrolysis compare to each other in collagen fibrils?
 What factors influence their competition?
-Secondly, there is the more general question of how chemical reactions can be simulated with computational models, even if the time scales of the reactions are disparate to the time scales that can be achieved with molecular simulations.
+Secondly, there is the more general question of how chemical reactions can be simulated with computational models, even if the time scales of the reactions are disparate from the time scales that can be achieved with molecular simulations.
 
 The [Collagen hydrolysis by quantum mechanics/molecular mechanics](#sec-main-qm) chapter, @sec-main-qm, explores the base-catalyzed hydrolysis reaction in detail.
 Instead of static calculations, it aims to provide a view into the dynamic nature of the reaction and its complex energy landscape.
 This is used to directly see how the unique structure of collagen, its tightly wound triple helix, influences the energy barrier of hydrolysis.
 
-But computationally expensive methods such as quantum mechanics / molecular mechanics simulations are inherently limited in the scope of their sampling.
+But computationally expensive methods such as quantum mechanics/molecular mechanics simulations are inherently limited in the scope of their sampling.
 The [Kinetic Monte Carlo Molecular Dynamics: KIMMDY](#sec-main-kimmdy) chapter, @sec-main-kimmdy, tackles the question of reactive simulations at scale.
 I will introduce a new method that is the result of a joint project with my colleagues Eric Hartmann and Kai Riedmiller.
 KIMMDY provides a generalized framework for bridging timescales in reactive molecular dynamics (MD) simulations.
@@ -391,7 +389,7 @@ The goal is to introduce each topic at least to the extent that the choices made
 
 ![Chemical structure formula of propionaldehyde.](./img/propionaldehyde.svg){#fig-propionaldehyde .column-margin fig-scap="Propionaldehyde, chemical formula." width=60%}
 
-![Propionaldehyde as a classic sticks and balls render.](./img/molecule-cpk.png){#fig-propionaldehyde-sticks .column-margin fig-scap="Propionaldehyde, ball-and-stick render."}
+![Propionaldehyde as a classic ball-and-stick render.](./img/molecule-cpk.png){#fig-propionaldehyde-sticks .column-margin fig-scap="Propionaldehyde, ball-and-stick render."}
 
 ![Propionaldehyde represented with balls for atomic nuclei and the electron density around them.](./img/molecule-density.png){#fig-propionaldehyde-density .column-margin fig-scap="Propionaldehyde, nuclei with electron density."}
 
@@ -401,8 +399,8 @@ In the chemical formula, implicit hydrogens are often omitted, so let us also lo
 Ultimately, this representation combines the nuclei and electrons of the atoms involved in the molecule into one representation, but we might also want to show a representation of the electron density like in @fig-propionaldehyde-density.
 The challenge is now to find a representation in which it becomes feasible to describe the motion of atoms through time in order to build a system that we can observe and use to calculate properties of by sampling.
 
-As the phrase, usually attributed to statistician George Box, goes: "All models are wrong, but some are useful".
-So let us start with one of the most simplified ones that will allow us to simulation large systems.
+As the phrase, usually attributed to statistician George Box, goes: "All models are wrong, but some are useful."
+So let us start with one of the most simplified ones that will allow us to simulate large systems.
 Afterwards, we will add more detail and then finally combine both methods.
 
 We can describe our system as a collection of all the atomic positions $\vec{r}$ in 3-dimensional space and their momenta $\vec{p}$, where both vectors are of length 3N with N being the number of atoms.
@@ -419,7 +417,7 @@ $$
 \end{array}
 $${#eq-hamilton}
 
-where the Hamiltonian operator $H$ is the total energy operator and $r_i$ is one value of $\vec{r}$ i.e. the position of one atom along one axis and likewise for $p_i$.
+where the Hamiltonian operator $H$ is the total energy operator and $r_i$ is one value of $\vec{r}$, i.e. the position of one atom along one axis and likewise for $p_i$.
 
 Or we can use Newton's equations of motion @eq-newton
 
@@ -438,7 +436,7 @@ Most implementations use Newton's equations for computations.
 The integration is performed stepwise over small intervals $\Delta t$ (or $dt$).
 From the initial state, energies and forces are computed for each atom.
 Under the assumption of those being constant for a small timestep $dt$, typically in the range of femtoseconds, the new positions are calculated from the forces acting on the atoms.
-The _leap-frog_ algorithm [@hockneyQuietHighresolutionComputer1974] achieves this by interleaving position and velocity updates as shown in @eq-frog.
+The _leapfrog_ algorithm [@hockneyQuietHighresolutionComputer1974] achieves this by interleaving position and velocity updates as shown in @eq-frog.
 This gets repeated until sufficient sampling of phase space is achieved or computational resources, limited by time and money, run out.
 
 $$
@@ -447,8 +445,8 @@ $$
 \mathbf{r}(t+{{\Delta t}})   &~=~&   \mathbf{r}(t)+{{\Delta t}}\mathbf{v}(t+{{\frac{1}{2}}{{\Delta t}}})\end{aligned}\end{split}
 $${#eq-frog}
 
-Because different initial conditions lead to different trajectories one often runs multiple such computational runs in parallel.
-For ergodic properties i.e. those for which the ergodic hypothesis holds, stating that the time average is equal to the ensemble average [@boltzmannVorlesungenUeberGastheorie1896], this can drastically improve sampling.
+Because different initial conditions lead to different trajectories, one often runs multiple such computational runs in parallel.
+For ergodic properties, i.e. those for which the ergodic hypothesis holds, stating that the time average is equal to the ensemble average [@boltzmannVorlesungenUeberGastheorie1896], this can drastically improve sampling.
 
 ## Molecular mechanics
 
@@ -458,7 +456,7 @@ Let us assume our system is made up of different kinds of balls connected with s
 
 ### Energy terms
 
-The total potential energy of our system is described as the sum of bonded and non-bonded terms @eq-energy-total, which we can further decomposed with @eq-energy-bonded and @eq-energy-nonbonded.
+The total potential energy of our system is described as the sum of bonded and non-bonded terms @eq-energy-total, which we can further decompose with @eq-energy-bonded and @eq-energy-nonbonded.
 
 $$V_{total} = V_{bonded} + V_{nonbonded}$${#eq-energy-total}
 
@@ -489,9 +487,9 @@ Finally, bonded connections between four atoms give rise to dihedral angles that
 
 $$V_{cosine}(\phi) = k( 1 + \cos(n \phi - \phi_0))$${#eq-energy-cosine}
 
-Sometimes additional bonded terms labelled improper dihedrals are used to e.g. enforce planarity of certain molecules by adding potential energy for out-of-plane bending.
+Sometimes additional bonded terms labelled "improper dihedrals" are used to e.g. enforce planarity of certain molecules by adding potential energy for out-of-plane bending.
 
-In addition to those bonded terms we have the non-bonded terms split into electrostatic interactions and Van der Waals interactions.
+In addition to those bonded terms, we have the non-bonded terms split into electrostatic interactions and Van der Waals interactions.
 
 Van der Waals forces (or consequently the potential energy from which they arise) are the result of a mixture of repulsion through overlapping electron density at very close distances and attraction at intermediate distances due to spontaneous and induced dipole-dipole interactions between the electron clouds of two atoms.
 While the long-range attraction scales with $1/R^6$, the short-range repulsion features an exponential term.
@@ -508,14 +506,14 @@ where $r$ is the distance between two atoms $i$ and $j$ and $\sigma$ and $\epsil
 The electrostatic or Coulomb [@coulombFirstMemoirElectricity1785] term (@eq-coulomb and @fig-coulomb-potential) is also summed for all pairs of atoms.
 
 $$
-V_{coulomb}(r_{ij})=\frac{Q_a Q_b}{\epsilon r^2},
+V_{Coulomb}(r_{ij})=\frac{Q_a Q_b}{\epsilon r^2},
 $${#eq-coulomb}
 
 with the effective dielectric constant $\epsilon$.
 
 ![A Coulomb potential.](./img/coulomb-potential.png){#fig-coulomb-potential .column-margin fig-scap="Coulomb potential."}
 
-Here, the charge $Q$ of an atom is not just the result of ionisation.
+Here, the charge $Q$ of an atom is not just the result of ionization.
 Instead, it includes so-called partial charges, where the total electron density of a molecule has been (artificially) assigned beforehand to individual atoms based on quantum mechanical calculation procedures like the Restrained Electrostatic Potential (RESP) [@baylyWellbehavedElectrostaticPotential2002].
 
 Those non-bonded interactions are sometimes scaled down when atoms are, albeit not directly, connected by being part of the same dihedral, which is then called a 1--4 interaction and are usually omitted when atoms are direct or second neighbors.
@@ -523,26 +521,26 @@ The contributions are then already integrated into the bonded terms.
 
 ### Force fields and topologies
 
-Now that we have equations for the energy terms of our system that are also easily derivable we need to feed some values into them.
-How do we get, store and recall the parameters for all those equations?
+Now that we have equations for the energy terms of our system that are also easily derivable, we need to feed some values into them.
+How do we get, store, and recall the parameters for all those equations?
 The answer comes in the form of force fields.
 
-Many PhD students before me and other clever people have performed more detailed quantum mechanical _ab initio_ calculations to figure out what those parameters should be, like for example the force constant $k$ (in @eq-energy-harmonic) for a bond between two particular atoms.
-This will vary by molecule and chemical environment, not every carbon ($\ce{C}$) to carbon bond is the same, but we can group similar atoms into "atomtypes".
+Many PhD students before me and other clever people have performed more detailed quantum mechanical _ab initio_ calculations to figure out what those parameters should be, like, for example, the force constant $k$ (in @eq-energy-harmonic) for a bond between two particular atoms.
+This will vary by molecule and chemical environment; not every carbon ($\ce{C}$) to carbon bond is the same, but we can group similar atoms into "atomtypes".
 In protein simulations a popular choice are the Amber force fields [@caseAmberTools2023].
-Since the early version developed 1994, Amber94 [@cornellSecondGenerationForce1995] they have been continuously refined.
+Since the early version developed in 1994, Amber94 [@cornellSecondGenerationForce1995] has been continuously refined.
 Amber99 improved upon it with RESP partial charges [@wangHowWellDoes2000] and provided a basis for further modifications.
 The parameters are not only fit to _ab initio_ QM calculations.
-They are also adjusted to match observables from simulations to experimental values such as the dihedral angles of a peptide in a Ramachandran diagram [@ramachandranStereochemistryPolypeptideChain1963].
-The version used for the simulations in this thesis is `amber99sb*ildnp`, where `sb` stands for Stony Brook University, `*` stands for protein backbone modifications, `ildn` improved side-chain torsion potentials and the `p` stands for improved proline and hydroxyproline parameters [@bestOptimizedMolecularDynamics2009;@lindahlGROMACS2020Source2020;@alievMotionalTimescalePredictions2014].
+They are also adjusted to match observables from simulations to experimental values, such as the dihedral angles of a peptide in a Ramachandran diagram [@ramachandranStereochemistryPolypeptideChain1963].
+The version used for the simulations in this thesis is `amber99sb*ildnp`, where `sb` stands for Stony Brook University, `*` stands for protein backbone modifications, `ildn` improved side-chain torsion potentials, and the `p` stands for improved proline and hydroxyproline parameters [@bestOptimizedMolecularDynamics2009;@lindahlGROMACS2020Source2020;@alievMotionalTimescalePredictions2014].
 Other well-known force fields include CHARMM [@brooksCHARMMBiomolecularSimulation2009], GROMOS [@schulerImprovedGROMOS96Force2001] and OPLS-AA [@robertsonImprovedPeptideProtein2015].
-The choice of a forcefield is one of the many crucial choices when setting up a molecular dynamics simulation, as different force fields have been optimized for different types of molecules or observables.
+The choice of a force field is one of the many crucial choices when setting up a molecular dynamics simulation, as different force fields have been optimized for different types of molecules or observables.
 Amber was chosen as it is specifically geared towards protein simulations.
 We will be going through examples from this force field, because how a force field is structured will be relevant to @sec-main-kimmdy in particular.
 Specifically, the lines shown are from a version of the files [@sorinExploringHelixCoilTransition2005] ported to the molecular dynamics engine GROMACS [@abrahamGROMACSHighPerformance2015] that I have been using during the course of my PhD.
 
 Just like the total energy function @eq-energy-total, the main entry point for the force field (`forcefield.itp`, @lst-ff) includes references to the non-bonded and bonded parameters.
-In addition to that, it also holds more general parameters, such as the combination rule used to compute Lennard-Jones (LJ) parameters for a pair of atoms and the fudge parameters, which are factors for scaling down LJ and coulomb (QQ) parameters for 1--4 interactions.
+In addition to that, it also holds more general parameters, such as the combination rule used to compute Lennard-Jones (LJ) parameters for a pair of atoms and the fudge parameters, which are factors for scaling down LJ and Coulomb (QQ) parameters for 1--4 interactions.
 `itp` stands for "include topology" and we will talk more about the topology concept later.
 
 ```{#lst-ff .ini lst-cap="Excerpt from forcefield.itp"}
@@ -563,7 +561,7 @@ H       1       1.008  0.0000  A   1.06908e-01  6.56888e-02
 HC      1       1.008  0.0000  A   2.64953e-01  6.56888e-02
 ```
 
-For any given pair of atoms that have been assigned atom types and are not bonded we can fill in the parameters of the LJ equation (@eq-lennard-jones).
+For any given pair of atoms that have been assigned atom types and are not bonded, we can fill in the parameters of the LJ equation (@eq-lennard-jones).
 The combination rule as mentioned in the general parameters decides how the parameters $\epsilon$ and $\sigma$ from both atoms are combined into one parameter each.
 Type 1 would indicate a geometric average, while type 2, as in this example, used the Lorentz-Berthelot [@lorentzUeberAnwendungSatzes1881;@berthelotMelangeGaz1898] rules, where $\sigma$ used an arithmetic average and $\epsilon$ uses a geometric average (@eq-lbrule).
 
@@ -576,19 +574,19 @@ $${#eq-lbrule}
 
 Likewise, the MD engine can use the charges from @lst-nonbonded to calculate the electrostatic potential.
 However, you might have noticed that all the charges in the default `atomtypes` are `0.0`.
-This is correct, as for example a carbon when saturated is not charged by default, but based on its chemical environment it should have a partial charge.
+This is correct, as, for example, a carbon when saturated is not charged by default, but based on its chemical environment it should have a partial charge.
 How large should the partial charge be?
 This is defined in the `topology`.
 
 The topology of a system lists all molecules and atoms of a system and how they are connected.
-So while a force fields lists all potential interactions between types of atoms that it knows about, a topology is a concrete instance of the interactions and their parameters.
+So while a force field lists all potential interactions between types of atoms that it knows about, a topology is a concrete instance of the interactions and their parameters.
 The topology files shown are in the format of my MD engine of choice, GROMACS.
-A topology file (@lst-top) may include the forcefield and then list a number of moleculetypes that can then be used to describe the system with the number of each type listed in the molecules section.
-Note though, that a topology is only concerned with connectivity and types, but not with coordinates.
+A topology file (@lst-top) may include the force field and then list a number of moleculetypes that can then be used to describe the system with the number of each type listed in the molecules section.
+Note though that a topology is only concerned with connectivity and types, but not with coordinates.
 Coordinates are specified in a separate file such as a `.gro` or `.pdb` [@bermanProteinDataBank2014] file, excerpts of which can be seen in @lst-gro and @lst-pdb.
-When GROMACS creates a topology from coordinates it uses information such as the residuetype to fill out and assign interactions.
+When GROMACS creates a topology from coordinates, it uses information such as the "residuetype" to fill out and assign interactions.
 For example, in @lst-top the atom with identifier (ID) 1 is a carbon of type CT that belongs to the acyl cap of a glycine dipeptide, so it has residuetype ACE.
-`.rtp` files in the force fields contain specialised residue topologies.
+`.rtp` files in the force fields contain specialized residue topologies.
 In this case, given that we are dealing with a peptide, GROMACS will look in `aminoacids.rtp` (@lst-rtp), find the partial charges for the atoms of the residue, and write their values directly into the topology as part of the `atoms` section.
 Additionally, improper dihedrals are added based on the `impropers` section.
 
@@ -598,7 +596,7 @@ The topology only specifies the functional form of the interaction, where type 1
 The values for the parameters are then taken from the `bondtypes` section based on the atomtypes of the atoms involved in the bond,
 where in this case the `bondtypes` section was included from the force field file as seen in @lst-bonded.
 It is also possible to specify the parameters directly, which will be especially relevant for our method KIMMDY, @sec-main-kimmdy.
-The same is done for higher order interactions such as angles and dihedrals.
+The same is done for higher-order interactions such as angles and dihedrals.
 A special case is the `pairs` section, which indicates pairs of atoms that have scaled LJ and Coulomb terms, usually due to them being part of a 1--4 interaction.
 This section also allows one to specify the Coulomb and Van der Waals parameters directly.
 
@@ -658,7 +656,7 @@ CL               110
 
 ## Periodic boundary conditions
 
-When simulating systems such as those used in biology like a protein solvated in water, we can extend our system at little cost by applying periodic boundary conditions (PBC) (@fig-periodic).
+When simulating systems such as those used in biology, like a protein solvated in water, we can extend our system at little cost by applying periodic boundary conditions (PBC) (@fig-periodic).
 A central simulation cell is assumed to infinitely repeat in all directions.
 A particle exiting the cell enters at the opposite side.
 This allows one to mimic a large homogeneous solvation environment of the protein, though one has to be careful that the simulation box is sufficiently large to prevent the protein from interacting with its own periodic image.
@@ -669,7 +667,7 @@ This allows one to mimic a large homogeneous solvation environment of the protei
 
 The higher we can set our timestep $\Delta t$, the longer the total time we can simulate with our computational resources.
 However, higher timesteps also lead to more unstable simulations.
-Imagine a harmonic bond in a molecule between an Oxygen and a Hydrogen.
+Imagine a harmonic bond in a molecule between an oxygen and a hydrogen.
 The harmonic potential (@eq-energy-harmonic) has a force constant $k$ of 462750\ kJ/mol/nm^2^.
 The masses of the atoms are 1.008\ u and 16\ u where 1\ u = 1.66×10^-27^\ kg.
 Together this is a reduced mass $\mu$ of 1.574×10^-27^\ kg.
@@ -686,15 +684,15 @@ This allows for timesteps upwards of 1\ fs.
 
 ## Initial conditions and ensembles
 
-The initial conditions for molecular dynamics simulations typically come from a structure determined experimentally through x-ray crystallography or cryo electron microscopy (cryo-EM), though with the rise of AlphaFold [@jumperHighlyAccurateProtein2021], sometimes an amino acid sequence can be a good-enough starting point for protein simulations.
-The initial structure is then minimized, solvated and equilibrated, where typically restraints are employed to ease the protein into the ensemble.
-Here, we differentiate between the microcanonical (NVE), canonical (NVT) and isothermal-isobaric (NPT) ensemble, where N stands for the fixed number of particles, V is a fixed volume, E is a fixed total energy, T is a fixed temperature and P is a fixed pressure.
+The initial conditions for molecular dynamics simulations typically come from a structure determined experimentally through x-ray crystallography or cryo-electron microscopy (cryo-EM), though with the rise of AlphaFold [@jumperHighlyAccurateProtein2021], sometimes an amino acid sequence can be a good-enough starting point for protein simulations.
+The initial structure is then minimized, solvated, and equilibrated, where typically restraints are employed to ease the protein into the ensemble.
+Here, we differentiate between the microcanonical (NVE), canonical (NVT), and isothermal-isobaric (NPT) ensemble, where N stands for the fixed number of particles, V is a fixed volume, E is a fixed total energy, T is a fixed temperature, and P is a fixed pressure.
 This is to make sure that the system is stable and to reduce the bias due to the initial conditions.
 
 ## Thermostats and barostats
 
-In order to achieve the various ensembles it is necessary to control the respective constants.
-Keeping the number of particles the same is trivial, the other observables require a bit more maths.
+In order to achieve the various ensembles, it is necessary to control the respective constants.
+Keeping the number of particles the same is trivial, the other observables require a bit more math.
 
 From the equipartition theorem [@boltzmannEinigeAllgemeineSatze1871] it follows that the temperature $T$ of an ideal gas system with $N$ particles can be described by @eq-equipartition
 as a function of the individual particle velocities.
@@ -716,7 +714,7 @@ $${#eq-berendsen}
 
 The time constant $\tau$ of the exponentially decaying temperature deviation adjusts the strength of the coupling.
 (Stochastic) velocity-rescaling [@bussiCanonicalSamplingVelocity2007] is a newer method for temperature coupling based on the Berendsen thermostat that ensures correct kinetic energy distribution.
-It keeps the advantages of the Berendsen thermostat, the fast first order decay of temperature deviations and absence of oscillations, while producing a correct canonical ensemble.
+It keeps the advantages of the Berendsen thermostat, the fast first-order decay of temperature deviations and the absence of oscillations, while producing a correct canonical ensemble.
 
 Likewise, the Berendsen algorithm can couple the pressure to an external "pressure bath" by scaling the volume by a factor $\lambda$ via @eq-berendsen-p.
 
@@ -724,9 +722,9 @@ $$
 \lambda = 1 - \beta \frac{\Delta t}{\tau P} \left( P_0 - P \right),
 $${#eq-berendsen-p}
 
-with the isothermal compressibility $\beta$, the simulation time step $\Delta t$ and the reference pressure $P_0$.
+with the isothermal compressibility $\beta$, the simulation timestep $\Delta t$ and the reference pressure $P_0$.
 The Berendsen barostat does not result in the exact NPT ensemble and does not compute the correct fluctuations in pressure or volume, but it is fast for relaxation without oscillations.
-As such it is typically only used briefly at the start of a simulation during equilibration, while for longer simulations the Parrinello-Rahman barostat [@parrinelloPolymorphicTransitionsSingle1981] is used.
+As such, it is typically only used briefly at the start of a simulation during equilibration, while for longer simulations the Parrinello-Rahman barostat [@parrinelloPolymorphicTransitionsSingle1981] is used.
 
 It is worth noting that pressure coupling does not play well with QM/MM simulations (@sec-meth-qmmm), because the MD engine does not account for the contribution of QM/MM forces to the system virial.
 As such, those simulations will use the canonical ensemble.
@@ -767,7 +765,7 @@ From those snapshots more simulations are started, with the umbrella potential t
 Together, these simulations can be used to estimate the free energy profile along the reaction coordinate.
 This free energy profile is sometimes also called the potential of mean force (PMF), although this is not technically correct due to the inclusion of entropic effects in the sampling [@grossfieldWHAMWeightedHistogram].
 
-![Because the harmonic potential holding each umbrella window in place along the reaction coordinate $\xi$ is often also called an umbrella potential, I was initially quite confused: "That's not how you hold an umbrella!". It starts to make more sense when referring to the histograms of the umbrella windows (lots of small umbrellas, @fig-hist-us), but I nonetheless made this Squirrel holding an upside-down umbrella for a seminar using a combination of manual painting and StableDiffusion [@rombachHighResolutionImageSynthesis2022] running locally via InvokeAI [@InvokeaiInvokeAI2025].](img/umbrella-squirrel.png){#fig-squirrel .column-margin fig-scap="Squirrel holding upside-down umbrella."}
+![Because the harmonic potential holding each umbrella window in place along the reaction coordinate $\xi$ is often also called an umbrella potential, I was initially quite confused: "That's not how you hold an umbrella!" It starts to make more sense when referring to the histograms of the umbrella windows (lots of small umbrellas, @fig-hist-us), but I nonetheless made this Squirrel holding an upside-down umbrella for a seminar using a combination of manual painting and StableDiffusion [@rombachHighResolutionImageSynthesis2022] running locally via InvokeAI [@InvokeaiInvokeAI2025].](img/umbrella-squirrel.png){#fig-squirrel .column-margin fig-scap="Squirrel holding upside-down umbrella."}
 
 The weighted histogram analysis method (WHAM) [@kumarWeightedHistogramAnalysis1992;@souailleExtensionWeightedHistogram2001;@hubG_whamAFreeWeighted2010] is then used to analyze the resulting force- and collective variable values.
 With a reaction coordinate $\xi$ the goal is to find the free energy profile $A(\xi)$.
@@ -820,9 +818,9 @@ For example, a harmonic bond may start with a spring constant $k_\mathrm{A}$ and
 
 ## Quantum mechanics and density functional theory
 
-A key limitation of MM is that bonds can not form or break i.e. chemistry can not happen, because all connectivity and parameters thereof have to be defined ahead of the simulation.
+A key limitation of MM is that bonds can not form or break, i.e. chemistry can not happen, because all connectivity and parameters thereof have to be defined ahead of the simulation.
 So, let us take a look at a more detailed, but also computationally expensive technique.
-In Quantum Mechanical (QM) simulations, we are no longer treating atoms as indivisible units and instead also simulate the electrons around the nuclei to some extent.
+In Quantum mechanical (QM) simulations, we are no longer treating atoms as indivisible units and instead also simulate the electrons around the nuclei to some extent.
 To what extent depends on the concrete method and implementation.
 We will be looking at density functional theory (DFT) in particular, but first we need to lay some groundwork.
 The overarching idea of MD remains, but the form of our energy function will change quite a bit.
@@ -1250,10 +1248,10 @@ This is done because QM/MM simulations can be unstable and finding an initial st
 Additionally, using multiple starting configurations increases the sampling of phase space and improves statistical convergence.
 
 In the triple helix, 8 peptide bonds were chosen at random, but close to the center to avoid anisotropies in the external force, which attaches at the ends of the peptides.
-Each site is defined by the indices of its Carbon and Nitrogen atom, where the $\ce{C}$ is contributed by the residue on the N-terminal side and the $\ce{N}$ is contributed by the residue from the C-terminal side.
+Each site is defined by the indices of its carbon and nitrogen atom, where the $\ce{C}$ is contributed by the residue on the N-terminal side and the $\ce{N}$ is contributed by the residue from the C-terminal side.
 From each starting point and chosen peptide bond, the workflow now looks for water molecules that can execute the first step of the reaction: the attack of the hydroxide (TS1 in @fig-hyd-reaction).
 
-![A close-up of the labeled sites that were sampled for hydrolysis. Each site exists as part of the triple helix and just in its own single chain. The QM region of each site, that is all atoms of both residues that are connected with the peptide bond that is to be hydrolysed, is rendered with the ball-and-stick representation in color, while the rest of the protein is shown with black lines.](./figures/sites-eq-close-annotations.png){#fig-sites fig-scap="Sampled hydrolysis sites."}
+![A close-up of the labeled sites that were sampled for hydrolysis. Each site exists as part of the triple helix and just in its own single chain. The QM region of each site, that is all atoms of both residues that are connected with the peptide bond that is to be hydrolyzed, is rendered with the ball-and-stick representation in color, while the rest of the protein is shown with black lines.](./figures/sites-eq-close-annotations.png){#fig-sites fig-scap="Sampled hydrolysis sites."}
 
 As visualized in @fig-bd, the Bürgi-Dunitz angle (BD) is the angle between the approach vector of a nucleophile ($\ce{OH-}$) and an electrophilic center (the carbonyl carbon of the peptide bond), where the optimal angle is 107° [@burgiStereochemistryReactionPaths1974].
 Similarly, the Flippin-Lodge angle [@lodgeStericEffectsWell1987;@flippinACYCLICSTEREOSELECTIONXVI1983] characterizes the displacement of the nucleophile at its elevation towards or away from the substituents attached to the electrophilic center.
@@ -1627,7 +1625,7 @@ Various features of modern text editors working with a `kimmdy.yml` file.
 
 The user then sets up the configuration file (the config) and decides on a `sequence`, a series of tasks that KIMMDY will run.
 This could be for example different MD simulations, such as an equilibration and a production run, followed by sampling for reactions, and a slow-growth simulation (see below) to equilibrate after each reaction.
-The sequence can include nested tasks and tasks with a multiplicity i.e. tasks that are run multiple times.
+The sequence can include nested tasks and tasks with a multiplicity, i.e. tasks that are run multiple times.
 Each task gets its own output subdirectory in the KIMMDY run output directory and KIMMDY tracks the latest version of each type of file.
 This means that if one task runs an MD trajectory, the next task will continue after the trajectory (or in the middle of it, if a reaction should occur at a certain time point) and if a task modifies the topology, the next task will use the modified topology.
 
@@ -1690,9 +1688,9 @@ After an atom is deleted, the topology is re-indexed by default.
 To use the `Topology` in an MD simulation, a new `top` file is generated from the internal topology object.
 
 The example focuses on peptide bond hydrolysis.
-Assuming a bond has been chosen for to be hydrolysed, KIMMDY then gets the recipe to be executed.
+Assuming a bond has been chosen for to be hydrolyzed, KIMMDY then gets the recipe to be executed.
 For simplicity, only a small portion of the complete molecule is shown around the peptide bond in @fig-peptide-water and @fig-top.
-The plugin only had to specify bonds that are to be deleted and the new ones to create; KIMMDY takes care of higher order interactions.
+The plugin only had to specify bonds that are to be deleted and the new ones to create; KIMMDY takes care of higher-order interactions.
 For example, deleting the peptide bond $\ce{4\ C - 6\ N}$ will also remove the angle $\ce{6\ N - 4\ C - 5\ O}$ and the dihedral $\ce{7\ H - 6\ N - 4\ C - 5\ O}$ and so forth.
 Similarly, the atoms that where previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have nonbonded interactions.
 Newly formed bonds such as $\ce{9\ OW - 4\ C}$ will create the corresponding angles, dihedrals and pairs for 1--4 interactions.
@@ -1700,7 +1698,7 @@ Even improper dihedrals that are defined in the residuetypes, such as those for 
 If the basic operations are not sufficient or non-standard changes are required, a `RecipeStep` can also bring a custom function that is free to modify the topology however necessary.
 
 ::::{#fig-top layout="[1,1.3]" fig-scap="Simplified graph representation of a peptide bond undergoing hydrolysis." layout-valign="top"}
-![The peptide bond (magenta) between $\ce{4\ C}$ and $\ce{6\ N}$ is to be hydrolysed. $\ce{9\ OW}$ (O Water) will be bound to $\ce{4\ C}$ and the two HW atoms will be bound to $\ce{6\ N}$.](./assets/top-before.svg){#fig-top-before fig-scap="Topology before hydrolysis."}
+![The peptide bond (magenta) between $\ce{4\ C}$ and $\ce{6\ N}$ is to be hydrolyzed. $\ce{9\ OW}$ (O Water) will be bound to $\ce{4\ C}$ and the two HW atoms will be bound to $\ce{6\ N}$.](./assets/top-before.svg){#fig-top-before fig-scap="Topology before hydrolysis."}
 
 ![The newly created bonds are colored in blue.](./assets/top-after.svg){#fig-top-after fig-scap="Topology after hydrolysis."}
 
@@ -1818,7 +1816,7 @@ This is where slow-growth comes in.
 For creating an initial structure of the reaction product state, minimizing and equilibrating the molecular systems is viable.
 However, this may take a long time for large systems, resulting in inefficient simulations.
 We use the slow-growth method implemented in the GROMACS free-energy module to interpolate between product and reactant state for continuous parameter and coordinate changes.
-Subsequently, a short equilibration ensures the states are Markovian i.e. sampling happens from the Boltzmann distribution of the new state.
+Subsequently, a short equilibration ensures the states are Markovian, i.e. sampling happens from the Boltzmann distribution of the new state.
 
 To this end, KIMMDY generates a merged topology that transitions between state A (educt) and state B (product).
 KIMMDY supports two modes of slow-growth.
@@ -1917,7 +1915,7 @@ $${#eq-force-morse}
 
 with $\beta=\sqrt{k / (2~D)}$,the spring constant $k$, and the dissociation energy $D$.
 
-![The derivative of the Morse potential i.e. the force as a function of the bond distance r.](./img/morse-force.png){#fig-morse-force .column-margin fig-scap="Derivative of the Morse potential."}
+![The derivative of the Morse potential, i.e. the force as a function of the bond distance r.](./img/morse-force.png){#fig-morse-force .column-margin fig-scap="Derivative of the Morse potential."}
 
 The effective potential (@eq-v-eff)
 
@@ -1977,7 +1975,7 @@ The values for one such bond are plotted in @fig-stretch-force and the reaction 
 ![](./plots/kimmdy/force-response-homolysis.png){#fig-force-hyd-hom}
 
 Force response of the homolysis and hydrolysis reaction rates.
-(a) The force that has performed work on a bond as a function of bond stretching i.e. $r-r_0$.
+(a) The force that has performed work on a bond as a function of bond stretching, i.e. $r-r_0$.
 (b) Reaction rates for hydrolysis (experimental model) and homolysis (physical model) as a function of force. For homolysis, the rates depends on the BDE, so two exemplary lines are shown. The lower line for a C-C bond in a protein backbone with a BDE of 341 kJ/mol and the upper line for a C-C bond in a Pyridinoline (PYD) cross-link with a BDE of 282 kJ/mol.
 ::::
 
@@ -2265,7 +2263,7 @@ Combining this with the experimental setup of Pill et al. [@pillMechanicalActiva
 ![2',7'-Dichlorodihydrofluorescein (DCFH2)](./img/dcfh2.svg){#fig-dcfh2 .column-margin}
 
 Quite a while ago I was working on my Bachelor's thesis in the lab of Matthias Mayer at the Center for Molecular Biology of Heidelberg University (ZMBH).
-During a group meeting I presented my findings and came across two seemingly contradictory data points, about which I then stated: "... and now I'm just confused.".
+During a group meeting I presented my findings and came across two seemingly contradictory data points, about which I then stated: "... and now I'm just confused."
 Matthias immediately jumped in to say: "That's brilliant! Being confused is always the first step."
 Since then I cherish those moments of confusion, those drivers of discovery.
 What I didn't fully grasp at that time is that every next step after the first, simultaneously has the potential to be the first step of something new.
@@ -2305,7 +2303,7 @@ The effect of filtering out side reactions for one affected example.
 ::::{#fig-add-hyd layout="[1,1]"}
 ![Hydrolysis reaction rates for increasing forces and varying pH values in the single peptide chain and triple helix systems as sampled with KIMMDY. \break \break \break ](./plots/kimmdy/rates-triple-vs-single.png){#fig-ext-hyd-ph}
 
-![SASA in 1\ nN shear pulling fibril simulation plotted against the Mean Excess Force i.e. the force derived from bond extension in each peptide bond after accounting for average bond forces in the baseline, 0\ nN simulations.](./plots/kimmdy/sasa_vs_mean_force.png){#fig-sasa-f}
+![SASA in 1\ nN shear pulling fibril simulation plotted against the Mean Excess Force, i.e. the force derived from bond extension in each peptide bond after accounting for average bond forces in the baseline, 0\ nN simulations.](./plots/kimmdy/sasa_vs_mean_force.png){#fig-sasa-f}
 
 Extended hydrolysis results from KIMMDY runs.
 ::::
@@ -2455,7 +2453,7 @@ BDE: bond dissociation energy \
 CGTO: contracted gaussian type orbitals \
 CLI: command-line interface \
 COM: Center of Mass \
-cryo-EM: cryo electron microscopy \
+cryo-EM: cryo-electron microscopy \
 CSA: cross-sectional area \
 DAG: directed acyclic graph \
 DFT: density functional theory \
@@ -2497,7 +2495,7 @@ PYD: pyridinoline \
 PyPI: Python package index \
 QM/MM: quantum mechanics/molecular mechanics \
 QM: quantum mechanics \
-QQ: coulomb \
+QQ: Coulomb \
 RESP: restrained electrostatic potential \
 ROS: reactive oxygen species \
 SASA: solvent accessible surface area \
