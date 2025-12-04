@@ -978,8 +978,7 @@ A large system is simulated by molecular mechanics, while a small subsystem is t
 
 There are different ways of combining the two systems.
 The method used in this thesis is called Gaussian expansion of the electrostatic potential (GEEP) [@lainoEfficientRealSpace2005] and is a form of electrostatic embedding.
-While in a purely mechanical embedding the electrostatic interactions between MM and QM atoms would only be treated by molecular mechanics terms,
-in an electrostatic (or electronic) embedding the QM subsystem also sees the charges of the MM atoms and can be polarized by those.
+While in a purely mechanical embedding, the electrostatic interactions between MM and QM atoms would only be treated by molecular mechanics terms, in an electrostatic (or electronic) embedding, the QM subsystem also sees the charges of the MM atoms and can be polarized by those.
 One step up from that would be a polarized embedding, where the MM subsystem can also be polarized by the QM region.
 The QM/MM simulations in this thesis use the electrostatic embedding (@fig-qmmm).
 
@@ -994,27 +993,27 @@ H^{QM}_{el}-\sum_i^n\sum_J^M\frac{e^2 Q_J}{4\pi\epsilon_0r_{iJ}}+\sum_A^N\sum_J^
 $${#eq-qmmm}
 
 with the number of electrons $n$ and nuclei $N$ in the QM region and the number of charged MM atoms $M$.
-Here, charged also includes partial charges, not just ions.
+Here, "charged" also includes partial charges, not just ions.
 
 $H^{QM}_{el}$ is the original electronic Hamiltonian of an isolated QM system.
 The first double sum (n,M) is the electrostatic interaction between the QM electrons and the MM atoms.
 The second double sum (N,M) is the electrostatic interaction of the QM nuclei with the MM atoms.
 Lennard-Jones and Coulomb interactions between QM atoms are excluded in the MM Hamiltonian to avoid double counting, but Lennard-Jones interactions between QM and MM atoms are calculated.
 Bonded interactions at the QM-MM interface that contain at most one QM atom are described by MM.
-Bonds crossing the QM-MM interface are capped with a so-called link atom, a hydrogen which only exists in the QM region.
+Bonds crossing the QM-MM interface are capped with a so-called link atom, a hydrogen that only exists in the QM region.
 The force on this atom is distributed over the two atoms of the bond.
 
 ## Computational molecular dynamics engines
 
 The molecular dynamics engine of choice for this thesis is GROMACS [@abrahamGROMACSHighPerformance2015] with documentation available at [manual.gromacs.org](https://manual.gromacs.org/) [@GROMACS20253Documentation].
-Our newly developed software method KIMMDY was tested with GROMACS versions ranging from v2021 to v2025.3.
+Our newly developed software method, KIMMDY, was tested with GROMACS versions ranging from v2021 to v2025.3.
 Early QM/MM simulations to test feasibility used the developer build of GROMACS v2022.
 The production QM/MM simulations in this thesis use GROMACS v2023.2.
 The QM engine used and interfaced with GROMACS is CP2K [@kuhneCP2KElectronicStructure2020] v2023.2 available from [cp2k.org](https://www.cp2k.org/).
 
 ## Kinetic Monte Carlo {#sec-kmc}
 
-Given that our method KIMMDY that will be introduced in @sec-main-kimmdy, stands for Kinetic Monte Carlo Molecular Dynamics, it makes sense to also explain what kinetic Monte Carlo (kMC) is.
+Given that our method KIMMDY, which will be introduced in @sec-main-kimmdy, stands for Kinetic Monte Carlo Molecular Dynamics, it makes sense to also explain what kinetic Monte Carlo (kMC) is.
 Monte Carlo methods in general are methods that use random sampling to solve a numerical problem.
 In kinetic Monte Carlo, we are modelling the time progression through a collection of states connected by processes with known transition rates.
 The simplest example is rejection-free kMC (rf-kMC) [@bortzNewAlgorithmMonte1975;@gillespieGeneralMethodNumerically1976]:
