@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="presentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="presentation_files/libs/quarto-html/tabby.min.js"></script>
+<script src="presentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="presentation_files/libs/quarto-contrib/molstar-v3.13.0/molstar.js"></script>
+<link href="presentation_files/libs/quarto-contrib/molstar-v3.13.0/molstar.css" rel="stylesheet">
+<link href="presentation_files/libs/quarto-contrib/molstar-v3.13.0/app-container.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Jannik Buhr">
+  <title>Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-ce2bdab8aa738fd2d833214311c9f65f.css">
+  <link rel="stylesheet" href="./www/presentation.css">
+  <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="presentation_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="presentation_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="./figures/render-qm-break.png" data-background-position="50% 140%" data-background-size="contain" class="quarto-title-block">
+  <h1 class="title"><p>Dissecting cleavage mechanisms<br>
+in tensed collagen fibrils<br>
+using reactive molecular dynamics simulations</p></h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jannik Buhr 
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
+<blockquote>
+<p>Concerning <del>hobbits</del> collagen</p>
+</blockquote>
+</section>
+<section id="an-orange-a-day-keeps-the-scurvy-away" class="slide level2">
+<h2>An orange a day keeps the scurvy away</h2>
+<div class="quarto-layout-panel" data-layout="[2,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
+<p><img data-src="./img/salisbury.png"></p>
+</div>
+<div class="fragment quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./img/riftbound-buccaneer.png"></p>
+<p>Citrus fruits contain <strong>Vitamin C</strong> ( 🟠 )</p>
+</div>
+</div>
+</div>
+<p>1747, HMS Salisbury, James Lind performs the first clinical trial with a control group <span class="citation" data-cites="lindTreatiseScurvyThree1772">[<a href="#/references" role="doc-biblioref" onclick="">1</a>]</span></p>
+<div class="footer">
+<p>Image sources:<br>
+left: The Capture of Chandernagore, March 1757 by Dominic Serres, the Elder in 1771, oil on canvas.<br>
+right: Riftbound, the League of Legends TCG ©Riot Games</p>
+</div>
+</section>
+<section id="collagen-keeps-us-together" class="slide level2">
+<h2>Collagen keeps us together</h2>
+<div class="quarto-layout-panel" data-layout="[[3,5,6],[1,1],[-1,60,-1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 21.4%;justify-content: center;">
+<p><img data-src="./img/Magnified_view_of_a_Tendon_cropped.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 35.7%;justify-content: center;">
+<p><img data-src="img/collagen-sem.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk-cropped.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./figures/render-fibril-black-cropped.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-gly-x-y-motif-allows-tight-turns-and-packing" class="slide level2">
+<h2>The Gly-X-Y motif allows tight turns and packing</h2>
+<p><img data-src="./figures/hyd/triple-gly-pro.png"></p>
+<div id="gly" class="cc">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/glycine.svg"></p>
+<figcaption>Glycine (Gly)</figcaption>
+</figure>
+</div>
+</div>
+<div id="pro" class="cc">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/proline.svg"></p>
+<figcaption>Proline (Pro)</figcaption>
+</figure>
+</div>
+</div>
+<div id="hyp" class="cc">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/hydroxyproline.svg"></p>
+<figcaption>Hydroxyproline (Hyp)</figcaption>
+</figure>
+</div>
+</div>
+<div id="motif" class="absolute" style="left: 0%; bottom: 0%; ">
+<p>X,Y: proline or hydroxyproline</p>
+<p><strong>Prolyl hydroxylase</strong> ( 🟠 )</p>
+</div>
+<style>
+#gly {
+  position: absolute;
+  top: 5%;
+  right: 17%;
+  width: 15%;
+}
+#pro {
+  position: absolute;
+  top: 5%;
+  right: 0%;
+  width: 15%;
+}
+#hyp {
+  position: absolute;
+  top: 30%;
+  right: 0%;
+  width: 18%;
+}
+</style>
+</section>
+<section id="collagen-i-is-cross-linked" class="slide level2">
+<h2>Collagen I is cross-linked</h2>
+<div class="quarto-layout-panel" data-layout="[[5,1,1,1],[1,1,1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 62.5%;justify-content: center;">
+<p><img data-src="./figures/hyd/crosslinks-closer.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 12.5%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/lysine.svg"></p>
+<figcaption>Lysine</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 12.5%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/hydroxylysine.svg"></p>
+<figcaption>Hydroxylysine</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 12.5%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/pyridinoline-center.svg"></p>
+<figcaption>Center of a pyridinoline crosslink</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Lysyl-hydroxylase</strong> ( 🟠 )</p>
+<p><strong>Lysyl oxidase</strong></p>
+<p><img data-src="./img/riftbound-buccaneer.png" class="fragment fade-up"></p>
+</section>
+<section id="a-rather-radical-discovery-mechanoradicals-in-collagen" class="slide level2">
+<h2>A rather radical discovery: mechanoradicals in collagen</h2>
+<div class="quarto-layout-panel" data-layout="[1,3]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="./img/Magnified_view_of_a_Tendon_cropped.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 75.0%;justify-content: center;">
+<p><img data-src="./img/just-hom-reaction.svg"></p>
+</div>
+</div>
+</div>
+<p>“Mechanoradicals in tensed tendon collagen as a source of oxidative stress”, Zapp et al. <span class="citation" data-cites="zappMechanoradicalsTensedTendon2020">[<a href="#/references" role="doc-biblioref" onclick="">2</a>]</span></p>
+</section></section>
+<section>
+<section id="goals" class="title-slide slide level1 center">
+<h1>Goals</h1>
+<blockquote>
+<p>for this talk and by extension my thesis</p>
+</blockquote>
+</section>
+<section id="dissecting-cleavage-mechanisms-in-tensed-collagen-fibrils-using-reactive-molecular-dynamics-simulations" class="slide level2">
+<h2>Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations</h2>
+
+<img data-src="./img/hyd-vs-hom-reaction.svg" class="r-stretch"><p>“Base-Catalyzed <strong>Peptide Hydrolysis</strong> Is <strong>Insensitive</strong> to Mechanical Stress”, Xia et al. <span class="citation" data-cites="xiaBaseCatalyzedPeptideHydrolysis2011">[<a href="#/references" role="doc-biblioref" onclick="">3</a>]</span></p>
+<p>vs.</p>
+<p>“Mechanical Activation Drastically <strong>Accelerates</strong> Amide Bond Hydrolysis, Matching Enzyme Activity”, Pill et al. <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span></p>
+</section>
+<section id="dissecting-cleavage-mechanisms-in-tensed-collagen-fibrils-using-reactive-molecular-dynamics-simulations-1" class="slide level2">
+<h2>Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations</h2>
+<p><br></p>
+<div class="quarto-layout-panel" data-layout="[8,-1,12]">
+<div class="quarto-layout-row">
+<section id="qmmm-simulations-of-base-catalyzed-hydrolysis" class="d quarto-layout-cell" style="flex-basis: 38.1%;justify-content: center;">
+<h3><strong>QM/MM</strong> simulations of<br>base-catalyzed hydrolysis</h3>
+<p><img data-src="./figures/render-qm-far-annotations.png"></p>
+</section>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 4.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<section id="kinetic-monte-carlo-molecular-dynamics-kimmdy" class="d quarto-layout-cell" style="flex-basis: 57.1%;justify-content: center;">
+<h3>Kinetic Monte Carlo Molecular Dynamics:<br><strong>KIMMDY</strong></h3>
+<p><img data-src="./figures/kimmdy-schema.png" class="align" width="550"></p>
+</section>
+</div>
+</div>
+</section></section>
+<section>
+<section id="methods-and-theory" class="title-slide slide level1 center">
+<h1>Methods and Theory</h1>
+
+</section>
+<section id="molecular-dynamics-molecular-mechanics" class="slide level2">
+<h2>Molecular dynamics / Molecular Mechanics</h2>
+<div class="quarto-layout-panel" data-layout="[1,2,2]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
+<p><img data-src="./img/propionaldehyde.svg"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img data-src="./img/molecule-cpk.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img data-src="./img/molecule-density.png"></p>
+</div>
+</div>
+</div>
+<p>How do we make the atoms move?</p>
+<p><span id="eq-newton"><span class="math display">\[
+\begin{array}{rcl}
+F  &amp;=&amp; ma \\
+-\frac{dV}{dr} &amp;=&amp; m\frac{d^2r}{dt^2},
+\end{array}
+\tag{1}\]</span></span></p>
+<p><span class="math inline">\(V\)</span>: potential<br>
+<span class="math inline">\(r\)</span>: position<br>
+<span class="math inline">\(F\)</span>: force<br>
+<span class="math inline">\(a\)</span>: acceleration<br>
+<span class="math inline">\(t\)</span>: time<br>
+<span class="math inline">\(m\)</span>: mass</p>
+</section>
+<section id="force-fields-and-topologies" class="slide level2">
+<h2>Force Fields and Topologies</h2>
+<div class="quarto-layout-panel" data-layout="[[5,4]]">
+<div class="quarto-layout-row">
+<div class="d quarto-layout-cell" style="flex-basis: 55.6%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./figures/gly-mm-annotated.png"></p>
+<figcaption>Bond <span class="math inline">\(\mathrm{r}\)</span>, angle <span class="math inline">\(\mathrm{\alpha}\)</span>, dihedral <span class="math inline">\(\mathrm{\phi}\)</span>, non-bonded terms <span class="math inline">\(\mathrm{nb}\)</span>, <span class="math inline">\(\mathrm{1-4}\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+<div class="g2x2 quarto-layout-cell" style="flex-basis: 44.4%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/morse-potential.png"></p>
+<figcaption>Morse potential.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/harmonic-potential.png"></p>
+<figcaption>Harmonic potential.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/lennard-jones-potential.png"></p>
+<figcaption>Lennard-Jones potential.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/coulomb-potential.png"></p>
+<figcaption>Coulomb potential.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="force-fields-and-topologies-1" class="slide level2">
+<h2>Force Fields and Topologies</h2>
+<div class="quarto-layout-panel" data-layout="[[5,4]]">
+<div class="quarto-layout-row">
+<div class="d quarto-layout-cell" style="flex-basis: 55.6%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./figures/gly-mm-annotated.png"></p>
+<figcaption>Bond <span class="math inline">\(\mathrm{r}\)</span>, angle <span class="math inline">\(\mathrm{\alpha}\)</span>, dihedral <span class="math inline">\(\mathrm{\phi}\)</span>, non-bonded terms <span class="math inline">\(\mathrm{nb}\)</span>, <span class="math inline">\(\mathrm{1-4}\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 44.4%;justify-content: flex-start;">
+<div id="lst-nonbonded" class="ini listing quarto-float quarto-figure quarto-figure-left">
+<figure class="quarto-float quarto-float-lst">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nonbonded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1: Select lines from ffnonbonded.itp
+</figcaption>
+<div aria-describedby="lst-nonbonded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource ini number-lines code-with-copy"><code class="sourceCode ini"><span id="cb1-1"><a href=""></a><span class="kw">[ atomtypes ]</span></span>
+<span id="cb1-2"><a href=""></a><span class="co">; name at.num  mass    charge ptype  sigma      epsilon</span></span>
+<span id="cb1-3"><a href=""></a><span class="dt">C       6      12.01   0.0000  A   3.39967e-01  3.59824e-01</span></span>
+<span id="cb1-4"><a href=""></a><span class="dt">CA      6      12.01   0.0000  A   3.39967e-01  3.59824e-01</span></span>
+<span id="cb1-5"><a href=""></a><span class="dt">H       1       1.008  0.0000  A   1.06908e-01  6.56888e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div id="lst-top" class="ini listing quarto-float quarto-figure quarto-figure-left">
+<figure class="quarto-float quarto-float-lst">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2: Select simplified lines from a .top file of a capped glycine dipeptide
+</figcaption>
+<div aria-describedby="lst-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource ini number-lines code-with-copy"><code class="sourceCode ini"><span id="cb2-1"><a href=""></a><span class="kw">[ moleculetype ]</span></span>
+<span id="cb2-2"><a href=""></a><span class="co">; Name            nrexcl</span></span>
+<span id="cb2-3"><a href=""></a><span class="dt">Protein             3</span></span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a><span class="kw">[ atoms ]</span></span>
+<span id="cb2-6"><a href=""></a><span class="co">; nr  type resnr residue  atom  cgnr   charge  mass  typeB ..</span></span>
+<span id="cb2-7"><a href=""></a><span class="dt">  1    CT     1    ACE    CH3    1  -0.3662   12.01</span></span>
+<span id="cb2-8"><a href=""></a><span class="dt">  2    HC     1    ACE   HH31    2   0.1123   1.008</span></span>
+<span id="cb2-9"><a href=""></a></span>
+<span id="cb2-10"><a href=""></a><span class="kw">[ bonds ]</span></span>
+<span id="cb2-11"><a href=""></a><span class="co">;  ai    aj funct    c0    c1      c2    c3</span></span>
+<span id="cb2-12"><a href=""></a><span class="dt">    1     2     1</span></span>
+<span id="cb2-13"><a href=""></a><span class="dt">    1     3     1</span></span>
+<span id="cb2-14"><a href=""></a></span>
+<span id="cb2-15"><a href=""></a><span class="kw">[ angles ]</span></span>
+<span id="cb2-16"><a href=""></a><span class="co">;  ai    aj    ak funct   c0   c1   c2    c3</span></span>
+<span id="cb2-17"><a href=""></a><span class="dt">    2     1     3     1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="so-how-do-we-do-chemistry" class="slide level2">
+<h2>So how do we do chemistry?</h2>
+</section>
+<section id="quantum-mechanicsmolecular-mechanics" class="slide level2">
+<h2>Quantum mechanics/molecular mechanics</h2>
+<div id="qm" class="align">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/electrostatic-embedding.png"></p>
+<figcaption>Electrostatic embedding scheme for QM/MM. Figure by Dmitry Morozov <span class="citation" data-cites="morozovWebinarMultiscaleQM2020">[<a href="#/references" role="doc-biblioref" onclick="">5</a>]</span></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[1,1,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./img/molecule-density.png" class="orange"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./figures/gly-mm-annotated.png" class="green"></p>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p>DFT: Density Functional Theory</p>
+</div>
+</div>
+</div>
+<style>
+# qm {
+  width: 50%;
+  text-align: center;
+}
+</style>
+</section></section>
+<section>
+<section id="collagen-hydrolysis-by-quantum-mechanicsmolecular-mechanics" class="title-slide slide level1 center">
+<h1>Collagen Hydrolysis by Quantum Mechanics/Molecular Mechanics</h1>
+
+</section>
+<section id="base-catalyzed-hydrolysis" class="slide level2">
+<h2>Base-catalyzed hydrolysis</h2>
+<p><img data-src="./img/hydrolysis-reaction.svg"></p>
+<p><strong>TS</strong>: transition state<br>
+<strong>TI</strong>: Tetrahedral Intermediate<br>
+<strong>ZI</strong>: Zwitterionic Intermediate</p>
+<div id="water-pep">
+<p><img data-src="./img/peptide-water.png"></p>
+</div>
+<style>
+#water-pep {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 20%;
+}
+
+</style>
+</section>
+<section id="previous-work-on-base-catalyzed-hydrolysis" class="slide level2">
+<h2>Previous work on base-catalyzed hydrolysis</h2>
+<div class="quarto-layout-panel" data-layout="[2,3,1]">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/pill-systems.png"></p>
+<figcaption>Figure from <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span>. From top to bottom: educt, TS1, TI.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./plots/plots/pill-energies.png"></p>
+<figcaption>Data from Pill et al. <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span> visualized. Atomic Force Microscopy (experimental) and <em>ab initio</em> QM (theoretical) energies</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="pill-afm" class="absolute" style="bottom: 40%; right: -2%; width: 18%; ">
+<p><img data-src="img/pill-afm.png"></p>
+</div>
+</section>
+<section id="system-setup" class="slide level2">
+<h2>System Setup</h2>
+<div class="quarto-layout-panel" data-layout="[[7,9], [7,9], [1]]">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 43.8%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 56.3%;justify-content: center;">
+<p><img data-src="./figures/render-triple-pull-annotations.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 43.8%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 56.3%;justify-content: center;">
+<p><img data-src="./figures/render-single-pull-annotations.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="cell quarto-layout-cell" data-fig-width="100%" data-fig-height="50%" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="NaN" height="NaN" viewbox="0.00 0.00 438.20 44.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>g</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-40 434.2,-40 434.2,4 -4,4"></polygon>
+<!-- [system] -->
+<g id="node1" class="node">
+<title>[system]</title>
+<polygon fill="white" stroke="black" points="54,-36 0,-36 0,0 54,0 54,-36"></polygon>
+<text text-anchor="middle" x="27" y="-15.6" font-family="Roboto" font-size="8.00">[system]</text>
+</g>
+<!-- equilibrate [F] -->
+<g id="node2" class="node">
+<title>equilibrate [F]</title>
+<polygon fill="white" stroke="black" points="149.98,-36 90.01,-36 90.01,0 149.98,0 149.98,-36"></polygon>
+<text text-anchor="middle" x="119.99" y="-15.6" font-family="Roboto" font-size="8.00">equilibrate [F]</text>
+</g>
+<!-- [system]&#45;&gt;equilibrate [F] -->
+<g id="edge1" class="edge">
+<title>[system]-&gt;equilibrate [F]</title>
+<path fill="none" stroke="black" d="M54.32,-18C62.23,-18 71.09,-18 79.65,-18"></path>
+<polygon fill="black" stroke="black" points="79.86,-21.5 89.86,-18 79.86,-14.5 79.86,-21.5"></polygon>
+</g>
+<!-- QM setup [site] -->
+<g id="node3" class="node">
+<title>QM setup [site]</title>
+<polygon fill="white" stroke="black" points="250.31,-36 185.88,-36 185.88,0 250.31,0 250.31,-36"></polygon>
+<text text-anchor="middle" x="218.09" y="-15.6" font-family="Roboto" font-size="8.00">QM setup [site]</text>
+</g>
+<!-- equilibrate [F]&#45;&gt;QM setup [site] -->
+<g id="edge2" class="edge">
+<title>equilibrate [F]-&gt;QM setup [site]</title>
+<path fill="none" stroke="black" d="M150.09,-18C158.1,-18 166.95,-18 175.52,-18"></path>
+<polygon fill="black" stroke="black" points="175.76,-21.5 185.76,-18 175.76,-14.5 175.76,-21.5"></polygon>
+</g>
+<!-- TS1 -->
+<g id="node4" class="node">
+<title>TS1</title>
+<polygon fill="white" stroke="black" points="340.2,-36 286.2,-36 286.2,0 340.2,0 340.2,-36"></polygon>
+<text text-anchor="middle" x="313.2" y="-15.6" font-family="Roboto" font-size="8.00">TS1</text>
+</g>
+<!-- QM setup [site]&#45;&gt;TS1 -->
+<g id="edge3" class="edge">
+<title>QM setup [site]-&gt;TS1</title>
+<path fill="none" stroke="black" d="M250.35,-18C258.62,-18 267.6,-18 276.1,-18"></path>
+<polygon fill="black" stroke="black" points="276.14,-21.5 286.14,-18 276.14,-14.5 276.14,-21.5"></polygon>
+</g>
+<!-- TS2 -->
+<g id="node5" class="node">
+<title>TS2</title>
+<polygon fill="white" stroke="black" points="430.2,-36 376.2,-36 376.2,0 430.2,0 430.2,-36"></polygon>
+<text text-anchor="middle" x="403.2" y="-15.6" font-family="Roboto" font-size="8.00">TS2</text>
+</g>
+<!-- TS1&#45;&gt;TS2 -->
+<g id="edge4" class="edge">
+<title>TS1-&gt;TS2</title>
+<path fill="none" stroke="black" d="M340.6,-18C348.59,-18 357.51,-18 366.02,-18"></path>
+<polygon fill="black" stroke="black" points="366.12,-21.5 376.12,-18 366.12,-14.5 366.12,-21.5"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p><figcaption> <code>[]</code>: input parameters.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="qm-region-selection-and-setup" class="slide level2">
+<h2>QM region selection and setup</h2>
+<div class="quarto-layout-panel" data-layout="[[8],[1,3]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="./figures/sites-eq-close-annotations.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="./figures/render-qm-bd-annotations.png"></p>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 75.0%;justify-content: flex-start;">
+<p><span class="math inline">\(BD\)</span>: Bürgi-Dunitz angle, 107°</p>
+<p><span class="math inline">\(FL\)</span>: Flippin-Lodge angle, 0°</p>
+</div>
+</div>
+</div>
+</section>
+<section id="umbrella-sampling-the-reaction-coordinate" class="slide level2">
+<h2>Umbrella sampling the reaction coordinate</h2>
+<p><img data-src="./figures/render-qm-far-annotations.png"></p>
+<div id="us-hist">
+<p><img data-src="./plots/qm/wethyd_us_histogram_example.png"></p>
+</div>
+<style>
+#us-hist {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 35%;
+}
+</style>
+</section>
+<section id="qmmm-simulations-reveal-mechanistic-details-of-the-tetrahedral-intermediate-formation" class="slide level2">
+<h2>QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation</h2>
+<p><img data-src="./img/hydrolysis-reaction-vertical-ts1.svg" class="absolute" style="top: 5%; right: 0px; width: 18%; "></p>
+<p><img data-src="./figures/render-qm-ti.png" style="width:80.0%"></p>
+</section>
+<section id="qmmm-simulations-reveal-mechanistic-details-of-the-tetrahedral-intermediate-formation-1" class="slide level2">
+<h2>QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation</h2>
+<p><img data-src="./figures/render-qm-ti-annotations.png" class="absolute" style="top: 10%; right: 8%; width: 18%; "></p>
+<p><img data-src="./figures/render-qm-ti.png" class="absolute" style="bottom: 10%; right: 0px; width: 35%; "></p>
+<p><img data-src="./plots/qm/wethyd_us_tiprots_filtered.png" style="width:65.0%"></p>
+</section>
+<section id="the-triple-helix-marginally-impedes-hydroxide-attack-thermodynamically" class="slide level2">
+<h2>The triple helix marginally impedes hydroxide attack thermodynamically</h2>
+<div class="quarto-layout-panel" data-layout="[[2,1]]">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
+<p><img data-src="./plots/qm/wethyd_us_profiles.png"></p>
+</div>
+<div class="g2x1 quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
+<div class="d">
+<p><span class="math inline">\(\bar{\Delta G}\)</span> of (±SEM) TS1 - Educt</p>
+<p>Single chain: 102.5 ±&nbsp;2.6&nbsp;kJ/mol</p>
+<p>Triple helix: 111.6&nbsp;±&nbsp;6.6&nbsp;kJ/mol</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="proton-mobility-in-explicit-qm-solvent-molecules-allows-breaking-of-the-peptide-bond" class="slide level2">
+<h2>Proton mobility in explicit QM solvent molecules allows breaking of the peptide bond</h2>
+<p><img data-src="./img/hydrolysis-reaction-vertical-ts2.svg" class="absolute" style="top: 5%; right: 0px; width: 18%; "></p>
+<p><img data-src="./figures/render-qm-break.png" style="width:80.0%"></p>
+</section>
+<section id="discussion" class="slide level2">
+<h2>Discussion</h2>
+<div class="quarto-layout-panel" data-layout="[2,2,2]">
+<div class="quarto-layout-row">
+<div class="d quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png" width="500"></p>
+<p><img data-src="./plots/qm/carbonyl_orientation_example.png" width="500"></p>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<ul>
+<li>Effect size?</li>
+<li>Survivorship bias?</li>
+<li>Cause?</li>
+<li>Computational cost</li>
+</ul>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./img/survivorship.svg"></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Image source: Right: Martin Grandjean (vector), McGeddon (picture), US Air Force (hit plot concept), CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=102017718</p>
+</div>
+</section></section>
+<section>
+<section id="kinetic-monte-carlo-molecular-dynamics-kimmdy-1" class="title-slide slide level1 center">
+<h1>Kinetic Monte Carlo Molecular Dynamics: KIMMDY</h1>
+
+</section>
+<section id="kinetic-monte-carlo-molecular-dynamics-kimmdy-2" class="slide level2">
+<h2>Kinetic Monte Carlo Molecular Dynamics: KIMMDY</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./figures/kimmdy-schema.png" width="700"></p>
+</div><div class="column" style="width:50%;">
+<p>with Eric Hartmann and Kai Riedmiller,<br>
+inspired by Benedikt Rennekamp <span class="citation" data-cites="rennekampHybridKineticMonte2020">[<a href="#/references" role="doc-biblioref" onclick="">6</a>]</span></p>
+<p><a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p>
+<p><img data-src="img/kimmdy-screenshot.png"></p>
+<p>Buhr*, J., Hartmann*, E., Riedmiller*, K., et al.<br>
+KIMMDY: A biomolecular reaction emulator.<br>
+bioRxiv. (2025) doi:10.1101/2025.07.02.662624<br>
+<em>*These authors contributed equally to this work.</em> <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span></p>
+</div></div>
+<div class="footer">
+<p>Schema made by Denis Kieswetter for <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span></p>
+</div>
+</section>
+<section id="kimmdy-is-easy-to-use" class="slide level2">
+<h2>KIMMDY is easy to use</h2>
+<div class="quarto-layout-panel" data-layout="[[1.6223, 1.093], [1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 59.8%;justify-content: center;">
+<p><img data-src="img/kimmdy-yml-hover.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.3%;justify-content: center;">
+<p><img data-src="img/kimmdy-yml-completion.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="img/kimmdy-yml-warnings.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="kimmdy-is-easy-to-extend-to-new-chemistries" class="slide level2">
+<h2>KIMMDY is easy to extend to new chemistries</h2>
+<div class="quarto-layout-panel" data-layout="[1,1,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./img/peptide-water.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./assets/top-before.svg"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./assets/top-after.svg"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="parametrization-interface-to-obtain-parameters-after-a-reaction" class="slide level2">
+<h2>Parametrization interface to obtain parameters after a reaction</h2>
+<div class="d">
+<p><img data-src="img/grappa.png" width="400"></p>
+<p>Graph Attentional Protein Parametrization by Leif Seute <span class="citation" data-cites="seuteGrappaMachineLearned2025">[<a href="#/references" role="doc-biblioref" onclick="">8</a>]</span></p>
+</div>
+<div class="d">
+    <iframe id="app-./assets/npt-just-ala.gro" class="molstar-app" seamless="" allow="fullscreen" srcdoc="
+    <html>
+    <head>
+    <script type=&quot;text/javascript&quot; src=&quot;./molstar.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./molstar.css&quot;/>
+    </head>
+    <body>
+    <div id=&quot;app-./assets/npt-just-ala.gro&quot; class=&quot;molstar-app&quot;></div>
+    <script type=&quot;text/javascript&quot;>
+    molstar.Viewer.create(&quot;app-./assets/npt-just-ala.gro&quot;, {&quot;emdbProvider&quot;:&quot;rcsb&quot;,&quot;layoutIsExpanded&quot;:false,&quot;layoutShowControls&quot;:false,&quot;layoutShowLeftPanel&quot;:true,&quot;layoutShowLog&quot;:false,&quot;layoutShowRemoteState&quot;:false,&quot;layoutShowSequence&quot;:false,&quot;pdbProvider&quot;:&quot;rcsb&quot;,&quot;viewportShowAnimation&quot;:true,&quot;viewportShowExpand&quot;:true,&quot;viewportShowSelectionMode&quot;:false}).then(viewer => {
+    viewer.loadStructureFromUrl(&quot;./assets/npt-just-ala.gro&quot;, format=&quot;gro&quot;);    });
+    </script>
+    </body>
+    </html>
+    ">
+    </iframe>
+    
+<p><em>also a good excuse to show the mol* plugin I wrote for our documentation</em></p>
+</div>
+</section>
+<section id="slow-growth-to-execute-even-complex-reactions-like-hydrolysis" class="slide level2">
+<h2>Slow-growth to execute even complex reactions like hydrolysis</h2>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/slow-growth.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./img/slow-growth-annotation.png"></p>
+</div>
+</div>
+</div>
+<p><video data-src="./www/gly-hydrolysis.mp4" class="absolute fragment" style="top: 0%; right: 0%; width: 52%; " controls=""><a href="./www/gly-hydrolysis.mp4">Video</a></video></p>
+</section></section>
+<section>
+<section id="applying-kimmdy-to-collagen-hydrolysis-and-homolysis" class="title-slide slide level1 center">
+<h1>Applying KIMMDY to collagen<br><span class="blue">hydrolysis</span> and <span class="red">homolysis</span></h1>
+
+</section>
+<section id="applying-kimmdy-to-collagen-hydrolysis-and-homolysis-1" class="slide level2">
+<h2>Applying KIMMDY to collagen <span class="blue">hydrolysis</span> and <span class="red">homolysis</span></h2>
+
+<img data-src="./img/hyd-vs-hom-reaction.svg" class="r-stretch"></section>
+<section id="applying-kimmdy-to-collagen-hydrolysis-and-homolysis-2" class="slide level2">
+<h2>Applying KIMMDY to collagen <span class="blue">hydrolysis</span> and <span class="red">homolysis</span></h2>
+<div class="quarto-layout-panel" data-layout="[1,0.2,1]">
+<div class="quarto-layout-row">
+<div class="d quarto-layout-cell" style="flex-basis: 45.5%;justify-content: center;">
+<p>Arrhenius equation</p>
+<p><span id="eq-arrhenius"><span class="math display">\[
+k = A\,\mathrm{e}^{\left(\frac{-E_\mathrm{a}}{RT}\right)}
+\tag{2}\]</span></span></p>
+<p><span class="math inline">\(A\)</span>: pre-exponential factor (attempt frequency)<br>
+<span class="math inline">\(R\)</span>: gas constant<br>
+<span class="math inline">\(T\)</span>: temperature</p>
+<p><img data-src="./img/morse-potential.png" width="500"></p>
+<p><span id="eq-energy-morse"><span class="math display">\[V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2 \tag{3}\]</span></span></p>
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 9.1%;justify-content: flex-start;">
+
+</div>
+<div class="d quarto-layout-cell" style="flex-basis: 45.5%;justify-content: flex-start;">
+<p><strong>Homolysis</strong></p>
+<p>Benedikt Rennekamp <span class="citation" data-cites="rennekampHybridKineticMonte2020">[<a href="#/references" role="doc-biblioref" onclick="">6</a>]</span>,<br>
+Bell-Evans model <span class="citation" data-cites="bellModelsSpecificAdhesion1978 evansDynamicStrengthMolecular1997">[<a href="#/references" role="doc-biblioref" onclick="">9</a>, <a href="#/references" role="doc-biblioref" onclick="">10</a>]</span>.</p>
+<p><strong>Hydrolysis</strong></p>
+<p>Same force calculation with a twist</p>
+</div>
+</div>
+</div>
+</section>
+<section id="hydrolysis-reaction-rate-is-modeled-after-experimental-data" class="slide level2">
+<h2>Hydrolysis reaction rate is modeled after experimental data</h2>
+<div class="quarto-layout-panel" data-layout="[3,3,1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/force-response.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./plots/plots/pill-energies.png"></p>
+</div>
+<div class="r-stack quarto-layout-cell" style="flex-basis: 14.3%;justify-content: center;">
+<p><img data-src="./img/hydrolysis-reaction-vertical-ts2.svg"></p>
+<p><img data-src="./img/hydrolysis-reaction-vertical-ts1.svg" class="fragment"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="hydrolysis-rate-incorporates-sasa" class="slide level2">
+<h2>Hydrolysis rate incorporates SASA</h2>
+<p>SASA</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="fragment">
+<p><img data-src="img/szasza.png" width="800"></p>
+</div>
+</div><div class="column" style="width:45%;">
+
+</div></div>
+</section>
+<section id="hydrolysis-rate-incorporates-sasa-1" class="slide level2">
+<h2>Hydrolysis rate incorporates SASA</h2>
+<p><del>Szasza</del> SASA = Solvent Accessible Surface Area</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="d">
+<p><img data-src="img/szasza.png" width="800"></p>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="d">
+<p><img data-src="./figures/hyd/triple-gly-pro.png" width="800"></p>
+</div>
+</div></div>
+<div class="absolute" style="left: 50%; bottom: 0px; width: 25%; ">
+<p><img data-src="./img/peptide-water.png"></p>
+</div>
+</section>
+<section id="hydrolysis-rate-incorporates-ph-sasa-and-force" class="slide level2">
+<h2>Hydrolysis rate incorporates pH, SASA and force</h2>
+<div class="quarto-layout-panel" data-layout="[[7,3,3]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 53.9%;justify-content: center;">
+<p><img data-src="./figures/hyd/crosslinks-wide.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk-cropped.png"></p>
+</div>
+</div>
+</div>
+<p><span id="eq-hydrolysis-rate"><span class="math display">\[
+\mathrm{Rate}(bond, t) = \
+\frac{\mathrm{SASA}(bond, t)}{\mathrm{SASA}_{max}} \cdot \
+\frac{c_{OH^-}}{c_{OH^-_{\mathrm{exp}}}} \
+\cdot \mathrm{rate}_{\mathrm{exp}}(F_{bond,t})
+\tag{4}\]</span></span></p>
+<div class="absolute" style="left: 50%; bottom: 0px; width: 25%; ">
+<p><img data-src="./img/peptide-water.png"></p>
+</div>
+</section>
+<section id="solvent-accessibility-in-the-fibril-is-diverse" class="slide level2">
+<h2>Solvent accessibility in the fibril is diverse</h2>
+<p><img data-src="./plots/kimmdy/sasa.png"></p>
+<div class="quarto-layout-panel" data-layout="[[7,3,3]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 53.9%;justify-content: center;">
+<p><img data-src="./figures/hyd/crosslinks-wide.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk-cropped.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="peptide-bonds-near-the-center-are-still-accessible" class="slide level2">
+<h2>Peptide bonds near the center are still accessible</h2>
+<div class="quarto-layout-panel" data-layout="[[2,-1], [4,3]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_y_slice.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 57.1%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_radial_distance.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_z_slice.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="homolysis-becomes-competitive-with-hydrolysis-by-force-concentration" class="slide level2">
+<h2>Homolysis becomes competitive with hydrolysis by force concentration</h2>
+<div class="quarto-layout-panel" data-layout="[[-0.5,7,-1], [1]]">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 5.9%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 82.4%;justify-content: center;">
+<p><img data-src="./figures/hyd/fibril-single.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 11.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/rates.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="discussion-and-outlook" class="slide level2">
+<h2>Discussion and outlook</h2>
+<ul>
+<li><strong>pH</strong> just a factor, could be e.g.&nbsp;constant pH simulations <span class="citation" data-cites="ahoScalableConstantPH2022">[<a href="#/references" role="doc-biblioref" onclick="">11</a>]</span></li>
+<li><strong>SASA</strong> influence <strong>likely</strong> to be <strong>underestimated</strong></li>
+<li>Need a link to real tissue <strong>experiments</strong></li>
+</ul>
+</section></section>
+<section>
+<section id="concluding-thoughts" class="title-slide slide level1 center">
+<h1>Concluding Thoughts</h1>
+
+</section>
+<section id="concluding-thoughts-1" class="slide level2">
+<h2>Concluding Thoughts</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="./figures/render-qm-ti.png"></p>
+<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
+</div><div class="column" style="width:40%;">
+<ul>
+<li class="fragment"><p><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong></p></li>
+<li class="fragment"><p><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
+<a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p></li>
+<li class="fragment"><p><strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></p></li>
+<li class="fragment"><p><strong>Thesis</strong> and <strong>slides</strong> available at<br>
+<a href="https://jmbuhr.de/phd-thesis">jmbuhr.de/phd-thesis</a></p></li>
+<li class="fragment"><p>Eat your <strong>oranges</strong>! 🟠</p></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./figures/kimmdy-schema.png"></p>
+<p><img data-src="./plots/kimmdy/rates.png"></p>
+</div></div>
+</section></section>
+<section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You!</h1>
+
+</section>
+<section id="thank-you-1" class="slide level2">
+<h2>Thank You!</h2>
+<div id="questions" class="absolute fragment" style="top: 10%; right: -7%; width: 25%; ">
+<h3 id="questions">Questions?</h3>
+<p><img data-src="www/otter-news.png"></p>
+</div>
+<p><img data-src="./www/bmm.webp" style="width:81.0%"></p>
+<div id="bar">
+<div class="profile">
+<ul>
+<li><a href="https://jmbuhr.de" class="bi-house">jmbuhr.de</a></li>
+<li><a href="https://github.com/jmbuhr" class="bi-github">jmbuhr</a></li>
+<li><a href="https://youtube.com/@jmbuhr" class="bi-youtube">jmbuhr</a></li>
+<li><a href="https://www.mpip-mainz.mpg.de/en/graeter" class="bi-house">mpip-mainz.mpg.de/en/graeter</a></li>
+<li><a href="https://github.com/graeter-group/" class="bi-github">graeter-group</a></li>
+</ul>
+</div>
+<div id="acknowledge">
+<p>This work was supported by the Klaus Tschira Foundation and has received funding from the European Research Council (ERC).</p>
+</div>
+</div>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-lindTreatiseScurvyThree1772" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Lind, J. <em>A <span>Treatise</span> on the <span>Scurvy</span>: <span>In Three Parts</span>. <span>Containing</span> an <span>Inquiry Into</span> the <span>Nature</span>, <span>Causes</span>, and <span>Cure</span>, of That <span>Disease</span>. <span>Together</span> with a <span>Critical</span> and <span>Chronological View</span> of What <span>Has Been Published</span> on the <span>Subject</span></em>. <em>S. Crowder</em>. (S. Crowder, 1772).</div>
+</div>
+<div id="ref-zappMechanoradicalsTensedTendon2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Zapp, C., Obarska-Kosinska, A., Rennekamp, B., <em>et al.</em> <a href="https://doi.org/10.1038/s41467-020-15567-4">Mechanoradicals in tensed tendon collagen as a source of oxidative stress</a>. <em>Nature Communications</em> <strong>11</strong>, 2315 (2020).</div>
+</div>
+<div id="ref-xiaBaseCatalyzedPeptideHydrolysis2011" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Xia, F., Bronowska, A. K., Cheng, S. &amp; Gräter, F. <a href="https://doi.org/10.1021/jp202162r">Base-<span>Catalyzed Peptide Hydrolysis Is Insensitive</span> to <span>Mechanical Stress</span></a>. <em>The Journal of Physical Chemistry B</em> <strong>115</strong>, 10126–10132 (2011).</div>
+</div>
+<div id="ref-pillMechanicalActivationDrastically2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Pill, M. F., East, A. L. L., Marx, D., Beyer, M. K. &amp; Clausen‐Schaumann, H. <a href="https://doi.org/10.1002/anie.201902752">Mechanical <span>Activation Drastically Accelerates Amide Bond Hydrolysis</span>, <span>Matching Enzyme Activity</span></a>. <em>Angewandte Chemie International Edition</em> <strong>58</strong>, 9787–9790 (2019).</div>
+</div>
+<div id="ref-morozovWebinarMultiscaleQM2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Morozov, D. <a href="https://bioexcel.eu/webinar-multiscale-qm-mm-simulations-exploring-chemical-reactions-using-novel-gromacs-cp2k-interface-2020-12-08/">Webinar: <span>Multiscale QM</span>/<span>MM</span> simulations: Exploring chemical reactions using novel <span>GROMACS</span>/<span>CP2K</span> interface (2020-12-08)</a>. (2020).</div>
+</div>
+<div id="ref-rennekampHybridKineticMonte2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Rennekamp, B., Kutzki, F., Obarska-Kosinska, A., Zapp, C. &amp; Gräter, F. <a href="https://doi.org/10.1021/acs.jctc.9b00786">Hybrid <span>Kinetic Monte Carlo</span>/<span>Molecular Dynamics Simulations</span> of <span>Bond Scissions</span> in <span>Proteins</span></a>. <em>Journal of Chemical Theory and Computation</em> <strong>16</strong>, 553–563 (2020) KIMMDY.</div>
+</div>
+<div id="ref-kimmdy2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Buhr*, J., Hartmann*, E., Riedmiller*, K., <em>et al.</em> <span>KIMMDY</span>: A biomolecular reaction emulator. <em>bioRxiv</em>. (2025) doi:<a href="https://doi.org/10.1101/2025.07.02.662624">10.1101/2025.07.02.662624</a> *These authors contributed equally to this work.</div>
+</div>
+<div id="ref-seuteGrappaMachineLearned2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Seute, L., Hartmann, E., Stühmer, J. &amp; Gräter, F. <a href="https://doi.org/10.1039/D4SC05465B">Grappa – a machine learned molecular mechanics force field</a>. <em>Chemical Science</em> <strong>16</strong>, 2907–2930 (2025).</div>
+</div>
+<div id="ref-bellModelsSpecificAdhesion1978" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Bell, G. I. <a href="https://doi.org/10.1126/science.347575">Models for the <span>Specific Adhesion</span> of <span>Cells</span> to <span>Cells</span></a>. <em>Science</em> <strong>200</strong>, 618–627 (1978).</div>
+</div>
+<div id="ref-evansDynamicStrengthMolecular1997" class="csl-entry" role="listitem">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Evans, E. &amp; Ritchie, K. <a href="https://doi.org/10.1016/S0006-3495(97)78802-7">Dynamic strength of molecular adhesion bonds</a>. <em>Biophysical Journal</em> <strong>72</strong>, 1541–1555 (1997).</div>
+</div>
+<div id="ref-ahoScalableConstantPH2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Aho, N., Buslaev, P., Jansen, A., <em>et al.</em> <a href="https://doi.org/10.1021/acs.jctc.2c00516">Scalable <span class="nocase">Constant pH Molecular Dynamics</span> in <span>GROMACS</span></a>. <em>Journal of Chemical Theory and Computation</em> <strong>18</strong>, 6148–6160 (2022).</div>
+</div>
+<div id="ref-Procida_Diataxis_documentation_framework" class="csl-entry" role="listitem">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Procida, D. <a href="https://diataxis.fr/">Diátaxis documentation framework</a>.</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
+</section>
+<section id="kimmdy-finds-a-new-radical-scavanging-candidate-in-collagen" class="slide level2">
+<h2>KIMMDY finds a new radical scavanging candidate in collagen</h2>
+<div class="quarto-layout-panel" data-layout="[[1],[5,5,1,1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="./figures/kimmdy/kimmdy-hat-schema.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 41.7%;justify-content: center;">
+<p><img data-src="./figures/kimmdy/kimmdy-hat-bdes.svg" width="800"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 41.7%;justify-content: center;">
+<p><img data-src="./figures/kimmdy/kimmdy-hat-epr.svg" width="800"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/dopa.svg"></p>
+<figcaption>DOPA</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./img/pyridinoline-center.svg"></p>
+<figcaption>Pyridinoline</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Image sources:<br>
+HAT schema by Denis Kieswetter<br>
+EPR spectrum and BDEs for DOPA and PYD by Daniel Sucerquia<br>
+other BDEs by Wojtek Treyde.</p>
+</div>
+</section>
+<section id="proton-mobility-in-explicit-qm-solvent-molecules-allows-breaking-of-the-peptide-bond-1" class="slide level2">
+<h2>Proton mobility in explicit QM solvent molecules allows breaking of the peptide bond</h2>
+<div class="quarto-layout-panel" data-layout="[4,7,-1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./plots/qm/wetbreak_us_profiles_example.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 58.3%;justify-content: center;">
+<p><img data-src="./plots/qm/wetbreak_us_tiprots_example.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<p><img data-src="./figures/render-qm-break.png" class="absolute" style="left: 0%; bottom: 0%; width: 45%; "></p>
+<p><img data-src="./figures/render-qm-break-annotations-dist.png" class="absolute" style="bottom: 0%; right: 2%; width: 18%; "></p>
+</section>
+<section id="kimmdy-is-easy-to-install-and-well-documented" class="slide level2">
+<h2>KIMMDY is easy to install and well documented</h2>
+<p><a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p>
+
+<img data-src="./img/diataxis.svg" class="r-stretch"><div class="footer">
+<p>Schema based on a figure by Daniele Procida <span class="citation" data-cites="Procida_Diataxis_documentation_framework">[<a href="#/references" role="doc-biblioref" onclick="">12</a>]</span>.</p>
+</div>
+</section>
+<section id="running-kimmdy-other-cool-features" class="slide level2">
+<h2>Running KIMMDY: Other cool features</h2>
+<ul>
+<li>checkpoints and restarting</li>
+<li>high performance computing support</li>
+<li>extensive testing and logging</li>
+<li>easy to install, use and extend</li>
+</ul>
+</section>
+<section id="direct-comparison-of-hydrolysis-and-homolysis-force-response" class="slide level2">
+<h2>Direct comparison of hydrolysis and homolysis force response</h2>
+<div class="quarto-layout-panel" data-layout="[3,3,-1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/force-extension.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/force-response-homolysis.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 14.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-unique-effect-of-prolines" class="slide level2">
+<h2>The unique effect of prolines</h2>
+<div class="quarto-layout-panel" data-layout="[[1,1],[-0.25,1,-0.5,1,-0.25]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/bond-forces.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./img/gly-gro.svg"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_pro_density.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_pro_boxplot_ratio.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</section>
+<section id="supplementary-information" class="slide level2">
+<h2>Supplementary Information</h2>
+
+<img data-src="./plots/qm/wethyd_us_tidists.png" class="r-stretch quarto-figure-center"><p class="caption">Small multiples plot of the approach of the hydroxide in terms of distances of the carbonyl <span class="math inline">\(\ce{O}\)</span> of the TI to nearest proton of either a MM solvent molecule (cyan), the protein (black) or the QM water (magenta) across all umbrella windows. Distances are average within each window and the windows belonging to the same approach simulation are connected. The thick lines are a LOESS curve across all windows.</p></section>
+<section id="supplementary-information-1" class="slide level2">
+<h2>Supplementary Information</h2>
+
+
+<img data-src="./plots/qm/wethyd_us_tiprots_combined.png" style="width:50.0%" class="r-stretch quarto-figure-center" id="fig-tiprot-combined"><p class="caption">
+Figure&nbsp;1: The protonation states are show as the average number of protons assigned to either the hydroxyl <span class="math inline">\(\ce{O}\)</span> or the carbonyl <span class="math inline">\(\ce{O}\)</span> with all sampling windows averaged for each system. The region for detection of TS1 is shaded cyan, while the region for detection of the TI is shaded gray.
+</p></section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><a href="https://github.com/jmbuhr/phd-thesis" class="uri">https://github.com/jmbuhr/phd-thesis</a>, <a href="./index.html">manuscript</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 4.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

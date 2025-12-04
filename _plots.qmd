@@ -1,0 +1,348 @@
+---
+title: "Miscellaneous Plots for my PhD Thesis"
+author: "Jannik Michael Buhr"
+date: today
+repo-url: https://github.com/jmbuhr/phd-thesis/
+repo-actions: [edit, issue]
+number-sections: false
+link-citations: true
+link-references: true
+reference-location: margin
+csl: ./assets/nature.csl
+toc: true
+format:
+  html:
+    css: style.css
+    toc-location: left
+    theme:
+      dark:
+        - darkly
+      light:
+        - flatly
+bibliography: references.bib
+execute:
+  eval: true
+  echo: false
+  warning: false
+  message: false
+  cache: true
+  freeze: auto
+---
+
+# Setup
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import pi
+from plotnine import * # type: ignore
+from src.style import (
+    HITS_YELLOW_LIGHT,
+    HITS_DARKBLUE,
+    default_colors,
+    DPI,
+    single_column,
+)
+```
+
+# Energy profiles of hydrolysis
+
+Acccording to @pillMechanicalActivationDrastically2019
+
+- TS1:
+  - 80 kJ/mol at 0nN
+  - 77 kJ/mol at 1.8nN
+  - E = 80 - 1.67 * F
+
+- TS2:
+  - 92.5 kJ/mol at 0nN
+  - 46 kJ/mol at 1.8 nN
+  - E = 92.5 - 25.83 * F
+
+```{python}
+#| label: fig-energy
+#| fig-cap: Energies of hydrolysis according to @pillMechanicalActivationDrastically2019.
+
+# theoretical values at 0 and 1.8 nN:
+# 'rc':  [0, 1,  2,  3,  4,  5,  6],
+# '0':   [0, 80, 22, 45, 94, 85, 3],
+# '1.8': [0, 76, 16, 38, 44, np.nan, np.nan],
+theoretical = {
+    'rc':  [0,  2,  3,  5,  6],
+    '0':   [0,  22, 45, 85, 3],
+    '1.8': [0,  16, 38, np.nan, np.nan],
+}
+
+# experimental values for TS1
+# 'f': ['0.0', 0.8, 1.0, 1.2, 1.4, 1.6],
+# 'e': [69.0, 60.8, 58.1, 53.0, 54.4, 51.5]
+experimental = {
+    'f': [0.0, 0.8, 1.0, 1.2, 1.4, 1.6],
+    'e': [69.0, 60.8, 58.1, 53.0, 54.4, 51.5],
+    'error': [17.3, 10.5, 2.8, 18.4, 7.6, 13.3]
+}
+
+def theo_ts_1(f):
+    return 80 - 1.67 * f
+
+def theo_ts_2(f):
+    return 92.5 - 25.83 * f
+
+states = {
+    'state': ['Peptide bond', 'TS1', 'TI', 'ZI', 'TS2', 'RCOOH / RNH2', 'RCOO- / RNH3+'],
+    'rc': [0, 1, 2, 3, 4, 5, 6],
+}
+df_states = pd.DataFrame(states)
+
+df_theoretical_other = pd.DataFrame(theoretical)
+df_theoretical_other = df_theoretical_other.melt(id_vars='rc', var_name='f', value_name='e')
+df_theoretical_other['type'] = 'theoretical'
+
+
+df_experimental = pd.DataFrame(experimental)
+df_experimental['type'] = 'experimental'
+df_experimental['rc'] = 1
+
+f = [0, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8]
+theo_e_ts1 = [theo_ts_1(x) for x in f]
+theo_e_ts2 = [theo_ts_2(x) for x in f]
+df_theo = pd.DataFrame({'f': f, 1: theo_e_ts1, 4: theo_e_ts2}).melt(id_vars='f', var_name='rc', value_name='e')
+df = df_theo.copy()
+df['type'] = 'theoretical'
+df = pd.concat([df, df_theoretical_other, df_experimental], ignore_index=True)
+df = df.join(df_states.set_index('rc'), on='rc', how='left', rsuffix='_state', sort=False, validate='m:1')
+df.rc = df.rc.astype(int)
+df.f = df.f.astype(float)
+df.e = df.e.astype(float)
+df.sort_values(by=['rc', 'f'], inplace=True)
+df['state'] = df['state'].astype('category').cat.set_categories(states['state'], ordered=True)
+
+
+p = (
+  ggplot(df, aes(x='state', y='e'))
+    + geom_line(
+      data=df[df['type'] == 'theoretical'].query("type == 'theoretical' and f in [0, 1.8]"),
+      mapping=aes(group='f', color='f'),
+      size=1.3,
+      alpha=0.7,
+    )
+    # + geom_errorbar(
+    #   data=df[df['type'] == 'experimental'],
+    #   mapping=aes(ymin='e - error', ymax='e + error', color='f'),
+    #   # alpha=0.5,
+    #   width=0.2,
+    #   # color='black',
+    # )
+    + geom_point(aes(shape='type', fill='f'), size=3)
+    + scale_fill_gradient(low=HITS_YELLOW_LIGHT, high=HITS_DARKBLUE, breaks=f, aesthetics=['fill', 'color'])
+    + scale_y_continuous(limits=(0, 100), breaks=range(0, 101, 20))
+    + guides(
+      fill=guide_colorbar(title='Force [nN]'),
+      color=False,
+      shape=guide_legend(title='',position='top'),
+    )
+    + labs(x='', y='Energy [kJ/mol]')
+    + theme(
+      axis_text_x=element_text(rotation=45, hjust=1),
+      legend_text=element_text(size=8),
+      figure_size=(single_column, single_column*0.75),
+    )
+
+)
+p.show()
+p.save("./plots/plots/pill-energies.png", dpi=DPI, width=single_column, height=single_column*0.75)
+p.save("./plots/plots/pill-energies.svg", dpi=72, width=single_column, height=single_column*0.75)
+```
+
+theoretical reaction rates
+
+$$
+k1=A1 e^{-E_{TS1}/k_BT} \\
+k2=A1 e^{-E_{TS2}/k_BT} \\
+k=\frac{k_1 k_2 [OH^{-}]}{k_1+k_2},
+$${#eq-total-k}
+
+with the concentration of hydroxide $[OH^{-}]$ coming in as $10^{-(14 - 7.4)}$ at the experimental pH of $7.4$ and a temperature of $21\degree C=294.15\,K$
+
+A1 * c_oh = A
+
+```{python}
+T = 294.15 # K
+# boltzman constant in kJ K-1 mol-1
+K_b = 8.31446261815324e-3
+A = 1e11 # s-1
+ph = 7.4
+oh_conc = 10**(-(14 - ph)) # mol/L
+# oh_conc = 1
+A1 = A/oh_conc
+
+f = 1.0
+e1 = theo_ts_1(f)
+e2 = theo_ts_2(f)
+k1 = A1 * np.exp(-e1 / (K_b * T))
+k2 = A1 * np.exp(-e2 / (K_b * T))
+k = (k1 * k2 * oh_conc) / (k1 + k2)
+t = 1/k
+```
+
+# Potentials
+
+```{python}
+x = np.linspace(-2, 2, 100)
+k = 0.1
+y = 0.5 * k * x**2
+
+plt.subplots(figsize=(2,2))
+plt.box(False)
+plt.xticks([0], ['$r_0$'])
+plt.yticks([])
+plt.plot(x, y, color='black', linewidth=5)
+plt.show()
+```
+
+```{python}
+x = np.linspace(0.1, 10, 100)
+d = 1
+b = 1
+y = d * (1 - np.exp(-b * (x - 1)))**2
+
+plt.plot(x, y, color='black', linewidth=5)
+plt.xticks([0, b], ['0', '$r_0$'])
+plt.ylabel('$V$')
+plt.yticks([])
+plt.show()
+```
+ 
+```{python}
+x = np.linspace(-2, 2, 100)
+k = 0.1
+y = 0.5 * k * x**2
+
+plt.subplots(figsize=(2,2))
+plt.box(False)
+plt.xticks([0], ['$r_0$'])
+plt.yticks([])
+plt.plot(x, y, color='black', linewidth=5)
+plt.show()
+```
+
+```{python}
+x = np.linspace(0, 2*pi, 100)
+y = 1 + np.cos(2 * x - pi)
+
+plt.subplots(figsize=(3,2))
+plt.box(False)
+plt.xticks([pi], [r'$\phi_0$'])
+plt.yticks([])
+plt.plot(x, y, color='black', linewidth=5)
+plt.show()
+```
+
+
+```{python}
+nN_per_kJ_per_mol_nm = 0.001661
+def morse(r, D, beta, re=0.5):
+    return D * (1 - np.exp(-beta * (r - re)))**2
+
+def harmonic(r, k, r0=0.5):
+    dr = r - r0
+    return 0.5 * k * dr**2
+
+def lennard_jones(r, epsilon, sigma):
+    return 4 * epsilon * ((sigma / r)**12 - (sigma / r)**6)
+
+def coulomb(r, q1, q2, dielectric=80):
+    k_e = 1389.35458 # kJ mol-1 nm e-2
+    return k_e * (q1 * q2) / (dielectric * r)
+
+def derivative_morse(r, D, beta, re=0.5):
+  dr = r - re
+  return 2 * beta * D * np.exp(-beta * dr) * (1 - np.exp(-beta * dr)) * nN_per_kJ_per_mol_nm
+
+rs = np.linspace(0, 1.0, 1000)
+
+init_D = 300
+init_beta = 18
+init_re = 0.15
+init_k = 2 * init_D * init_beta**2
+```
+
+```{python}
+plt.plot(rs, morse(rs, init_D, init_beta, init_re), lw=5, color='black')
+plt.ylim(-10, 400)
+plt.ylabel('V(r)')
+plt.xlabel('r')
+plt.savefig('./img/morse-potential.png', dpi=300)
+```
+
+```{python}
+plt.plot(rs, harmonic(rs, init_k, init_re), lw=5, color='black')
+plt.ylim(-10, 400)
+plt.ylabel('V(r)')
+plt.xlabel('r')
+plt.savefig('./img/harmonic-potential.png', dpi=300)
+plt.show()
+```
+
+```{python}
+plt.plot(rs, derivative_morse(rs, init_D, init_beta, init_re), lw=5, color='black')
+plt.ylim(-4, 6)
+plt.ylabel('F(r)')
+plt.xlabel('r')
+plt.savefig("./img/morse-force.png", dpi=300)
+plt.show()
+```
+
+```{python}
+plt.plot(rs, lennard_jones(rs, 0.2, 0.3), lw=5, color='black')
+plt.ylim(-0.5, 0.5)
+plt.ylabel('V(r)')
+plt.xlabel('r')
+plt.savefig("./img/lennard-jones-potential.png", dpi=300)
+plt.show()
+```
+
+```{python}
+plt.plot(rs, coulomb(rs, 1, -1), lw=5, color='black')
+plt.ylim(-500, 10)
+plt.ylabel('V(r)')
+plt.xlabel('r')
+plt.savefig("./img/coulomb-potential.png", dpi=300)
+plt.show()
+```
+
+# kMC
+
+Visualization of the kMC algorithm as a stacked bar plot with plotnine.
+
+```{python}
+# rates
+np.random.seed(42)
+rs = np.random.uniform(0.1, 1.0, 8)
+rs = rs / sum(rs)
+labels = [f"Process {i+1}" for i in range(len(rs))]
+df = pd.DataFrame({'rate': rs, 'process': labels})
+df['const'] = 1
+
+p = (
+  ggplot(df, aes(x='const', y='rate', fill='process'))
+    + geom_col(stat='identity', position='stack')
+    + labs(x='', y=r"$R^\prime$")
+    + theme(
+      axis_text_y=element_blank(),
+      axis_ticks_major_y=element_blank(),
+      axis_ticks_minor_y=element_blank(),
+    )
+    + scale_fill_manual(values=default_colors)
+    + scale_y_continuous(breaks=np.arange(0, 1.1, 0.2), limits=(0,1))
+    + guides(
+      fill=False
+    )
+    + coord_flip(expand=False)
+)
+p.show()
+p.save("./plots/plots/kmc-stacked-bar.png", dpi=DPI, width=single_column, height=single_column/5)
+```
+
+

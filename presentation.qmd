@@ -1,0 +1,842 @@
+---
+title: |
+  Dissecting cleavage mechanisms \
+  in tensed collagen fibrils \
+  using reactive molecular dynamics simulations
+# date: today
+# date-format: long
+author: Jannik Buhr
+# institute: IWR Uni Heidelberg, HITS & MPI-P Mainz
+csl: ./assets/nature-mod.csl
+format:
+  revealjs:
+    center-title-slide: false
+    theme: ./www/presentation.scss
+    css: ./www/presentation.css
+    # logo: ./www/mpi-logo-head.svg
+    width: 1920
+    height: 1080
+    margin: 0.04
+    code-line-numbers: true
+    code-copy: true
+    code-link: true
+    title-slide-attributes:
+      data-background-image: ./figures/render-qm-break.png
+      data-background-size: contain
+      data-background-position: 50% 140%
+    citations-hover: true
+    reference-links: false
+    preview-links: false
+    progress: true
+    slide-number: true
+    chalkboard:
+      buttons: true
+    multiplex: false
+    footer: |
+      <https://github.com/jmbuhr/phd-thesis>, [manuscript](./index.html)
+    footnotes-hover: true
+reference-location: document
+favicon: ./img/water.png
+bibliography: ./references.bib
+mermaid-format: png
+nocite:
+  - "@allaireQuarto2022c"
+#engine: jupyter
+execute:
+  eval: true
+  echo: false
+  warning: false
+  cache: false
+---
+
+
+# Introduction {.center}
+
+> Concerning ~~hobbits~~ collagen
+
+## An orange a day keeps the scurvy away
+
+::::{layout="[2,1]"}
+![](./img/salisbury.png)
+
+:::{.fragment}
+![](./img/riftbound-buccaneer.png)
+
+Citrus fruits contain **Vitamin C** ( 🟠 )
+:::
+::::
+
+1747, HMS Salisbury, James Lind performs the first clinical trial with a control group [@lindTreatiseScurvyThree1772]
+
+:::{.footer}
+Image sources:\
+left: The Capture of Chandernagore, March 1757 by Dominic Serres, the Elder in 1771, oil on canvas.\
+right: Riftbound, the League of Legends TCG ©Riot Games
+:::
+
+
+## Collagen keeps us together
+
+::::: {layout="[[3,5,6],[1,1],[-1,60,-1]]"}
+![](./img/Magnified_view_of_a_Tendon_cropped.png){}
+
+![](img/collagen-sem.png){}
+
+
+![](./figures/render-chain-c-tubes-cpk-cropped.png){}
+
+![](./figures/render-triple-tubes-cpk-cropped.png){}
+
+![](./figures/render-fibril-black-cropped.png)
+:::::
+
+## The Gly-X-Y motif allows tight turns and packing
+
+![](./figures/hyd/triple-gly-pro.png)
+
+:::{#gly .cc}
+![Glycine (Gly)](img/glycine.svg)
+:::
+
+:::{#pro .cc}
+![Proline (Pro)](img/proline.svg)
+:::
+
+:::{#hyp .cc}
+![Hydroxyproline (Hyp)](img/hydroxyproline.svg)
+:::
+
+:::{#motif .absolute bottom=0% left=0%}
+X,Y: proline or hydroxyproline
+
+**Prolyl hydroxylase** ( 🟠 )
+:::
+
+<style>
+#gly {
+  position: absolute;
+  top: 5%;
+  right: 17%;
+  width: 15%;
+}
+#pro {
+  position: absolute;
+  top: 5%;
+  right: 0%;
+  width: 15%;
+}
+#hyp {
+  position: absolute;
+  top: 30%;
+  right: 0%;
+  width: 18%;
+}
+</style>
+
+## Collagen I is cross-linked
+
+::: {layout="[[5,1,1,1],[1,1,1]]"}
+![](./figures/hyd/crosslinks-closer.png)
+
+![Lysine](img/lysine.svg)
+
+![Hydroxylysine](img/hydroxylysine.svg)
+
+![Center of a pyridinoline crosslink](./img/pyridinoline-center.svg)
+:::
+
+**Lysyl-hydroxylase** ( 🟠 )
+
+**Lysyl oxidase**
+
+![](./img/riftbound-buccaneer.png){.fragment .fade-up }
+
+## A rather radical discovery: mechanoradicals in collagen
+
+::: {layout="[1,3]"}
+![](./img/Magnified_view_of_a_Tendon_cropped.png)
+
+![](./img/just-hom-reaction.svg)
+:::
+
+"Mechanoradicals in tensed tendon collagen as a source of oxidative stress", Zapp et al. [@zappMechanoradicalsTensedTendon2020]
+
+# Goals {.center}
+
+> for this talk and by extension my thesis
+
+## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
+
+![](./img/hyd-vs-hom-reaction.svg)
+
+"Base-Catalyzed **Peptide Hydrolysis** Is **Insensitive** to Mechanical Stress", Xia et al. [@xiaBaseCatalyzedPeptideHydrolysis2011]
+
+vs.
+
+"Mechanical Activation Drastically **Accelerates** Amide Bond Hydrolysis, Matching Enzyme Activity", Pill et al. [@pillMechanicalActivationDrastically2019]
+
+## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
+
+<br>
+
+:::: {layout="[8,-1,12]"}
+:::d
+### **QM/MM** simulations of<br>base-catalyzed hydrolysis
+
+![](./figures/render-qm-far-annotations.png)
+:::
+
+:::d
+### Kinetic Monte Carlo Molecular Dynamics:<br>**KIMMDY**
+
+![](./figures/kimmdy-schema.png){width="550" .align}
+:::
+
+::::
+
+# Methods and Theory {.center}
+
+## Molecular dynamics / Molecular Mechanics
+
+:::{layout="[1,2,2]"}
+![](./img/propionaldehyde.svg)
+
+![](./img/molecule-cpk.png)
+
+![](./img/molecule-density.png)
+:::
+
+How do we make the atoms move?
+
+$$
+\begin{array}{rcl}
+F  &=& ma \\
+-\frac{dV}{dr} &=& m\frac{d^2r}{dt^2},
+\end{array}
+$${#eq-newton}
+
+$V$: potential\
+$r$: position\
+$F$: force\
+$a$: acceleration\
+$t$: time\
+$m$: mass
+
+## Force Fields and Topologies
+
+::::{layout="[[5,4]]"}
+:::d
+![Bond $\mathrm{r}$, angle $\mathrm{\alpha}$, dihedral $\mathrm{\phi}$, non-bonded terms $\mathrm{nb}$, $\mathrm{1-4}$.](./figures/gly-mm-annotated.png)
+:::
+
+::::g2x2
+![Morse potential.](./img/morse-potential.png)
+
+![Harmonic potential.](./img/harmonic-potential.png)
+
+![Lennard-Jones potential.](./img/lennard-jones-potential.png)
+
+![Coulomb potential.](./img/coulomb-potential.png)
+:::
+::::
+
+## Force Fields and Topologies
+
+::::{layout="[[5,4]]"}
+:::d
+![Bond $\mathrm{r}$, angle $\mathrm{\alpha}$, dihedral $\mathrm{\phi}$, non-bonded terms $\mathrm{nb}$, $\mathrm{1-4}$.](./figures/gly-mm-annotated.png)
+:::
+
+:::d
+```{#lst-nonbonded .ini lst-cap="Select lines from ffnonbonded.itp"}
+[ atomtypes ]
+; name at.num  mass    charge ptype  sigma      epsilon
+C       6      12.01   0.0000  A   3.39967e-01  3.59824e-01
+CA      6      12.01   0.0000  A   3.39967e-01  3.59824e-01
+H       1       1.008  0.0000  A   1.06908e-01  6.56888e-02
+```
+
+```{#lst-top .ini lst-cap="Select simplified lines from a .top file of a capped glycine dipeptide"}
+[ moleculetype ]
+; Name            nrexcl
+Protein             3
+
+[ atoms ]
+; nr  type resnr residue  atom  cgnr   charge  mass  typeB ..
+  1    CT     1    ACE    CH3    1  -0.3662   12.01
+  2    HC     1    ACE   HH31    2   0.1123   1.008
+
+[ bonds ]
+;  ai    aj funct    c0    c1      c2    c3
+    1     2     1
+    1     3     1
+
+[ angles ]
+;  ai    aj    ak funct   c0   c1   c2    c3
+    2     1     3     1
+```
+:::
+::::
+
+
+## So how do we do chemistry?
+
+## Quantum mechanics/molecular mechanics
+
+:::{#qm .align}
+![Electrostatic embedding scheme for QM/MM. Figure by Dmitry Morozov [@morozovWebinarMultiscaleQM2020]](img/electrostatic-embedding.png)
+:::
+
+::::{layout="[1,1,1]"}
+![](./img/molecule-density.png){.orange}
+
+![](./figures/gly-mm-annotated.png){.green}
+
+:::d
+DFT: Density Functional Theory
+:::
+::::
+
+
+<style>
+# qm {
+  width: 50%;
+  text-align: center;
+}
+</style>
+
+# Collagen Hydrolysis by Quantum Mechanics/Molecular Mechanics {.center}
+
+## Base-catalyzed hydrolysis
+
+![](./img/hydrolysis-reaction.svg)
+
+**TS**: transition state\
+**TI**: Tetrahedral Intermediate\
+**ZI**: Zwitterionic Intermediate
+
+:::{#water-pep}
+![](./img/peptide-water.png)
+:::
+
+<style>
+#water-pep {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 20%;
+}
+
+</style>
+
+
+## Previous work on base-catalyzed hydrolysis
+
+:::: {layout="[2,3,1]" layout-valign="bottom"}
+![Figure from @pillMechanicalActivationDrastically2019.
+From top to bottom: educt, TS1, TI.](./img/pill-systems.png)
+
+![Data from Pill et al. @pillMechanicalActivationDrastically2019 visualized. Atomic Force Microscopy (experimental) and _ab initio_ QM (theoretical) energies](./plots/plots/pill-energies.png)
+::::
+
+
+:::{#pill-afm .absolute bottom=40% right=-2% width=18%}
+![](img/pill-afm.png)
+:::
+
+
+## System Setup
+
+:::: {layout="[[7,9], [7,9], [1]]" layout-valign="bottom"}
+![](./figures/render-triple-tubes-cpk.png)
+
+![](./figures/render-triple-pull-annotations.png)
+
+![](./figures/render-chain-c-tubes-cpk.png)
+
+
+![](./figures/render-single-pull-annotations.png)
+
+```{dot}
+//| fig-width: 100%
+//| fig-height: 50%
+//| fig-cap: '`[]`: input parameters.'
+digraph g {
+  layout=dot;
+  rankdir=LR;
+  node [shape=rect fontname="Roboto" style=filled fillcolor=white fontsize=8 margin=0.1];
+  "[system]" -> "equilibrate [F]" -> "QM setup [site]" -> TS1 -> TS2;
+}
+```
+::::
+
+## QM region selection and setup
+
+:::: {layout="[[8],[1,3]]"}
+![](./figures/sites-eq-close-annotations.png)
+
+![](./figures/render-qm-bd-annotations.png)
+
+:::d
+$BD$: Bürgi-Dunitz angle, 107°
+
+$FL$: Flippin-Lodge angle, 0°
+:::
+::::
+
+## Umbrella sampling the reaction coordinate
+
+![](./figures/render-qm-far-annotations.png)
+
+:::{#us-hist}
+![](./plots/qm/wethyd_us_histogram_example.png)
+:::
+
+<style>
+#us-hist {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 35%;
+}
+</style>
+
+
+## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
+
+![](./img/hydrolysis-reaction-vertical-ts1.svg){.absolute top=5% right=0 width=18%}
+
+![](./figures/render-qm-ti.png){width=80%}
+
+
+## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
+
+![](./figures/render-qm-ti-annotations.png){.absolute top=10% right=8% width=18%}
+
+![](./figures/render-qm-ti.png){.absolute bottom=10% right=0 width=35%}
+
+![](./plots/qm/wethyd_us_tiprots_filtered.png){width=65%}
+
+## The triple helix marginally impedes hydroxide attack thermodynamically
+
+:::::{layout="[[2,1]]" layout-valign="top" }
+![](./plots/qm/wethyd_us_profiles.png)
+
+::::g2x1
+![](./plots/qm/wethyd_us_deltaE_comparison.png)
+
+:::d
+$\bar{\Delta G}$ of (±SEM) TS1 - Educt
+
+Single chain: 102.5 ±\ 2.6\ kJ/mol
+
+Triple helix: 111.6\ ±\ 6.6\ kJ/mol
+:::
+::::
+:::::
+
+
+## Proton mobility in explicit QM solvent molecules allows breaking of the peptide bond
+
+![](./img/hydrolysis-reaction-vertical-ts2.svg){.absolute top=5% right=0 width=18%}
+
+![](./figures/render-qm-break.png){width=80%}
+
+## Discussion
+
+:::: {layout="[2,2,2]"}
+:::d
+![](./plots/qm/wethyd_us_deltaE_comparison.png){width=500px}
+
+![](./plots/qm/carbonyl_orientation_example.png){width=500px}
+:::
+
+:::d
+- Effect size?
+- Survivorship bias?
+- Cause?
+- Computational cost
+:::
+
+:::d
+![](./img/survivorship.svg)
+
+:::
+
+::::
+
+:::footer
+Image source: Right: Martin Grandjean (vector), McGeddon (picture), US Air Force (hit plot concept), CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=102017718
+:::
+
+# Kinetic Monte Carlo Molecular Dynamics: KIMMDY {.center}
+
+## Kinetic Monte Carlo Molecular Dynamics: KIMMDY
+
+::: {.columns}
+::: {.column width="50%"}
+![](./figures/kimmdy-schema.png){width="700"}
+:::
+::: {.column width="50%"}
+with Eric Hartmann and Kai Riedmiller,\
+inspired by Benedikt Rennekamp [@rennekampHybridKineticMonte2020]
+
+[graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
+
+![](img/kimmdy-screenshot.png)
+
+Buhr\*, J., Hartmann\*, E., Riedmiller\*, K., et al.\
+KIMMDY: A biomolecular reaction emulator.\
+bioRxiv. (2025) doi:10.1101/2025.07.02.662624\
+_\*These authors contributed equally to this work._ [@kimmdy2025]
+
+:::
+:::
+
+:::footer
+Schema made by Denis Kieswetter for @kimmdy2025
+:::
+
+## KIMMDY is easy to use
+
+::::{layout="[[1.6223, 1.093], [1]]"}
+![](img/kimmdy-yml-hover.png)
+
+![](img/kimmdy-yml-completion.png)
+
+![](img/kimmdy-yml-warnings.png)
+::::
+
+## KIMMDY is easy to extend to new chemistries
+
+::::{layout="[1,1,1]"}
+![](./img/peptide-water.png)
+
+![](./assets/top-before.svg)
+
+![](./assets/top-after.svg)
+::::
+
+## Parametrization interface to obtain parameters after a reaction
+
+:::d
+![](img/grappa.png){width=400}
+
+Graph Attentional Protein Parametrization by Leif Seute [@seuteGrappaMachineLearned2025]
+:::
+
+
+:::d
+{{< mol-url ./assets/npt-just-ala.gro >}}
+
+_also a good excuse to show the mol* plugin I wrote for our documentation_
+:::
+
+
+## Slow-growth to execute even complex reactions like hydrolysis
+
+::::{layout="[1,1]"}
+![](./plots/kimmdy/slow-growth.png)
+
+![](./img/slow-growth-annotation.png)
+::::
+
+![](./www/gly-hydrolysis.mp4){.absolute top=0% right=0% width=52% .fragment}
+
+# Applying KIMMDY to collagen<br>[hydrolysis]{.blue} and [homolysis]{.red} {.center}
+
+## Applying KIMMDY to collagen [hydrolysis]{.blue} and [homolysis]{.red}
+
+![](./img/hyd-vs-hom-reaction.svg)
+
+## Applying KIMMDY to collagen [hydrolysis]{.blue} and [homolysis]{.red}
+
+:::: {layout="[1,0.2,1]"}
+:::d
+Arrhenius equation
+
+$$
+k = A\,\mathrm{e}^{\left(\frac{-E_\mathrm{a}}{RT}\right)}
+$${#eq-arrhenius}
+
+$A$: pre-exponential factor (attempt frequency)\
+$R$: gas constant \
+$T$: temperature
+
+![](./img/morse-potential.png){width=500px}
+
+$$V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2$${#eq-energy-morse}
+:::
+
+:::d
+:::
+
+:::d
+**Homolysis**
+
+Benedikt Rennekamp [@rennekampHybridKineticMonte2020],\
+Bell-Evans model [@bellModelsSpecificAdhesion1978;@evansDynamicStrengthMolecular1997].
+
+**Hydrolysis**
+
+Same force calculation with a twist
+:::
+::::
+
+## Hydrolysis reaction rate is modeled after experimental data
+
+::::{layout="[3,3,1]"}
+![](./plots/kimmdy/force-response.png)
+
+![](./plots/plots/pill-energies.png)
+
+:::{.r-stack}
+![](./img/hydrolysis-reaction-vertical-ts2.svg)
+
+![](./img/hydrolysis-reaction-vertical-ts1.svg){.fragment}
+:::
+::::
+
+## Hydrolysis rate incorporates SASA
+
+SASA
+
+::::: {.columns}
+:::: {.column width="45%"}
+:::{.fragment}
+![](img/szasza.png){width=800px}
+:::
+::::
+:::: {.column width="45%"}
+::::
+:::::
+
+
+## Hydrolysis rate incorporates SASA
+
+~~Szasza~~ SASA = Solvent Accessible Surface Area
+
+::::: {.columns}
+:::: {.column width="45%"}
+:::d
+![](img/szasza.png){width=800px}
+:::
+::::
+:::: {.column width="45%"}
+:::d
+![](./figures/hyd/triple-gly-pro.png){width=800px}
+:::
+::::
+:::::
+
+:::{.absolute bottom=0 left=50% width=25%}
+![](./img/peptide-water.png)
+:::
+
+## Hydrolysis rate incorporates pH, SASA and force
+
+:::{layout="[[7,3,3]]"}
+![](./figures/hyd/crosslinks-wide.png)
+
+![](./figures/render-chain-c-tubes-cpk-cropped.png){}
+
+![](./figures/render-triple-tubes-cpk-cropped.png){}
+:::
+
+
+$$
+\mathrm{Rate}(bond, t) = \
+\frac{\mathrm{SASA}(bond, t)}{\mathrm{SASA}_{max}} \cdot \
+\frac{c_{OH^-}}{c_{OH^-_{\mathrm{exp}}}} \
+\cdot \mathrm{rate}_{\mathrm{exp}}(F_{bond,t})
+$${#eq-hydrolysis-rate}
+
+:::{.absolute bottom=0 left=50% width=25%}
+![](./img/peptide-water.png)
+:::
+
+## Solvent accessibility in the fibril is diverse
+
+![](./plots/kimmdy/sasa.png)
+
+:::{layout="[[7,3,3]]"}
+![](./figures/hyd/crosslinks-wide.png)
+
+![](./figures/render-chain-c-tubes-cpk-cropped.png){}
+
+![](./figures/render-triple-tubes-cpk-cropped.png){}
+:::
+
+## Peptide bonds near the center are still accessible
+
+::: {layout="[[2,-1], [4,3]]"}
+![](./plots/kimmdy/sasa_y_slice.png)
+
+![](./plots/kimmdy/sasa_radial_distance.png)
+
+![](./plots/kimmdy/sasa_z_slice.png)
+:::
+
+## Homolysis becomes competitive with hydrolysis by force concentration
+
+:::{layout="[[-0.5,7,-1], [1]]"}
+![](./figures/hyd/fibril-single.png)
+
+![](./plots/kimmdy/rates.png)
+:::
+
+
+## Discussion and outlook
+
+- **pH** just a factor, could be e.g. constant pH simulations [@ahoScalableConstantPH2022]
+- **SASA** influence **likely** to be **underestimated**
+- Need a link to real tissue **experiments**
+
+# Concluding Thoughts {.center}
+
+## Concluding Thoughts
+
+::: {.columns}
+::: {.column width="30%"}
+![](./figures/render-qm-ti.png)
+
+![](./plots/qm/wethyd_us_deltaE_comparison.png)
+:::
+::: {.column width="40%" .incremental}
+- **Triple helix** marginally **impedes hydrolysis**
+
+- **KIMMDY** is a versatile tool for **reactive MD** simulations:\
+  [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
+
+- **Homolysis** becomes competitive to **hydrolysis** due to **force concentration**
+
+- **Thesis** and **slides** available at\
+[jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)
+
+- Eat your **oranges**! 🟠
+:::
+::: {.column width="30%"}
+![](./figures/kimmdy-schema.png)
+
+![](./plots/kimmdy/rates.png)
+:::
+:::
+
+
+# Thank You! {.center}
+
+## Thank You!
+
+:::{#questions .absolute right=-7% top=10% width=25% .fragment}
+### Questions?
+
+![](www/otter-news.png)
+:::
+
+![](./www/bmm.webp){width="81%"}
+
+::::{#bar}
+:::profile
+- [jmbuhr.de](https://jmbuhr.de){.bi-house}
+- [jmbuhr](https://github.com/jmbuhr){.bi-github}
+- [jmbuhr](https://youtube.com/@jmbuhr){.bi-youtube}
+- [mpip-mainz.mpg.de/en/graeter](https://www.mpip-mainz.mpg.de/en/graeter){.bi-house}
+- [graeter-group](https://github.com/graeter-group/){.bi-github}
+:::
+:::{#acknowledge}
+This work was supported by the Klaus Tschira Foundation and has received funding from the European Research Council (ERC).
+:::
+::::
+
+## References
+
+:::{#refs}
+:::
+
+# Appendix {.center}
+
+## KIMMDY finds a new radical scavanging candidate in collagen
+
+:::{layout="[[1],[5,5,1,1]]"}
+![](./figures/kimmdy/kimmdy-hat-schema.png)
+
+
+
+![](./figures/kimmdy/kimmdy-hat-bdes.svg){width=800}
+
+![](./figures/kimmdy/kimmdy-hat-epr.svg){width=800}
+
+![DOPA](./img/dopa.svg)
+
+![Pyridinoline](./img/pyridinoline-center.svg)
+:::
+
+
+:::footer
+Image sources:\
+HAT schema by Denis Kieswetter\
+EPR spectrum and BDEs for DOPA and PYD by Daniel Sucerquia\
+other BDEs by Wojtek Treyde.
+:::
+
+
+
+## Proton mobility in explicit QM solvent molecules allows breaking of the peptide bond
+
+::: {layout="[4,7,-1]"}
+![](./plots/qm/wetbreak_us_profiles_example.png)
+
+![](./plots/qm/wetbreak_us_tiprots_example.png)
+:::
+
+![](./figures/render-qm-break.png){.absolute bottom=0% left=0% width=45%}
+
+![](./figures/render-qm-break-annotations-dist.png){.absolute bottom=0% right=2% width=18%}
+
+
+## KIMMDY is easy to install and well documented
+
+[graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
+
+![](./img/diataxis.svg)
+
+:::footer
+Schema based on a figure by Daniele Procida [@Procida_Diataxis_documentation_framework].
+:::
+
+## Running KIMMDY: Other cool features
+
+- checkpoints and restarting
+- high performance computing support
+- extensive testing and logging
+- easy to install, use and extend
+
+## Direct comparison of hydrolysis and homolysis force response
+
+::::{layout="[3,3,-1]"}
+![](./plots/kimmdy/force-extension.png)
+
+![](./plots/kimmdy/force-response-homolysis.png)
+::::
+
+## The unique effect of prolines
+
+:::{layout="[[1,1],[-0.25,1,-0.5,1,-0.25]]"}
+![](./plots/kimmdy/bond-forces.png)
+
+![](./img/gly-gro.svg)
+
+![](./plots/kimmdy/sasa_pro_density.png)
+
+![](./plots/kimmdy/sasa_pro_boxplot_ratio.png)
+:::
+
+
+
+## Supplementary Information
+
+![Small multiples plot of the approach of the hydroxide in terms of distances of the carbonyl $\ce{O}$ of the TI to nearest proton of either a MM solvent molecule (cyan), the protein (black) or the QM water (magenta) across all umbrella windows. Distances are average within each window and the windows belonging to the same approach simulation are connected. The thick lines are a LOESS curve across all windows.](./plots/qm/wethyd_us_tidists.png)
+
+## Supplementary Information
+
+![The protonation states are show as the average number of protons assigned to either the hydroxyl $\ce{O}$ or the carbonyl $\ce{O}$ with all sampling windows averaged for each system. The region for detection of TS1 is shaded cyan, while the region for detection of the TI is shaded gray.](./plots/qm/wethyd_us_tiprots_combined.png){#fig-tiprot-combined width=50%}

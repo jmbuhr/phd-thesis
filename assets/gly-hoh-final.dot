@@ -1,0 +1,30 @@
+
+        graph G {
+          layout=neato
+          overlap=true
+          node [shape="circle"]
+    "1 CT"  -- "2 H1" ;
+"1 CT"  [color="red"]
+"1 CT"  -- "3 H1" ;
+"1 CT"  [color="red"]
+"1 CT"  -- "4 C" ;
+"1 CT"  [color="red"]
+"4 C"  [color="red"]
+"4 C"  -- "5 O" ;
+"4 C"  [color="red"]
+"6 N"  -- "7 H" ;
+"6 N"  [color="red"]
+"6 N"  -- "8 CT" ;
+"6 N"  [color="red"]
+"8 CT"  [color="red"]
+"4 C"  -- "9 OW" ;
+"4 C"  [color="red"]
+"9 OW"  [color="red"]
+"6 N"  -- "10 HW" ;
+"6 N"  [color="red"]
+"10 HW"  [color="red"]
+"6 N"  -- "11 HW" ;
+"6 N"  [color="red"]
+"11 HW"  [color="red"]
+        }
+    

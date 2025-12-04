@@ -1,0 +1,29 @@
+name: example_run
+topology:
+  reactive:
+    include: SOL
+ndx: index.ndx
+top: topol.top
+gro: npt.gro
+mds:
+  eq:
+    mdp: md.mdp
+  relax:
+    mdp: relax.mdp
+changer:
+  topology:
+    parameterization: grappa
+  coordinates:
+    md: relax
+    slow_growth: full
+reactions:
+  hydrolysis:
+    kmc: which?
+    step: 1
+    cutoff: 5
+    external_force: none?
+sequence:
+  - eq
+  - reactions
+  - eq
+

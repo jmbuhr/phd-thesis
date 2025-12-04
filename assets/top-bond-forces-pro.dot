@@ -1,0 +1,17 @@
+graph G {
+layout=neato;
+node [shape="circle" margin=0.0];
+edge [penwidth=5 color="#bbbbbb"];
+"R1" [style="dashed"];
+"R2" [style="dashed"];
+"1 C" -- "2 O";
+"1 C" -- "R1" [color="#004f9f"];
+"7 N" -- "R2" [color="#004f9f"];
+"7 N" -- "3 CT";
+"4 CT" -- "3 CT";
+"3 CT" -- "1 C" [color="#777777"];
+"7 N" -- "6 CT" ;
+"6 CT" -- "5 CT";
+"5 CT" -- "4 CT";
+}
+

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>kimmdy plots</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="_kimmdy_plots_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/popper.min.js"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_kimmdy_plots_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_kimmdy_plots_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_kimmdy_plots_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_kimmdy_plots_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_kimmdy_plots_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_kimmdy_plots_files/libs/bootstrap/bootstrap-6e84383a983d49116d99796924f18a8f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">kimmdy plots</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="setup" class="level1">
+<h1>Setup</h1>
+</section>
+<section id="hydrolysis-topology" class="level1">
+<h1>Hydrolysis topology</h1>
+<div class="cell" data-fig-height="7" data-fig-width="7" width="12" data-file="./assets/gly-hoh.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="672" viewbox="0.00 0.00 406.24 346.54" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 342.54)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-342.54 402.24,-342.54 402.24,4 -4,4"></polygon>
+<!-- 1 CT -->
+<g id="node1" class="node">
+<title>1 CT</title>
+<ellipse fill="none" stroke="red" cx="153.7" cy="-231.38" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="153.7" y="-227.18" font-family="Times,serif" font-size="14.00">1 CT</text>
+</g>
+<!-- 2 H1 -->
+<g id="node2" class="node">
+<title>2 H1</title>
+<ellipse fill="none" stroke="black" cx="231.7" cy="-244.91" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="231.7" y="-240.71" font-family="Times,serif" font-size="14.00">2 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;2 H1 -->
+<g id="edge1" class="edge">
+<title>1 CT--2 H1</title>
+<path fill="none" stroke="black" d="M184.08,-236.65C189.98,-237.67 196.16,-238.75 202.04,-239.77"></path>
+</g>
+<!-- 3 H1 -->
+<g id="node3" class="node">
+<title>3 H1</title>
+<ellipse fill="none" stroke="black" cx="133.66" cy="-308.46" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="133.66" y="-304.26" font-family="Times,serif" font-size="14.00">3 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;3 H1 -->
+<g id="edge2" class="edge">
+<title>1 CT--3 H1</title>
+<path fill="none" stroke="black" d="M145.9,-261.4C144.38,-267.24 142.79,-273.34 141.28,-279.15"></path>
+</g>
+<!-- 4 C -->
+<g id="node4" class="node">
+<title>4 C</title>
+<ellipse fill="none" stroke="black" cx="103.32" cy="-166.64" rx="24.94" ry="24.94"></ellipse>
+<text text-anchor="middle" x="103.32" y="-162.44" font-family="Times,serif" font-size="14.00">4 C</text>
+</g>
+<!-- 1 CT&#45;&#45;4 C -->
+<g id="edge3" class="edge">
+<title>1 CT--4 C</title>
+<path fill="none" stroke="black" d="M134.65,-206.9C129.41,-200.17 123.8,-192.95 118.79,-186.51"></path>
+</g>
+<!-- 5 O -->
+<g id="node5" class="node">
+<title>5 O</title>
+<ellipse fill="none" stroke="black" cx="25.25" cy="-190.06" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="25.25" y="-185.86" font-family="Times,serif" font-size="14.00">5 O</text>
+</g>
+<!-- 4 C&#45;&#45;5 O -->
+<g id="edge4" class="edge">
+<title>4 C--5 O</title>
+<path fill="none" stroke="black" d="M79.47,-173.79C69.96,-176.64 59.04,-179.92 49.49,-182.78"></path>
+</g>
+<!-- 6 N -->
+<g id="node6" class="node">
+<title>6 N</title>
+<ellipse fill="none" stroke="black" cx="109.68" cy="-84.84" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="109.68" y="-80.64" font-family="Times,serif" font-size="14.00">6 N</text>
+</g>
+<!-- 4 C&#45;&#45;6 N -->
+<g id="edge5" class="edge">
+<title>4 C--6 N</title>
+<path fill="none" stroke="black" d="M105.26,-141.65C106.04,-131.69 106.93,-120.24 107.71,-110.24"></path>
+</g>
+<!-- 7 H -->
+<g id="node7" class="node">
+<title>7 H</title>
+<ellipse fill="none" stroke="black" cx="50.55" cy="-31.48" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="50.55" y="-27.28" font-family="Times,serif" font-size="14.00">7 H</text>
+</g>
+<!-- 6 N&#45;&#45;7 H -->
+<g id="edge6" class="edge">
+<title>6 N--7 H</title>
+<path fill="none" stroke="black" d="M90.65,-67.66C83.9,-61.57 76.3,-54.72 69.55,-48.63"></path>
+</g>
+<!-- 8 CT -->
+<g id="node8" class="node">
+<title>8 CT</title>
+<ellipse fill="none" stroke="red" cx="167.38" cy="-30.62" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="167.38" y="-26.42" font-family="Times,serif" font-size="14.00">8 CT</text>
+</g>
+<!-- 6 N&#45;&#45;8 CT -->
+<g id="edge7" class="edge">
+<title>6 N--8 CT</title>
+<path fill="none" stroke="black" d="M128.26,-67.39C133.53,-62.43 139.33,-56.99 144.81,-51.84"></path>
+</g>
+<!-- 9 OW -->
+<g id="node9" class="node">
+<title>9 OW</title>
+<ellipse fill="none" stroke="black" cx="315.15" cy="-135.4" rx="34.24" ry="34.24"></ellipse>
+<text text-anchor="middle" x="315.15" y="-131.2" font-family="Times,serif" font-size="14.00">9 OW</text>
+</g>
+<!-- 10 HW -->
+<g id="node10" class="node">
+<title>10 HW</title>
+<ellipse fill="none" stroke="black" cx="359.05" cy="-192.82" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="359.05" y="-188.62" font-family="Times,serif" font-size="14.00">10 HW</text>
+</g>
+<!-- 9 OW&#45;&#45;10 HW -->
+<g id="edge8" class="edge">
+<title>9 OW--10 HW</title>
+<path fill="none" stroke="black" d="M336.07,-162.77C336.16,-162.88 336.25,-163 336.34,-163.11"></path>
+</g>
+<!-- 11 HW -->
+<g id="node11" class="node">
+<title>11 HW</title>
+<ellipse fill="none" stroke="black" cx="291.2" cy="-67.2" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="291.2" y="-63" font-family="Times,serif" font-size="14.00">11 HW</text>
+</g>
+<!-- 9 OW&#45;&#45;11 HW -->
+<g id="edge9" class="edge">
+<title>9 OW--11 HW</title>
+<path fill="none" stroke="black" d="M303.74,-102.9C303.69,-102.76 303.64,-102.62 303.59,-102.49"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell" data-fig-height="7" data-fig-width="7" width="12" data-file="./assets/gly-hoh-attack.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="672" viewbox="0.00 0.00 370.88 369.54" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 365.54)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-365.54 366.88,-365.54 366.88,4 -4,4"></polygon>
+<!-- 1 CT -->
+<g id="node1" class="node">
+<title>1 CT</title>
+<ellipse fill="none" stroke="red" cx="108.49" cy="-249.13" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="108.49" y="-244.93" font-family="Times,serif" font-size="14.00">1 CT</text>
+</g>
+<!-- 2 H1 -->
+<g id="node2" class="node">
+<title>2 H1</title>
+<ellipse fill="none" stroke="black" cx="109.36" cy="-331.46" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="109.36" y="-327.26" font-family="Times,serif" font-size="14.00">2 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;2 H1 -->
+<g id="edge1" class="edge">
+<title>1 CT--2 H1</title>
+<path fill="none" stroke="black" d="M108.81,-279.79C108.89,-286.83 108.97,-294.31 109.04,-301.33"></path>
+</g>
+<!-- 3 H1 -->
+<g id="node3" class="node">
+<title>3 H1</title>
+<ellipse fill="none" stroke="black" cx="30.08" cy="-263.71" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="30.08" y="-259.51" font-family="Times,serif" font-size="14.00">3 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;3 H1 -->
+<g id="edge2" class="edge">
+<title>1 CT--3 H1</title>
+<path fill="none" stroke="black" d="M77.95,-254.81C72.01,-255.91 65.8,-257.07 59.89,-258.17"></path>
+</g>
+<!-- 4 C -->
+<g id="node4" class="node">
+<title>4 C</title>
+<ellipse fill="none" stroke="black" cx="166.59" cy="-183.82" rx="24.94" ry="24.94"></ellipse>
+<text text-anchor="middle" x="166.59" y="-179.62" font-family="Times,serif" font-size="14.00">4 C</text>
+</g>
+<!-- 1 CT&#45;&#45;4 C -->
+<g id="edge3" class="edge">
+<title>1 CT--4 C</title>
+<path fill="none" stroke="black" d="M129.13,-225.92C135.92,-218.29 143.37,-209.92 149.83,-202.66"></path>
+</g>
+<!-- 5 O -->
+<g id="node5" class="node">
+<title>5 O</title>
+<ellipse fill="none" stroke="black" cx="205.68" cy="-250.18" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="205.68" y="-245.98" font-family="Times,serif" font-size="14.00">5 O</text>
+</g>
+<!-- 4 C&#45;&#45;5 O -->
+<g id="edge4" class="edge">
+<title>4 C--5 O</title>
+<path fill="none" stroke="black" d="M179.17,-205.18C183.55,-212.61 188.46,-220.94 192.85,-228.4"></path>
+</g>
+<!-- 6 N -->
+<g id="node6" class="node">
+<title>6 N</title>
+<ellipse fill="none" stroke="black" cx="123.35" cy="-110.33" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="123.35" y="-106.13" font-family="Times,serif" font-size="14.00">6 N</text>
+</g>
+<!-- 4 C&#45;&#45;6 N -->
+<g id="edge5" class="edge">
+<title>4 C--6 N</title>
+<path fill="none" stroke="black" d="M153.85,-162.17C148.32,-152.77 141.85,-141.77 136.3,-132.33"></path>
+</g>
+<!-- 9 OW -->
+<g id="node9" class="node">
+<title>9 OW</title>
+<ellipse fill="none" stroke="black" cx="251.93" cy="-164.85" rx="34.24" ry="34.24"></ellipse>
+<text text-anchor="middle" x="251.93" y="-160.65" font-family="Times,serif" font-size="14.00">9 OW</text>
+</g>
+<!-- 4 C&#45;&#45;9 OW -->
+<g id="edge10" class="edge">
+<title>4 C--9 OW</title>
+<path fill="none" stroke="black" d="M190.82,-178.44C199.29,-176.55 208.97,-174.4 218.09,-172.37"></path>
+</g>
+<!-- 7 H -->
+<g id="node7" class="node">
+<title>7 H</title>
+<ellipse fill="none" stroke="black" cx="48.58" cy="-80.6" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="48.58" y="-76.4" font-family="Times,serif" font-size="14.00">7 H</text>
+</g>
+<!-- 6 N&#45;&#45;7 H -->
+<g id="edge6" class="edge">
+<title>6 N--7 H</title>
+<path fill="none" stroke="black" d="M99.69,-100.92C90.88,-97.42 80.88,-93.44 72.08,-89.94"></path>
+</g>
+<!-- 8 CT -->
+<g id="node8" class="node">
+<title>8 CT</title>
+<ellipse fill="none" stroke="red" cx="135.17" cy="-30.62" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="135.17" y="-26.42" font-family="Times,serif" font-size="14.00">8 CT</text>
+</g>
+<!-- 6 N&#45;&#45;8 CT -->
+<g id="edge7" class="edge">
+<title>6 N--8 CT</title>
+<path fill="none" stroke="black" d="M127.09,-85.11C128.23,-77.45 129.49,-68.94 130.67,-60.98"></path>
+</g>
+<!-- 10 HW -->
+<g id="node10" class="node">
+<title>10 HW</title>
+<ellipse fill="none" stroke="black" cx="323.68" cy="-205.11" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="323.68" y="-200.91" font-family="Times,serif" font-size="14.00">10 HW</text>
+</g>
+<!-- 9 OW&#45;&#45;10 HW -->
+<g id="edge8" class="edge">
+<title>9 OW--10 HW</title>
+<path fill="none" stroke="black" d="M281.95,-181.69C284.4,-183.07 286.9,-184.47 289.38,-185.87"></path>
+</g>
+<!-- 11 HW -->
+<g id="node11" class="node">
+<title>11 HW</title>
+<ellipse fill="none" stroke="black" cx="302.55" cy="-103.13" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="302.55" y="-98.93" font-family="Times,serif" font-size="14.00">11 HW</text>
+</g>
+<!-- 9 OW&#45;&#45;11 HW -->
+<g id="edge9" class="edge">
+<title>9 OW--11 HW</title>
+<path fill="none" stroke="black" d="M273.99,-137.96C275.16,-136.53 276.34,-135.09 277.52,-133.65"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell" data-fig-height="7" data-fig-width="7" width="12" data-file="./assets/gly-hoh-all.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="672" viewbox="0.00 0.00 359.39 334.81" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 330.81)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-330.81 355.39,-330.81 355.39,4 -4,4"></polygon>
+<!-- 1 CT -->
+<g id="node1" class="node">
+<title>1 CT</title>
+<ellipse fill="none" stroke="red" cx="108.79" cy="-219.01" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="108.79" y="-214.81" font-family="Times,serif" font-size="14.00">1 CT</text>
+</g>
+<!-- 2 H1 -->
+<g id="node2" class="node">
+<title>2 H1</title>
+<ellipse fill="none" stroke="black" cx="88.6" cy="-296.73" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="88.6" y="-292.53" font-family="Times,serif" font-size="14.00">2 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;2 H1 -->
+<g id="edge1" class="edge">
+<title>1 CT--2 H1</title>
+<path fill="none" stroke="black" d="M101.04,-248.83C99.47,-254.91 97.8,-261.3 96.23,-267.37"></path>
+</g>
+<!-- 3 H1 -->
+<g id="node3" class="node">
+<title>3 H1</title>
+<ellipse fill="none" stroke="black" cx="30.08" cy="-201.49" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="30.08" y="-197.29" font-family="Times,serif" font-size="14.00">3 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;3 H1 -->
+<g id="edge2" class="edge">
+<title>1 CT--3 H1</title>
+<path fill="none" stroke="black" d="M78.59,-212.28C72.34,-210.89 65.78,-209.43 59.56,-208.05"></path>
+</g>
+<!-- 4 C -->
+<g id="node4" class="node">
+<title>4 C</title>
+<ellipse fill="none" stroke="black" cx="185.43" cy="-184.58" rx="24.94" ry="24.94"></ellipse>
+<text text-anchor="middle" x="185.43" y="-180.38" font-family="Times,serif" font-size="14.00">4 C</text>
+</g>
+<!-- 1 CT&#45;&#45;4 C -->
+<g id="edge3" class="edge">
+<title>1 CT--4 C</title>
+<path fill="none" stroke="black" d="M136.9,-206.38C145.44,-202.54 154.72,-198.38 162.85,-194.72"></path>
+</g>
+<!-- 5 O -->
+<g id="node5" class="node">
+<title>5 O</title>
+<ellipse fill="none" stroke="black" cx="229.27" cy="-255.07" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="229.27" y="-250.87" font-family="Times,serif" font-size="14.00">5 O</text>
+</g>
+<!-- 4 C&#45;&#45;5 O -->
+<g id="edge4" class="edge">
+<title>4 C--5 O</title>
+<path fill="none" stroke="black" d="M198.59,-205.73C204.03,-214.49 210.35,-224.64 215.83,-233.45"></path>
+</g>
+<!-- 6 N -->
+<g id="node6" class="node">
+<title>6 N</title>
+<ellipse fill="none" stroke="black" cx="238.61" cy="-120.49" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="238.61" y="-116.29" font-family="Times,serif" font-size="14.00">6 N</text>
+</g>
+<!-- 4 C&#45;&#45;6 N -->
+<g id="edge5" class="edge">
+<title>4 C--6 N</title>
+<path fill="none" stroke="black" d="M201.39,-165.35C208,-157.39 215.65,-148.16 222.3,-140.15"></path>
+</g>
+<!-- 9 OW -->
+<g id="node9" class="node">
+<title>9 OW</title>
+<ellipse fill="none" stroke="black" cx="196.29" cy="-106.73" rx="34.24" ry="34.24"></ellipse>
+<text text-anchor="middle" x="196.29" y="-102.53" font-family="Times,serif" font-size="14.00">9 OW</text>
+</g>
+<!-- 4 C&#45;&#45;9 OW -->
+<g id="edge10" class="edge">
+<title>4 C--9 OW</title>
+<path fill="none" stroke="black" d="M188.87,-159.95C189.71,-153.89 190.63,-147.29 191.53,-140.88"></path>
+</g>
+<!-- 7 H -->
+<g id="node7" class="node">
+<title>7 H</title>
+<ellipse fill="none" stroke="black" cx="167.71" cy="-50.17" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="167.71" y="-45.97" font-family="Times,serif" font-size="14.00">7 H</text>
+</g>
+<!-- 6 N&#45;&#45;7 H -->
+<g id="edge6" class="edge">
+<title>6 N--7 H</title>
+<path fill="none" stroke="black" d="M220.35,-102.38C209.68,-91.8 196.28,-78.5 185.66,-67.97"></path>
+</g>
+<!-- 8 CT -->
+<g id="node8" class="node">
+<title>8 CT</title>
+<ellipse fill="none" stroke="red" cx="320.77" cy="-149.38" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="320.77" y="-145.18" font-family="Times,serif" font-size="14.00">8 CT</text>
+</g>
+<!-- 6 N&#45;&#45;8 CT -->
+<g id="edge7" class="edge">
+<title>6 N--8 CT</title>
+<path fill="none" stroke="black" d="M262.82,-129.01C271.91,-132.2 282.33,-135.87 291.8,-139.2"></path>
+</g>
+<!-- 10 HW -->
+<g id="node10" class="node">
+<title>10 HW</title>
+<ellipse fill="none" stroke="black" cx="284.22" cy="-74.6" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="284.22" y="-70.4" font-family="Times,serif" font-size="14.00">10 HW</text>
+</g>
+<!-- 6 N&#45;&#45;10 HW -->
+<g id="edge11" class="edge">
+<title>6 N--10 HW</title>
+<path fill="none" stroke="black" d="M256.64,-102.35C256.74,-102.25 256.84,-102.15 256.94,-102.05"></path>
+</g>
+<!-- 11 HW -->
+<g id="node11" class="node">
+<title>11 HW</title>
+<ellipse fill="none" stroke="black" cx="233.18" cy="-39.2" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="233.18" y="-35" font-family="Times,serif" font-size="14.00">11 HW</text>
+</g>
+<!-- 6 N&#45;&#45;11 HW -->
+<g id="edge12" class="edge">
+<title>6 N--11 HW</title>
+<path fill="none" stroke="black" d="M236.92,-95.22C236.57,-89.9 236.19,-84.18 235.81,-78.49"></path>
+</g>
+<!-- 9 OW&#45;&#45;10 HW -->
+<g id="edge8" class="edge">
+<title>9 OW--10 HW</title>
+<path fill="none" stroke="black" d="M229.04,-94.77C234.99,-92.59 241.24,-90.3 247.31,-88.09"></path>
+</g>
+<!-- 9 OW&#45;&#45;11 HW -->
+<g id="edge9" class="edge">
+<title>9 OW--11 HW</title>
+<path fill="none" stroke="black" d="M212.8,-76.52C213.26,-75.68 213.72,-74.83 214.18,-73.99"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell" data-fig-height="7" data-fig-width="7" width="12" data-file="./assets/gly-hoh-final.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="672" viewbox="0.00 0.00 413.35 418.78" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 414.78)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-414.78 409.35,-414.78 409.35,4 -4,4"></polygon>
+<!-- 1 CT -->
+<g id="node1" class="node">
+<title>1 CT</title>
+<ellipse fill="none" stroke="red" cx="127.14" cy="-93.68" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="127.14" y="-89.48" font-family="Times,serif" font-size="14.00">1 CT</text>
+</g>
+<!-- 2 H1 -->
+<g id="node2" class="node">
+<title>2 H1</title>
+<ellipse fill="none" stroke="black" cx="199.44" cy="-62.53" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="199.44" y="-58.33" font-family="Times,serif" font-size="14.00">2 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;2 H1 -->
+<g id="edge1" class="edge">
+<title>1 CT--2 H1</title>
+<path fill="none" stroke="black" d="M155.3,-81.55C160.69,-79.22 166.33,-76.79 171.71,-74.48"></path>
+</g>
+<!-- 3 H1 -->
+<g id="node3" class="node">
+<title>3 H1</title>
+<ellipse fill="none" stroke="black" cx="80.89" cy="-30.08" rx="30.16" ry="30.16"></ellipse>
+<text text-anchor="middle" x="80.89" y="-25.88" font-family="Times,serif" font-size="14.00">3 H1</text>
+</g>
+<!-- 1 CT&#45;&#45;3 H1 -->
+<g id="edge2" class="edge">
+<title>1 CT--3 H1</title>
+<path fill="none" stroke="black" d="M109.12,-68.91C105.68,-64.17 102.07,-59.2 98.62,-54.47"></path>
+</g>
+<!-- 4 C -->
+<g id="node4" class="node">
+<title>4 C</title>
+<ellipse fill="none" stroke="red" cx="106.35" cy="-171.53" rx="24.94" ry="24.94"></ellipse>
+<text text-anchor="middle" x="106.35" y="-167.33" font-family="Times,serif" font-size="14.00">4 C</text>
+</g>
+<!-- 1 CT&#45;&#45;4 C -->
+<g id="edge3" class="edge">
+<title>1 CT--4 C</title>
+<path fill="none" stroke="black" d="M119.16,-123.56C117.05,-131.45 114.81,-139.86 112.79,-147.4"></path>
+</g>
+<!-- 5 O -->
+<g id="node5" class="node">
+<title>5 O</title>
+<ellipse fill="none" stroke="black" cx="153.54" cy="-234.56" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="153.54" y="-230.36" font-family="Times,serif" font-size="14.00">5 O</text>
+</g>
+<!-- 4 C&#45;&#45;5 O -->
+<g id="edge4" class="edge">
+<title>4 C--5 O</title>
+<path fill="none" stroke="black" d="M121.28,-191.47C126.68,-198.68 132.79,-206.84 138.22,-214.09"></path>
+</g>
+<!-- 9 OW -->
+<g id="node9" class="node">
+<title>9 OW</title>
+<ellipse fill="none" stroke="red" cx="34.37" cy="-203.25" rx="34.24" ry="34.24"></ellipse>
+<text text-anchor="middle" x="34.37" y="-199.05" font-family="Times,serif" font-size="14.00">9 OW</text>
+</g>
+<!-- 4 C&#45;&#45;9 OW -->
+<g id="edge7" class="edge">
+<title>4 C--9 OW</title>
+<path fill="none" stroke="black" d="M83.57,-181.56C77.97,-184.03 71.88,-186.72 65.94,-189.33"></path>
+</g>
+<!-- 6 N -->
+<g id="node6" class="node">
+<title>6 N</title>
+<ellipse fill="none" stroke="red" cx="313.42" cy="-305.28" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="313.42" y="-301.08" font-family="Times,serif" font-size="14.00">6 N</text>
+</g>
+<!-- 7 H -->
+<g id="node7" class="node">
+<title>7 H</title>
+<ellipse fill="none" stroke="black" cx="380.1" cy="-262.04" rx="25.01" ry="25.01"></ellipse>
+<text text-anchor="middle" x="380.1" y="-257.84" font-family="Times,serif" font-size="14.00">7 H</text>
+</g>
+<!-- 6 N&#45;&#45;7 H -->
+<g id="edge5" class="edge">
+<title>6 N--7 H</title>
+<path fill="none" stroke="black" d="M334.88,-291.36C342.5,-286.42 351.06,-280.87 358.67,-275.93"></path>
+</g>
+<!-- 8 CT -->
+<g id="node8" class="node">
+<title>8 CT</title>
+<ellipse fill="none" stroke="red" cx="270.25" cy="-238.62" rx="30.74" ry="30.74"></ellipse>
+<text text-anchor="middle" x="270.25" y="-234.42" font-family="Times,serif" font-size="14.00">8 CT</text>
+</g>
+<!-- 6 N&#45;&#45;8 CT -->
+<g id="edge6" class="edge">
+<title>6 N--8 CT</title>
+<path fill="none" stroke="black" d="M299.52,-283.82C295.58,-277.73 291.24,-271.03 287.14,-264.7"></path>
+</g>
+<!-- 10 HW -->
+<g id="node10" class="node">
+<title>10 HW</title>
+<ellipse fill="none" stroke="red" cx="247.2" cy="-349.13" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="247.2" y="-344.93" font-family="Times,serif" font-size="14.00">10 HW</text>
+</g>
+<!-- 6 N&#45;&#45;10 HW -->
+<g id="edge8" class="edge">
+<title>6 N--10 HW</title>
+<path fill="none" stroke="black" d="M292.1,-319.39C288.32,-321.9 284.3,-324.56 280.28,-327.22"></path>
+</g>
+<!-- 11 HW -->
+<g id="node11" class="node">
+<title>11 HW</title>
+<ellipse fill="none" stroke="red" cx="357.26" cy="-371.59" rx="39.39" ry="39.39"></ellipse>
+<text text-anchor="middle" x="357.26" y="-367.39" font-family="Times,serif" font-size="14.00">11 HW</text>
+</g>
+<!-- 6 N&#45;&#45;11 HW -->
+<g id="edge9" class="edge">
+<title>6 N--11 HW</title>
+<path fill="none" stroke="black" d="M327.53,-326.62C330.03,-330.41 332.69,-334.43 335.35,-338.45"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Modified into:</p>
+<pre class="{bash}"><code>dot -Tsvg ./assets/top-before.dot &gt; ./assets/top-before.svg
+dot -Tsvg ./assets/top-after.dot &gt; ./assets/top-after.svg</code></pre>
+</section>
+<section id="bond-forces" class="level1">
+<h1>Bond forces</h1>
+<p>C-CT #e58f8a C-N #8ae58f CT-N #8f8ae5</p>
+<pre class="{bash}"><code>dot -Tsvg ./assets/top-bond-forces.dot &gt; ./assets/top-bond-forces.svg
+dot -Tsvg ./assets/top-bond-forces-pro.dot &gt; ./assets/top-bond-forces-pro.svg</code></pre>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,95 @@
+---
+title: kimmdy plots
+format: html
+execute:
+    eval: true
+    echo: false
+    warning: false
+    message: false
+    cache: true
+    freeze: auto
+---
+
+# Setup
+
+```{python}
+from kimmdy.topology.topology import Topology
+from kimmdy.tools import write_top_as_dot
+from kimmdy.plugins import discover_plugins
+
+discover_plugins()
+```
+
+# Hydrolysis topology
+
+
+```{python}
+top = Topology.from_path("./assets/gly-hoh.top", is_reactive_predicate_f=lambda _: True)
+write_top_as_dot(top, "./assets/gly-hoh.dot")
+```
+
+```{dot}
+//| fig-height: 7
+//| fig-width: 7
+//| width: 12
+//| file: ./assets/gly-hoh.dot
+```
+
+```{python}
+top.bind_bond(('4', '9'))
+
+write_top_as_dot(top, "./assets/gly-hoh-attack.dot")
+```
+
+```{dot}
+//| fig-height: 7
+//| fig-width: 7
+//| width: 12
+//| file: ./assets/gly-hoh-attack.dot
+```
+
+```{python}
+top.bind_bond(('10', '6'))
+top.bind_bond(('11', '6'))
+write_top_as_dot(top, "./assets/gly-hoh-all.dot")
+```
+
+```{dot}
+//| fig-height: 7
+//| fig-width: 7
+//| width: 12
+//| file: ./assets/gly-hoh-all.dot
+```
+
+```{python}
+top.break_bond(('4', '6'))
+top.break_bond(('9', '10'))
+top.break_bond(('9', '11'))
+write_top_as_dot(top, "./assets/gly-hoh-final.dot")
+```
+
+```{dot}
+//| fig-height: 7
+//| fig-width: 7
+//| width: 12
+//| file: ./assets/gly-hoh-final.dot
+```
+
+Modified into:
+
+```{bash}
+dot -Tsvg ./assets/top-before.dot > ./assets/top-before.svg
+dot -Tsvg ./assets/top-after.dot > ./assets/top-after.svg
+```
+
+# Bond forces
+
+C-CT #e58f8a
+C-N #8ae58f
+CT-N #8f8ae5
+
+```{bash}
+dot -Tsvg ./assets/top-bond-forces.dot > ./assets/top-bond-forces.svg
+dot -Tsvg ./assets/top-bond-forces-pro.dot > ./assets/top-bond-forces-pro.svg
+```
+

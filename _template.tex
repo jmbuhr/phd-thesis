@@ -1,0 +1,180 @@
+% Options for packages loaded elsewhere
+$passoptions.latex()$
+%
+$doc-class.tex()$
+
+\usepackage{xcolor}
+\usepackage{mhchem}
+\usepackage{mparhack}
+
+% \usepackage{layout}
+
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+
+\usepackage{amsmath,amssymb}
+$--
+$-- section numbering
+$--
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\counterwithin{figure}{section}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+$fonts.latex()$
+$font-settings.latex()$
+$common.latex()$
+$after-header-includes.latex()$
+$hypersetup.latex()$
+
+$before-title.tex()$
+
+% title.tex()
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+% $-- This supports Quarto's authors normalization
+\author{Jannik Michael Buhr}
+
+\date{Date of the defense: $date$}
+
+% custom packages
+
+% use marginpar instead of marginnote
+\renewcommand{\marginnote}{\marginpar}
+
+\begin{document}
+
+% preface
+\newgeometry{margin=1in,a4paper}
+
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+
+{\Large Dissertation zur Erlangung der Doktorwürde}\\[0.8cm]
+{\large an der}\\[0.3cm]
+{\large Gesamtfakultät für Mathematik,}\\
+{\large Ingenieur- und Naturwissenschaften}\\[0.3cm]
+{\large der}\\[0.3cm]
+{\large Ruprecht-Karls-Universität Heidelberg}
+
+\vspace{2cm}
+
+{\Large{Thema:}}\\[0.8cm]
+$if(title)$
+\LARGE{$title$}
+$endif$
+
+\vspace{2cm}
+
+{\large Vorgelegt von:}\\[0.8cm]
+\Large{
+Jannik Michael Buhr
+}
+
+\vfill
+
+\begin{flushleft}
+{\Large Gutachtende:}\\[0.5cm]
+$for(referees)$ \large{$it.name$} $sep$ {\newline} $endfor$
+\end{flushleft}
+
+\end{titlepage}
+
+% end preface
+
+% blank page before toc
+\newpage
+\thispagestyle{empty}
+\null
+\newpage 
+
+% $before-body.tex()$
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+\clearpage
+\maketitle
+\thispagestyle{empty}
+
+\vfill
+
+\begin{flushleft}
+{\Large Referees:}\\[0.5cm]
+$for(referees)$ \large{$it.name$} $sep$ {\newline} $endfor$
+\end{flushleft}
+
+$endif$
+
+% blank page before toc
+\newpage
+\thispagestyle{empty}
+\null
+\newpage 
+
+\restoregeometry
+
+\recalctypearea
+\raggedbottom
+
+\setlength{\marginparwidth}{3.0\marginparwidth}
+
+% \layout
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+
+$toc.tex()$
+
+\newpage
+
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+
+$body$
+
+$before-bib.tex()$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+$biblio.tex()$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+$after-body.tex()$
+
+\clearpage
+\newpage
+\thispagestyle{empty}
+\null
+\newpage
+\thispagestyle{empty}
+\null
+
+\end{document}
+

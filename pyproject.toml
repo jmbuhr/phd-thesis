@@ -1,0 +1,21 @@
+[project]
+name = "phd-thesis"
+version = "0.1.0"
+description = "PhD thesis of Jannik Michael Buhr"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ipython>=8.37.0",
+    "jupyter>=1.1.1",
+    "jupyter-cache>=1.0.1",
+    "kimmdy-paper-theme",
+    "kimmdy[hydrolysis]>=8.3.0",
+    "numpy>=2.2.6",
+    "pandas>=2.3.1",
+    "plotnine>=0.15.0",
+    "pyqt5>=5.15.11",
+    "seaborn>=0.13.2",
+]
+
+[tool.uv.sources]
+kimmdy-paper-theme = { git = "https://github.com/graeter-group/kimmdy_paper_theme" }

@@ -1,0 +1,35 @@
+---
+title: KIMMDY CLI
+format: markdown
+---
+
+This generates the example KIMMDY output used in the thesis text.
+
+```{python}
+!kimmdy --help
+```
+
+```{python}
+from kimmdy.topology.topology import Topology
+top = Topology.from_path("./assets/gly-hoh.top",
+                         ffdir="./assets/amber99sb-star-ildnp.ff",
+                         is_reactive_predicate_f=lambda _: True)
+top
+```
+
+
+```{python}
+top.atoms['4']
+```
+
+```{python}
+top.bonds[('4','6')]
+```
+
+
+```{python}
+top.ff
+```
+
+
+

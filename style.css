@@ -1,0 +1,62 @@
+:root {
+  --hits-darkblue: #003063;
+  --hits-signalblue: #004f9f;
+  --hits-cyan: #0088c2;
+  --hits-cyan-light: #55b4dc;
+  --hits-green: #019050;
+  --hits-green-light: #89b77a;
+  --hits-magenta: #c3006b;
+  --hits-magenta-light: #da7da6;
+  --hits-yellow: #ffcc00;
+  --hits-yellow-light: #ffe07d;
+  --mpi-green: #006c66;
+  --mpi-green-secondary: #055000;
+  --mpi-dark-grey: #777777;
+}
+
+
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/miriam-libre-400.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 500;
+  src: url(assets/miriam-libre-500.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 600;
+  src: url(assets/miriam-libre-600.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 700;
+  src: url(assets/miriam-libre-700.ttf) format('truetype');
+}
+
+.msp-plugin .msp-material-icon svg {
+    color: var(--mpi-green);
+}
+
+
+.cyan {
+  background-color: var(--hits-cyan);
+  color: white;
+}
+
+.gray {
+  background-color: var(--mpi-dark-grey);
+  color: white;
+}
+
+.quarto-layout-cell {
+	margin-right: 0mm;
+}
+
+
