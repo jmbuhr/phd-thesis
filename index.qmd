@@ -1607,14 +1607,14 @@ In there, every task KIMMDY performs has a corresponding configuration section.
 The sequence of tasks KIMMDY executes is also defined in this configuration, making KIMMDY highly flexible.
 The configuration file contains input files such as the topology and initial coordinates,
 high performance computing (HPC) options, logging and working directory options, and general settings for KIMMDY.
-For a complete documentation of all options, see the automatically updated list at [graeter-group.github.io/kimmdy/guide/references/input.html](https://graeter-group.github.io/kimmdy/guide/references/input.html).
+For the complete documentation of all options, see the automatically updated list at [graeter-group.github.io/kimmdy/guide/references/input.html](https://graeter-group.github.io/kimmdy/guide/references/input.html).
 
-When the `yaml` file, typically named `kimmdy.yml`, is opened in properly configured code editor supporting the [language server protocol](https://microsoft.github.io/language-server-protocol/overviews/lsp/overview/),
+When the `yaml` file, typically named `kimmdy.yml`, is opened in a properly configured code editor supporting the [language server protocol](https://microsoft.github.io/language-server-protocol/overviews/lsp/overview/),
 such as the popular [Visual Studio Code](https://code.visualstudio.com/) or [Neovim](https://neovim.io/),
 the user will automatically get features such as auto completion for keywords and options (@fig-kimmdy-completion), hover documentation (@fig-kimmdy-hover).
 They will also see warnings for missing, unknown keys or incompatible values (@fig-kimmdy-warnings).
 This reduces the likelihood of disappointing application crashes, because the validity of the input can be checked before KIMMDY is even started.
-Not everything can be checked before runtime, such as the availability of some plugin dependencies or the existence of input files, but further consistency checks are front loaded at the start of KIMMDY, such that it stops earlier rather than later in a run.
+Not everything can be checked before runtime, such as the availability of some plugin dependencies or the existence of input files, but further consistency checks are front-loaded at the start of KIMMDY, such that it stops earlier rather than later in a run.
 KIMMDY checks that all input files are present, which avoids running a whole MD simulation only to find out that the mdp file for the next step is missing.
 
 :::: {#fig-kmdy-yml layout="[[1.6223,-0.1, 1.093], [1]]" fig-scap="`kimmdy.yml` features."}
