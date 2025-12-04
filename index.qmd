@@ -397,7 +397,7 @@ So how do we simulate molecular systems, especially large ones relevant for biom
 Let's start with a simple small molecule such as this propionaldehyde in @fig-propionaldehyde.
 In the chemical formula, implicit hydrogens are often omitted, so let us also look at a classic ball-and-stick render of the same molecule in @fig-propionaldehyde-sticks.
 Ultimately, this representation combines the nuclei and electrons of the atoms involved in the molecule into one representation, but we might also want to show a representation of the electron density like in @fig-propionaldehyde-density.
-The challenge is now to find a representation in which it becomes feasible to describe the motion of atoms through time in order to build a system that we can observe and use to calculate properties of by sampling.
+The challenge is now to find a representation in which it becomes feasible to describe the motion of atoms through time in order to build a system that we can observe and then use this system calculate properties by sampling.
 
 As the phrase, usually attributed to statistician George Box, goes: "All models are wrong, but some are useful."
 So let us start with one of the most simplified ones that will allow us to simulate large systems.
@@ -591,7 +591,7 @@ In this case, given that we are dealing with a peptide, GROMACS will look in `am
 Additionally, improper dihedrals are added based on the `impropers` section.
 
 Not all values have to be written explicitly.
-Take the first bond in @lst-top between atoms with ids 1 and 2.
+Take the first bond in @lst-top between atoms with IDs 1 and 2.
 The topology only specifies the functional form of the interaction, where type 1 is a harmonic potential [@FileFormatsGROMACS].
 The values for the parameters are then taken from the `bondtypes` section based on the atomtypes of the atoms involved in the bond,
 where in this case the `bondtypes` section was included from the force field file as seen in @lst-bonded.
@@ -814,7 +814,7 @@ H(\vec{r},\vec{p},1) &=& H{^{\mathrm{B}}}(\vec{r},\vec{p})
 $${#eq-ab}
 
 The computational engine provides a way of specifying different parameters for state A and state B for the energy terms.
-For example, a harmonic bond may start with a spring constant $k_\mathrm{A}$ and transition to a spring constant $k_{\mathrm{B}}$ ^[though at this point it is a bit ironic to call it a spring _constant_.].
+For example, a harmonic bond may start with a spring constant $k_\mathrm{A}$ and transition to a spring constant^[though at this point it is a bit ironic to call it a spring _constant_.] $k_{\mathrm{B}}$.
 
 ## Quantum mechanics and density functional theory
 
@@ -1209,7 +1209,7 @@ Each system is then equilibrated under an external force to simulate mechanical 
 In theory, this external force is an input parameter, but in practice the sampling ended up so computationally expensive that only one value for it will be explored here.
 A force of 1\ nN per chain (603\ kJ/mol/nm in GROMACS units) is applied to the center of mass (COM) of the $\alpha$ carbons of the capping residues in opposing directions for 100\ ps (50000 steps at dt=0.002\ ps).
 The triple helix configuration gains additional rotational restraints to prevent unwinding.
-This mimics it being packed inside of a fibril and restrained by the surrounding triple helices.
+This mimics it being packed inside a fibril and restrained by the surrounding triple helices.
 The length of the equilibration was found to be sufficient by observing the distances of the pull groups (@fig-eq-pull).
 
 ![The distance between the pull groups for the external force as a function of time for the equilibration of the triple helix under 1\ nN.](./plots/qm/triple_equilibration.png){#fig-eq-pull .column-margin fig-scap="Pulling equilibration."}
