@@ -1039,7 +1039,7 @@ Draw a second uniform random number $u^\prime \in (0,1]$.
 Determine $\Delta t=\frac{\ln(1/u^\prime)}{Q_k}$ and set the new time $t=t+\Delta t$.
 Repeat all steps until sufficient sampling of the states has been achieved.
 
-The event list of a state and the list of possible states is not always known beforehand.
+The event list of a state and the list of possible states are not always known beforehand.
 Adaptive kMC [@henkelmanLongTimeScale2001] characterizes a method in which the event list is calculated on the fly.
 
 ## Arrhenius equation and transition state theory {#sec-arrhenius}
@@ -1055,7 +1055,7 @@ $${#eq-arrhenius}
 with the pre-exponential factor $A$ and the gas constant $R$ as well as the temperature $T$.
 If $E_\mathrm{a}$ is given per molecule and not per mole, $R$ is replaced by the Boltzmann constant $k_\mathrm{B}$.
 
-The Eyring equation [@eyringActivatedComplexChemical1935] contains a way of calculating the pre-exponential factor, or attempt frequency via @eq-eyring.
+The Eyring equation [@eyringActivatedComplexChemical1935] contains a way of calculating the pre-exponential factor, or attempt frequency, via @eq-eyring.
 
 $$
 A = \kappa \frac{k_{\mathrm{B}}T}{h},
@@ -1063,17 +1063,17 @@ $${#eq-eyring}
 
 with the transmission coefficient $\kappa$, which represents the fraction of reaction paths through the transition state that end in the product state without passing the transition state again.
 A transition state is a saddle point in the potential energy surface between the educt and product state.
-$\kappa$ is often assumed to be 1, which equals accepting the fundamental assumption of transition state theory, in which the educt state and the transition state are in equilibrium, but once the transition state has been passed the reaction proceeds to the product state.
+$\kappa$ is often assumed to be 1, which equals accepting the fundamental assumption of transition state theory, in which the educt state and the transition state are in equilibrium, but once the transition state has been passed, the reaction proceeds to the product state.
 
 When experimental data for reaction rates at different temperatures is available, $A$ can be determined for the specific reaction based on an Arrhenius plot.
 Here, the logarithm of the reaction rate ($\ln(k)$) is plotted against the reciprocal temperature $1/T$.
-With the Arrhenius equation translated to the form in @eq-arrhenius-plot
+With the Arrhenius equation translated to the form in @eq-arrhenius-plot:
 
 $$
 \ln(k)=\ln(A)-{\frac {E_{\text{a}}}{R}}\left({\frac{1}{T}}\right),
 $${#eq-arrhenius-plot}
 
-the y-intercept of a log-log-linear fit corresponds to $\ln(A)$ and the slope of the fit equal $-E_\mathrm{a}/R$.
+the y-intercept of a log-log-linear fit corresponds to $\ln(A)$ and the slope of the fit equals $-E_\mathrm{a}/R$.
 
 \clearpage
 
@@ -1085,7 +1085,7 @@ As introduced earlier, collagen under mechanical stress can undergo two competin
 While experiments have detected radicals in tensed collagen [@zappMechanoradicalsTensedTendon2020], and other studies showed that hydrolysis is accelerated by force [@pillMechanicalActivationDrastically2019], it remained unclear how these two pathways compete under physiologically relevant conditions.
 
 Simulating an entire collagen fibril at the quantum mechanical level of detail would be computationally infeasible.
-This is why I reduced the core question to a comparison between a single peptide, as was the case in the single molecule pulling experiments by Pill et al. [@pillMechanicalActivationDrastically2019], and a collagen triple helix.
+This is why I reduced the core question to a comparison between a single peptide, as was the case in the single-molecule pulling experiments by Pill et al. [@pillMechanicalActivationDrastically2019], and a collagen triple helix.
 In graphics and schematics these systems will be referred to as `single` and `triple`.
 This chapter addresses the hydrolysis pathway using hybrid quantum mechanics/molecular mechanics (QM/MM) simulations, the method of choice for reactive subsystems for large biomolecular systems (see @sec-meth-qmmm).
 The effect of the fibrillar assembly will come into play again in @sec-main-kimmdy, but this chapter will only be concerned with _how_ the hydrolysis reaction happens.
@@ -1096,7 +1096,7 @@ Thus, a key reason as to why it makes sense to focus the QM/MM simulations on ju
 Originally I had planned to simulate both homolytic and hydrolytic bond cleavage in the same QM/MM setup to get a direct comparison.
 However, it is a fundamental limitation of my chosen QM methodology, density functional theory (DFT), that a system has to be representable by a single Slater determinant -- meaning the total spin of the system cannot change during the simulation.
 This renders a direct sampling approach to homolytic (and thus radical) cleavage reactions futile, as bond homolysis creates two unpaired electrons.
-As such, this thesis will not contain QM/MM simulations of homolysis and I will assume instead, as is commonly done in the field [@liangQuantumChemistryStudy2022;@kosarBenchmarkDFTStudies2019;@johnPredictionOrganicHomolytic2020], that the transition state energy of the cleavage reaction is very close to the dissociation energy of the respective bond, wherever a direct comparison is required.
+As such, this thesis will not contain QM/MM simulations of homolysis, and I will assume instead, as is commonly done in the field [@liangQuantumChemistryStudy2022;@kosarBenchmarkDFTStudies2019;@johnPredictionOrganicHomolytic2020], that the transition state energy of the cleavage reaction is very close to the dissociation energy of the respective bond, wherever a direct comparison is required.
 In the following I will thus focus on base-catalyzed hydrolysis and my extensive sampling of the reaction in a QM/MM scheme.
 
 ## Previous work on base-catalyzed hydrolysis
@@ -1115,18 +1115,18 @@ To put the results of this chapter into context, I compiled previous results by 
 It is worth going into some detail about how these results were obtained to make the comparison to my results clearer.
 Broadly, they obtained reaction rates and energies by two distinct methods, designed to investigate how external force affects base-catalyzed hydrolysis:
 
-Experimental approach: A single molecule pulling setup with an atomic force microscopy (AFM) cantilever measured bond lifetimes under varying applied forces and temperatures. These lifetimes can be translated to activation energies and attempt frequencies (pre-exponential factors) via an Arrhenius plot (see @sec-arrhenius).
+Experimental approach: A single-molecule pulling setup with an atomic force microscopy (AFM) cantilever measured bond lifetimes under varying applied forces and temperatures. These lifetimes can be translated to activation energies and attempt frequencies (pre-exponential factors) via an Arrhenius plot (see @sec-arrhenius).
 
 Computational approach: They calculated _ab initio_ single-point energies at the MP2/TZVP level of theory for B3LYP-optimized structures (using the 6-31+G(d) basis set) under external force (@fig-pill-pull) for each of the states shown in @fig-hyd-reaction.
-As shown in @fig-pill-systems, those energies are comprised as a sum of three auxiliary systems that are minimized independently of each other and chosen in such a way that the total number of water molecules, hydrogen bridges and number of strained HOH bond angles stays the same.
-The first subsystem contains the actual peptide bond as a part of N-ethylethanamide, the second and third contain the initial hydroxide ion and more water molecules to balance out the quantities mentioned above that are to stay constant.
+As shown in @fig-pill-systems, those energies are comprised of the energies of three auxiliary systems that are minimized independently of each other and chosen in such a way that the total number of water molecules, hydrogen bridges, and number of strained HOH bond angles stays the same.
+The first subsystem contains the actual peptide bond as a part of N-ethylethanamide; the second and third contain the initial hydroxide ion and more water molecules to balance out the quantities mentioned above that are to stay constant.
 
 ![Illustration of the pulling setup from the SI of @pillMechanicalActivationDrastically2019.](img/pill-pull.png){#fig-pill-pull .column-margin fig-scap="Pill et al. pulling setup."}
 
 :::: {#fig-pill layout="[2,3]" layout-valign="bottom"}
 ![Excerpt from figure S7 of the SI of @pillMechanicalActivationDrastically2019 showing the auxiliary subsystems for the first 3 reaction steps. From top to bottom: educt, TS1, TI.](./img/pill-systems.png){#fig-pill-systems fig-scap="Pill et al. QM setup."}
 
-![(Force-dependent) energies of the reaction steps based on AFM (experimental) and _ab initio_ QM (theoretical) by @pillMechanicalActivationDrastically2019. The energy of the educt state is used subtracted as a baseline.](./plots/plots/pill-energies.png){#fig-pill-energies fig-scap="Pill et al. energies."}
+![(Force-dependent) energies of the reaction steps based on AFM (experimental) and _ab initio_ QM (theoretical) by @pillMechanicalActivationDrastically2019. The energy of the educt state is subtracted as a baseline.](./plots/plots/pill-energies.png){#fig-pill-energies fig-scap="Pill et al. energies."}
 
 Visual summary of the setup and data points obtained by @pillMechanicalActivationDrastically2019 that are relevant for this thesis.
 ::::
@@ -1149,7 +1149,7 @@ with the concentration of hydroxide $[OH^{-}]$ coming in as 10^-(14 - 7.4)^ at t
 The auxiliary attempt frequency $A1$ was assumed fixed such that $A1*[OH^{-}]=A$ matches the average attempt frequency $A$ gathered from the AFM experiments.
 Together this results in a theoretical reaction rate of 10^-3^\ s^-1^.
 
-These results serve as a reference for my calculations and on top of that will also play a role in @sec-main-kimmdy.
+These results serve as a reference for my calculations and on top of that they will also play a role in @sec-main-kimmdy.
 
 ## Goals of the calculations
 
@@ -1159,7 +1159,7 @@ This approach directly samples the reaction in a more realistic, fluctuating env
 providing the unique opportunity to observe reaction dynamics and the sequence of events to complement single-point energies.
 
 Two caveats apply when comparing energies between different approaches.
-Firstly, my pipeline will measure free energy differences, which incorporates entropic contributions, as opposed to the pure electronic energies shown in @fig-pill-energies.
+Firstly, my pipeline will measure free energy differences, which incorporate entropic contributions, as opposed to the pure electronic energies shown in @fig-pill-energies.
 Secondly, the most favorable conformation, as is found by energy minimization, might not be covered by phase space sampling.
 Exploring the accessibility of said conformation is in itself a feature of the sampling approach, but it does also mean that values for energy barriers will differ between approaches.
 This is why the focus will be on trends between systems and not on the absolute values of the energies and energy barriers.
@@ -1175,20 +1175,20 @@ The dynamic nature of the protons in the QM region (meaning they can hop between
 ### Initial structure preparation
 
 The triple helix initial structure is a cut-out from a _Homo sapiens_ collagen type I fibril without crosslinks that was obtained from ColBuilder [@obarska-kosinskaColBuilderServerBuild2021].
-It is composed of three chains (A, B, and C) with individual lengths of 45, 43, and 45 amino acids respectively (@fig-render-triple-single).
+It is composed of three chains (A, B, and C) with individual lengths of 45, 43, and 45 amino acids, respectively (@fig-render-triple-single).
 The N-terminus (displayed on the left of each molecular render, @fig-render-triple-single, @fig-sites, @fig-qm-system) was acetyl-capped (ACE), while the C-terminus was capped with an N-methyl group (NME) in PyMOL [@PyMOL] to account for the fact that the actual collagen protein is longer than the cut-out simulated here.
 From this point onwards, everything is handled by my custom automated simulation and analysis pipeline.
 The code for this is available at [github.com/graeter-group/hydrolysis-qmmm-workflow](https://github.com/graeter-group/hydrolysis-qmmm-workflow).
 This version does not include the outputs of the simulations, as those would be way too large.
 They are instead archived locally at the Heidelberg Institute for Theoretical Studies (HITS) and available upon request.
-The workflow is organized in Python modules and controlled from a central notebook `index.qmd` loading the modules.
+The workflow is organized in Python modules and controlled from a central notebook, `index.qmd`, loading the modules.
 Simulations are computed locally or dispatched to the in-house Slurm [@jetteArchitectureSlurmWorkload2023] high performance computing (HPC) cluster.
 Interactions with GROMACS are solely based on the command line interface via files and system calls to shell commands from Python.
 A `settings.py` file creates a permutation matrix of input conditions and other parameters that were varied and iterated on during development of the pipeline.
-Templating allows sharing assets such as mdp files across systems and parameters.
+Templating allows sharing assets such as `mdp` files across systems and parameters.
 A file-based caching mechanism makes sure that work doesn't have to be repeated unless explicitly required.
 Iterations of the code were tracked with [git](https://git-scm.com/), but the public repository is a freshly instanced one to avoid uploading large files that were only tracked during development to provide synchronization between a remote and local workstation.
-In addition to the simulation pipeline there is an analysis pipeline based on a directed acyclic graph (DAG) built with [Apache Hamilton](https://hamilton.dagworks.io/en/latest/).
+In addition to the simulation pipeline, there is an analysis pipeline based on a directed acyclic graph (DAG) built with [Apache Hamilton](https://hamilton.dagworks.io/en/latest/).
 The cache of the DAG can also be synchronized between workstations with a custom script, which allows local analysis of otherwise unwieldy data.
 
 Throughout my work I embrace reproducible research and open access and a lot of work went into crafting a robust and extensible workflow.
@@ -1200,7 +1200,7 @@ For now, what is more important than how the workflow is built, is what it does 
 Each system (the triple helix and each of the chains individually) starts as a PDB file.
 It is converted to GROMACS coordinates and a topology with `gmx pdb2gmx`.
 All simulations use the `amber99sb-star-ildnp` force field and partial charges for the hydroxide ion in its MM representation were ported from CHARMM36 [@brooksCHARMMBiomolecularSimulation2009].
-A box is created with a minimum distance to the protein of 2\ nm on each side with each dimension then scaled by 130%.
+A box is created with a minimum distance to the protein of 2\ nm on each side with each dimension, then scaled by 130%.
 This ensures sufficient space, especially in the direction of pulling.
 The protein is then solvated in TIP3P water and neutralized with 0.15\ M NaCl to mimic physiological salt concentration.
 After energy minimization, the system is equilibrated first in the NVT ensemble (constant number of particles, volume, and temperature) and then in the NPT ensemble (constant number of particles, pressure, and temperature) while applying position restraints to the protein atoms for 100\ ps each.
@@ -1246,11 +1246,11 @@ From the force equilibration trajectory, the last 10 frames are extracted to pro
 This is done because QM/MM simulations can be unstable and finding an initial stable trajectory suitable for umbrella sampling is not always guaranteed.
 Additionally, using multiple starting configurations increases the sampling of phase space and improves statistical convergence.
 
-In the triple helix, 8 peptide bonds were chosen at random, but close to the center to avoid anisotropies in the external force, which attaches at the ends of the peptides.
+In the triple helix, 8 peptide bonds were chosen at random but close to the center to avoid anisotropies in the external force, which attaches at the ends of the peptides.
 Each site is defined by the indices of its carbon and nitrogen atom, where the $\ce{C}$ is contributed by the residue on the N-terminal side and the $\ce{N}$ is contributed by the residue from the C-terminal side.
 From each starting point and chosen peptide bond, the workflow now looks for water molecules that can execute the first step of the reaction: the attack of the hydroxide (TS1 in @fig-hyd-reaction).
 
-![A close-up of the labeled sites that were sampled for hydrolysis. Each site exists as part of the triple helix and just in its own single chain. The QM region of each site, that is all atoms of both residues that are connected with the peptide bond that is to be hydrolyzed, is rendered with the ball-and-stick representation in color, while the rest of the protein is shown with black lines.](./figures/sites-eq-close-annotations.png){#fig-sites fig-scap="Sampled hydrolysis sites."}
+![A close-up of the labeled sites that were sampled for hydrolysis. Each site exists as part of the triple helix and just in its own single chain. The QM region of each site, that is, all atoms of both residues that are connected with the peptide bond that is to be hydrolyzed, is rendered with the ball-and-stick representation in color, while the rest of the protein is shown with black lines.](./figures/sites-eq-close-annotations.png){#fig-sites fig-scap="Sampled hydrolysis sites."}
 
 As visualized in @fig-bd, the Bürgi-Dunitz angle (BD) is the angle between the approach vector of a nucleophile ($\ce{OH-}$) and an electrophilic center (the carbonyl carbon of the peptide bond), where the optimal angle is 107° [@burgiStereochemistryReactionPaths1974].
 Similarly, the Flippin-Lodge angle [@lodgeStericEffectsWell1987;@flippinACYCLICSTEREOSELECTIONXVI1983] characterizes the displacement of the nucleophile at its elevation towards or away from the substituents attached to the electrophilic center.
@@ -1275,7 +1275,7 @@ It is worth noting that in addition to the constant external force applied to th
 This is to prevent them from being exchanged with MM water and I will later show in @fig-tidists that this is indeed working as intended.
 Note that the hydroxide is also part of this pull group, as otherwise it would artificially increase the pressure in the QM region by being pulled towards the carbonyl carbon.
 
-![The QM subsystem (in color) embedded in the MM system (in black) with arrows for the forces involved at the start of the attack of the hydroxide for the single peptide system at a Glycine-Leucine site. MM water molecules are not shown.](./figures/render-qm-far-annotations.png){#fig-qm-system fig-scap="The QM/MM subsystems, initial state."}
+![The QM subsystem (in color) embedded in the MM system (in black) with arrows for the forces involved at the start of the attack of the hydroxide for the single peptide system at a glycine-leucine site. MM water molecules are not shown.](./figures/render-qm-far-annotations.png){#fig-qm-system fig-scap="The QM/MM subsystems, initial state."}
 
 Once the QM atoms and the hydroxide have been designated by the workflow, the QM/MM system is set up.
 To this end, it creates the necessary index files that GROMACS uses to label groups of atoms as, e.g., QM atoms or pull groups and fills templates for other input files such as `mdp` for GROMACS and `inp` for CP2K
@@ -1284,22 +1284,22 @@ During the warm-up the hydroxide is kept at its original distance by an umbrella
 The workflow then checks for successful warm-ups and continues with the approach simulation.
 The approach is simulated at a timestep of 1\ fs and typically takes around 2\ ps.
 The force constant of the harmonic potential pulling the hydroxide closer to the carbonyl $\ce{C}$ is 40000\ kJ/mol/nm^2^.
-From this initial trajectory, 50 snapshots are extracted such that there are 30 equidistant snapshots (with regards to the $\ce{OH- \bond{...}C}$ distance) below a distance of 0.25\ nm and 20 snapshots above the cutoff distance.
-This is done do improve sampling in the critical transition state (TS) region.
+From this initial trajectory, 50 snapshots are extracted such that there are 30 equidistant snapshots (with regard to the $\ce{OH- \bond{...}C}$ distance) below a distance of 0.25\ nm and 20 snapshots above the cutoff distance.
+This is done to improve sampling in the critical transition state (TS) region.
 From these snapshots, also called umbrella sampling windows, additional simulations are started, where the distance between the hydroxide and peptide bond is kept near the initial distance of the snapshot.
-These simulations use a rather steep potential with a force constant of 50000\ kJ/mol/nm^2^ to ensure that peak of the free energy surface (the transition state) can actually be sampled.
+These simulations use a rather steep potential with a force constant of 50000\ kJ/mol/nm^2^ to ensure the peak of the free energy surface (the transition state) can actually be sampled.
 This results in sufficient coverage of the reaction coordinate and adequate overlap of the umbrella windows (@fig-hist-us).
 The umbrella sampling simulations are analyzed with WHAM (see @sec-meth-us) to obtain the free energy profile of the reaction step.
 After the umbrella sampling of TS1, the pipeline moves on to the second reaction step.
-Because the system contains enough QM solvent molecules that facilitate proton mobility it is not required to artificially
+Because the system contains enough QM solvent molecules that facilitate proton mobility, it is not required to artificially
 separate establishing the zwitterionic state (ZI) from the breaking of the peptide bond (TS2).
-Instead, from each of stable TIs a snapshot is used as the starting point of a breaking simulation, whereby an additional umbrella potential pulls apart the $\ce{C}$ and $\ce{N}$ atom.
+Instead, from each of the stable TIs, a snapshot is used as the starting point of a breaking simulation, whereby an additional umbrella potential pulls apart the $\ce{C}$ and $\ce{N}$ atoms.
 This is then used as the initial trajectory for umbrella sampling of TS2.
 
 Out of the 8 initially chosen hydrolysis sites, all were able to get at least 5 successful hydroxide attack trajectories (starting from the last 10 frames of the equilibration as detailed above).
 Many got 8 successful approaches and 2 had all 10 simulations succeed (@fig-hist-starting-frames).
-The criterion for success in this case, is a simulation that ran without crashing at least until the distance between the carbonyl $\ce{C}$ and the hydroxide $\ce{O}$ is below 0.145\ nN, which would allow for sampling of the tetrahedral intermediate (whose optimal $\ce{C-O}$ distance for the free energy minimum will later be found to be around 0.15\ nN).
-Out of these trajectories most managed to start the target 50 umbrella sampling windows, although very few didn't establish the sampling simulation due to instabilities during the QM/MM warm-up (@fig-hist-n-windows).
+The criterion for success in this case is a simulation that ran without crashing at least until the distance between the carbonyl $\ce{C}$ and the hydroxide $\ce{O}$ is below 0.145\ nN, which would allow for sampling of the tetrahedral intermediate (whose optimal $\ce{C-O}$ distance for the free energy minimum will later be found to be around 0.15\ nN).
+Out of these trajectories, most managed to start the target 50 umbrella sampling windows, although a few did not establish the sampling simulation due to instabilities during the QM/MM warm-up (@fig-hist-n-windows).
 Most sampling simulations managed to run their entire 5\ ps, but some terminated earlier (@fig-hist-n-points).
 
 :::: {#fig-us-sampling-stats layout="[[1,1], [1,1]]" fig-scap="Statistics of the umbrella sampling simulations of TS1."}
@@ -1320,10 +1320,10 @@ Statistics of the umbrella sampling simulations of TS1. All windows combined tot
 
 With the simulation setup described above, initial reactive trajectories are obtained.
 Within the QM subsystem defined around one of the sites (see @fig-sites), the hydroxide ion, surrounded by water, is pulled towards the peptide bond and in most cases stably forms the tetrahedral intermediate shown in @fig-ti.
-The tetrahedral Intermediate (also see @fig-hyd-reaction-ts1) and how it is formed warrant further investigation.
+The tetrahedral intermediate (also see @fig-hyd-reaction-ts1) and how it is formed warrant further investigation.
 For this we can look not only at the initial approach trajectory, but also at the sampling windows spawned from each initial trajectory.
 
-![The Tetrahedral Intermediate (TI) state stably formed in a QM/MM simulation of the hydroxide attack in the triple helix system at a Glycine-Leucine site. The QM subsystem is shown in color embedded in the MM system in black. MM water molecules are not shown.](./figures/render-qm-ti.png){#fig-ti fig-scap="The QM/MM subsystems, TI."}
+![The tetrahedral intermediate (TI) state stably formed in a QM/MM simulation of the hydroxide attack in the triple helix system at a glycine-leucine site. The QM subsystem is shown in color embedded in the MM system in black. MM water molecules are not shown.](./figures/render-qm-ti.png){#fig-ti fig-scap="The QM/MM subsystems, TI."}
 
 ![Reminder of where we are in the hydrolysis reaction.](./img/hydrolysis-reaction-vertical-ts1.svg){#fig-hyd-reaction-ts1 .column-margin}
 
@@ -1349,22 +1349,27 @@ In the triple helix formation, the carbonyl $\ce{O}$ of the peptide bond can be 
 On average this is not more likely than the bond pointing the other way, into the helix, but the sampled sites presented in this thesis have a higher propensity of pointing outwards or being parallel to the center axis of the helix (@fig-carbonyl-orientation).
 At the time of writing, computations for additional sites that feature the inverted orientation are running, but the results will be for another publication.
 
-![Visual explanation of the distances color code in @fig-tidists.](./figures/render-qm-ti-annotations-dist.png){#fig-tidists-annotation .column-margin fig-scap="Visual explanation of the proton distances."}
+![Visual explanation of the distance type color code in @fig-tidists.](./figures/render-qm-ti-annotations-dist.png){#fig-tidists-annotation .column-margin fig-scap="Visual explanation of the proton distances."}
 
-![Small multiples plot of the approach of the hydroxide in terms of distances of the carbonyl $\ce{O}$ of the TI to nearest proton of either a MM solvent molecule (cyan), the protein (black) or the QM water (magenta) across all umbrella windows. Distances are average within each window and the windows belonging to the same approach simulation are connected. The thick lines are a LOESS curve across all windows. @fig-tidists-annotation provides a visual aid for the color coding.](./plots/qm/wethyd_us_tidists.png){#fig-tidists fig-scap="Distances of the TI to the nearest proton."}
+![
+Small multiples plot of the approach of the hydroxide in terms of distances of the carbonyl $\ce{O}$ of the TI to the nearest proton of either an MM solvent molecule (cyan), the protein (black), or the QM water (magenta) across all umbrella windows.
+Distances are average within each window and the windows belonging to the same approach simulation are connected.
+The thick lines are a LOESS curve across all windows.
+@fig-tidists-annotation provides a visual aid for the color coding.
+](./plots/qm/wethyd_us_tidists.png){#fig-tidists fig-scap="Distances of the TI to the nearest proton."}
 
 \clearpage
 
 {{< pagebreak >}}
 
-Going over all trajectories and assigning each proton of a QM water or the initial QM hydroxide to the closes QM oxygen out of the QM water molecules, the carbonyl $\ce{O}$ and the initial hydroxide results in @fig-tiprot (with annotations in @fig-tiprot-annotation).
+Going over all trajectories and assigning each proton of a QM water or the initial QM hydroxide to the closest QM oxygen out of the QM water molecules, the carbonyl $\ce{O}$ and the initial hydroxide, results in @fig-tiprot (with annotations in @fig-tiprot-annotation).
 The number of protons assigned to the totality of QM water molecules is not shown, as this is implicit in the sum of protons assigned to the attacking hydroxide and the carbonyl O.
 As the hydroxide approaches the carbonyl group, it is embedded in QM water, so it can either be in its deprotonated form or be protonated to a simple water molecule.
 This is why it fluctuates between having two protons and just one.
 At higher $\ce{OH-}$-distances the carbonyl $\ce{O}$ very rarely gets assigned a proton, but as the hydroxide approaches and the TI is formed, the higher negative charge density attracts more protons on average.
 For windows in which the TI is formed, the original carbonyl $\ce{O}$ and the original hydroxide $\ce{O}$ are indistinguishable, so the hydroxide can also lose its original proton and the carbonyl $\ce{O}$ can gain a proton.
 All this is facilitated by the proton mobility in the QM water.
-Interestingly, in the triple helix systems the carbonyl $\ce{O}$ gets protonated more in the TI than in the single chain system (@fig-tiprot-combined).
+Interestingly, in the triple helix systems, the carbonyl $\ce{O}$ gets protonated more in the TI than in the single chain system (@fig-tiprot-combined).
 
 ![Visual explanation of the proton counting color code in @fig-tiprot.](./figures/render-qm-ti-annotations.png){#fig-tiprot-annotation .column-margin fig-scap="Visual explanation of the proton counting."}
 
@@ -1381,7 +1386,7 @@ The availability of a proton acceptor around the attacking hydroxide to turn it 
 Umbrella sampling (see @sec-meth-us) allows calculating free energies along a reaction coordinate, which in this case is the distance between the attacking hydroxide and the carbonyl center.
 To provide better sampling coverage, all sampling windows belonging to the same site (@fig-sites) are pooled regardless of the initial approach trajectory (of which there are 5 to 10 per site, see @fig-hist-starting-frames)
 
-Applying WHAM to the windows, after filtering out the unwanted side-reactions, results in free energy profiles of the reaction coordinate (@fig-ts1-profs).
+Applying WHAM to the windows, after filtering out the unwanted side reactions, results in free energy profiles of the reaction coordinate (@fig-ts1-profs).
 From these, the free energies for TS1 and the TI are computed.
 All energies ($\Delta G$) are reported as differences from the baseline of the educt state, where the hydroxide ion is far away and solvated.
 This baseline energy is defined as the mean free energy at the reaction coordinate of 0.45 ± 0.02\ nm for each profile.
@@ -1409,9 +1414,9 @@ A pairwise comparison between the single peptide and triple helix energies for e
 The average reaction free energy of TS1 for the single chain system across all sites was 102.5 ±\ 2.6\ kJ/mol (±SEM) and 111.6\ ±\ 6.6\ kJ/mol for the triple helix.
 However, it should be noted that the most appropriate significance test here is a paired _t_-test, because each site is represented in its single chain and triple helix configuration and the residuals are roughly normally distributed, and the alternative hypothesis is the original hypothesis that the triple helix would lead to higher energies (protecting collagen from being hydrolyzed).
 All these assumptions in place result in a _p_-value of 0.04.
-This also means that due to the large spread, dropping any of the requirements to perform the significance test in the manner described, would result in a failure to reject the null hypothesis.
+This also means that due to the large spread, dropping any of the requirements to perform the significance test in the manner described would result in a failure to reject the null hypothesis.
 
-The average $\Delta\Delta$G going from a single peptide to same site in the triple helix was 9.02\ ±4.41 kJ/mol (±SEM).
+The average $\Delta\Delta$G going from a single peptide to the same site in the triple helix was 9.02\ ±4.41 kJ/mol (±SEM).
 While this may not seem like a large difference in free energy, it should be noted that since the reaction barrier enters exponentially into reaction rate calculations (see @eq-arrhenius), this difference still corresponds to a decrease in the reaction rate by a factor of 30 to 40.
 
 :::: {#fig-ts1 layout="[[1,1]]" layout-valign="top" fig-scap="Free energy differences of TS1 and the TI."}
@@ -1434,7 +1439,7 @@ This was simulated as a single reaction coordinate, the elongation of the $\ce{C
 Again, initial reactive trajectories were obtained by pulling with a harmonic potential, from which 50 equally spaced snapshots along the reaction coordinate were extracted.
 Those snapshots then served as the starting points for umbrella sampling simulations during which an umbrella potential kept the pulling distance near the starting value of each snapshot.
 While TS1 and the TI are the focus of this study, comparisons of the free energy profile of the breaking of the peptide bond obtained via WHAM are shown in @fig-ts2 for three pairs of single chain and triple helix systems.
-As they only have limited sampling, they don't allow conclusions about difference between the single chain and triple helix for breaking of the peptide bond, but they do show that it is possible to run end-to-end simulations of the complete base-catalyzed peptide bond hydrolysis reaction with minimal restraints.
+As they only have limited sampling, they don't allow conclusions about differences between the single chain and triple helix for breaking of the peptide bond, but they do show that it is possible to run end-to-end simulations of the complete base-catalyzed peptide bond hydrolysis reaction with minimal restraints.
 
 ::::{#fig-break layout="[4,6]"}
 ![Free energy profiles obtained via WHAM of the umbrella sampling of the breaking of the peptide bond (TS2). \break \break \break \break \break \break \break \break ](./plots/qm/wetbreak_us_profiles_example.png){#fig-ts2 fig-scap="Free energy profiles of TS2."}
@@ -1447,32 +1452,32 @@ Results of the umbrella sampling of the breaking of the peptide bond.
 ![Visual explanation of the proton counting color code in @fig-break-prot](./figures/render-qm-break-annotations-dist.png){#fig-break-annotation .column-margin fig-scap="Visual explanation of the distances during peptide bond breaking." .column-margin}
 
 Furthermore, looking into the movement of the protons in the QM subsystem during all sampling windows reveals different possible sequences of events for the final steps of the reaction (@fig-break-prot).
-As chemists, we like to simplify reactions into easy to manage reaction steps.
+As chemists, we like to simplify reactions into easy-to-manage reaction steps.
 While this is an incredibly useful model, reality is messier than that ^[Though in this case it is also just a different kind of model, a computational model, a simulation.].
-We see that the reaction can occur in the sequence shown in the reaction schema like in panel Gly840-Ala841-single in the top right or Ala854-Gly846-single in the top left, where the ZI is formed by first protonating the $\ce{N}$, making it go from 1 to 2 protons, before the carboxyl group is deprotonated.
-But it can also happen in a concerted manner, whereby the amino group gets protonated at the same time as the carboxyl group gets deprotonated as seen in the top and bottom middle panels Ala845-Gly846-triple and Hyp851-Gly852-single.
+We see that the reaction can occur in the sequence shown in the reaction schema, like in panel Gly840-Ala841-single in the top right or Ala854-Gly846-single in the top left, where the ZI is formed by first protonating the $\ce{N}$, making it go from 1 to 2 protons, before the carboxyl group is deprotonated.
+But it can also happen in a concerted manner, whereby the amino group gets protonated at the same time as the carboxyl group gets deprotonated, as seen in the top and bottom middle panels Ala845-Gly846-triple and Hyp851-Gly852-single.
 As of now there is not enough data to make inferences about the energy landscape of both pathways.
 
 ## Discussion and outlook of the hybrid simulations
 
 It should be noted that the absolute energies and activation energies of this study cannot directly be compared to the energies obtained by @pillMechanicalActivationDrastically2019 shown in @fig-pill.
-The former correspond to free energies ($G$), which includes entropic contributions, while the latter represent the electronic energy of minimized structures.
+The former correspond to free energies ($G$), which include entropic contributions, while the latter represent the electronic energy of minimized structures.
 This is why it is not unusual that the average energy of the TI in this study is around 125\ kJ/mol over the baseline of the educt state, while the average electronic TI energy for the minimized structure is only around 20\ KJ/mol.
 Comparisons within each reference frame are still valid, but a direct comparison between the two approaches remains elusive.
 
 The unconstrained nature of the chosen approach is a double-edged sword.
-It enabled sampling of interesting regions of phase space and direct observation of physically relevant behavior such as proton mobility in the QM region during the reaction.
+It enabled sampling of interesting regions of phase space and direct observation of physically relevant behavior, such as proton mobility in the QM region during the reaction.
 This also showed how the base-catalyzed hydrolysis reaction can proceed in a varying sequence of steps, with the ZI forming dynamically as the peptide bond is rupturing.
 However, the broad sampling makes it harder to attribute the results to any specific structural effect without even higher computational costs.
 
 While a difference in free energy was found for the activation energy of the hydroxide attack between single chain and triple helix systems, the small effect size does not fully explain the prevalence of the competing reaction (homolytic backbone cleavage) that is observed experimentally in tissue samples.
 
 Furthermore, there is a risk of survivorship bias.
-Finding the set of parameters that allow simulating the reaction without crashing and the initial selection of the hydrolysis sites is likely to favor easier to access and simulate systems.
-This is also apparent in @fig-carbonyl-orientation, which shows that the current selection of peptide bonds tends to have the carbonyl oxygen point away from the helix, making the tetrahedral intermediate easier to access by the solvent molecules.
+Finding the set of parameters that allow simulating the reaction without crashing and the initial selection of the hydrolysis sites is likely to favor easier-to-access and easier-to-simulate systems.
+This is also apparent in @fig-carbonyl-orientation, which shows that the current selection of peptide bonds tends to have the carbonyl oxygen point away from the helix, making the tetrahedral intermediate easier-to-access by the solvent molecules.
 It also highlights sites of future simulations to mitigate this bias.
 The trajectories that are harder to simulate are those with a rougher free energy landscape and those with higher energy states.
-The new simulations include more of those, such a peptide bond between a proline and a hydroxyproline residue.
+The new simulations include more of those, such as a peptide bond between a proline and a hydroxyproline residue.
 Interestingly, because the sites that are harder to stabilize in the triple helix due to their orientation were underrepresented in the initial dataset, intuition would predict that the true effect of the triple helix might be even greater than what was shown here already.
 
 The fundamental limitation is computational cost: simulating a single umbrella window on one HPC node using 20 cores at 2.1 GHz for 5\ ps took on average 60 hours.
@@ -1490,7 +1495,7 @@ This limitation motivates the development of KIMMDY (@sec-main-kimmdy), which th
 
 # Kinetic Monte Carlo Molecular Dynamics: KIMMDY {#sec-main-kimmdy}
 
-![The logo of KIMMDY, designed by Denis Kieswetter and fine tuned by me.](./img/kimmdy-logo.svg){#fig-kimmdy-logo .column-margin fig-scap="KIMMDY logo."}
+![The logo of KIMMDY, designed by Denis Kieswetter and fine-tuned by me.](./img/kimmdy-logo.svg){#fig-kimmdy-logo .column-margin fig-scap="KIMMDY logo."}
 
 ![
 The KIMMDY schema that Denis Kieswetter made for @kimmdy2025.
