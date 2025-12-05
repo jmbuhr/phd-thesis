@@ -1532,7 +1532,7 @@ All are present in the currently available plugins, such as the machine-learned 
 But most importantly, we provide extensive documentation to enable any user to write their own reaction plugin and get started with KIMMDY: [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/).
 
 The structure of our documentation is based on the Diátaxis framework developed by Daniele Procida, who explains it further on [diataxis.fr](https://diataxis.fr/) [@Procida_Diataxis_documentation_framework].
-Briefly, each piece of information and writing is categorized by whether its primary purpose is user-action or user-cognition oriented and whether the goal is to acquire knowledge or to solve an immediate application problem (@fig-diataxis).
+Briefly, each piece of information and writing is categorized by whether its primary purpose is user-action- or user-cognition oriented and whether the goal is to acquire knowledge or to solve an immediate application problem (@fig-diataxis).
 This creates distinct types of documentation.
 Tutorials are oriented towards learning and require active participation by the user.
 How-To Guides are directed at a specific task, which is actively performed by the user.
@@ -1889,7 +1889,7 @@ KIMMDY analysis tools visualizing the radical occupancy after many successive HA
 
 ### Code quality and testing
 
-Academic software developers often change rapidly due to the nature of short-term projects, such as Master's and doctoral degrees.
+Academic software development teams often change composition rapidly due to the nature of short-term projects, such as Master's and doctoral degrees.
 Hence, writing robust and maintainable code was made a top priority in the development of KIMMDY.
 To minimize friction when working with multiple people on the same code base, we adhered to best practices of research software development and established clear conventions, outlined in our online documentation.
 KIMMDY code is strongly typed and extensively tested.
@@ -1951,7 +1951,7 @@ In the KIMMDY plugin for hydrolysis, the choice between experimental and theoret
 
 ![Experimental (AFM) and theoretical (QM) reaction rates used as an input to the hydrolysis plugin as a function of force. Points represent the averages of the AFM experiments [@pillMechanicalActivationDrastically2019].](./plots/kimmdy/force-response.png){#fig-force-response width=50% fig-scap="Hydrolysis reaction rates fit."}
 
-Crucially, the hydrolysis plugin can not simply use the difference of the bond extension to the equilibrium distance defined in the force field to relate to externally applied forces.
+Crucially, the hydrolysis plugin cannot simply use the difference of the bond extension to the equilibrium distance defined in the force field to relate to externally applied forces.
 When forces are applied just like in @fig-render-triple-single, an externally applied force of 0\ nN should relate to a force of 0\ nN in the model from the AFM experiments.
 However, when no force is applied, the average equilibrium bond distances of all bonds are not equal to the equilibrium distance of the Morse potential from the force field.
 This is due to the entropic contributions in the simulation and statistical mechanics:
