@@ -250,7 +250,7 @@ But to understand the relationship at a molecular level, we need to look into ho
 ![Hydroxyproline.](img/hydroxyproline.svg){#fig-hydroxyproline .column-margin width=50%}
 
 The biosynthesis of collagen starts with the pre-pro-peptide^[Yes, the naming scheme got a little out of hand.] at ribosomes in the cytosol.
-Collagen is characterized by the rather unusual motif Glycine-X-Y (Gly-X-Y), where X and Y are frequently proline (Pro) or 4-hydroxyproline (Hyp) (see @fig-glycine, @fig-proline, @fig-hydroxyproline) and have a slightly higher propensity for alanine (Ala) [@ricard-blumCollagenFamily2011].
+Collagen is characterized by the rather unusual motif Glycine-X-Y (Gly-X-Y), where X and Y are frequently proline (Pro) or 4-hydroxyproline (Hyp) (see @fig-glycine, @fig-proline, @fig-hydroxyproline) and have a slightly higher propensity for being alanine (Ala) [@ricard-blumCollagenFamily2011].
 At this stage, however, what will become hydroxyproline is still proline.
 The pre-pro-collagen peptide makes its way to the endoplasmic reticulum (ER) through an N-terminal signal sequence, which gets cleaved off at its destination.
 We now have the collagen pro-peptide (pro-collagen).
@@ -323,7 +323,7 @@ One just has to wonder: What do these forces do to the molecular structure of co
 It has long been known that mechanical forces can lead to homolytic bond scission and thus so-called mechanoradicals in polymers [@kauzmannViscousFlowLarge1940] and the field of mechanochemistry is well established by now [@beyerMechanochemistryMechanicalActivation2005].
 For decades this thinking had only been applied to synthetic polymers.
 Biopolymers such as proteins seemed off the table until mechanoradicals in tensed collagen were finally measured through the use of electron paramagnetic resonance (EPR) [@zappMechanoradicalsTensedTendon2020].
-Those radicals can then react further into reactive oxygen species (ROS) [@fitchMechanochemicalReactionCascade2014], which can act as signalling molecules in cells or be detrimental at higher levels.
+Those radicals can then react further into reactive oxygen species (ROS) [@fitchMechanochemicalReactionCascade2014], which can act as signaling molecules in cells or be detrimental at higher levels.
 
 Overlooking biopolymers as candidates for mechanoradicals seems natural still in hindsight.
 After all, they tend to be solvated in aqueous medium, where other reactions should be more prevalent.
@@ -1013,7 +1013,7 @@ The QM engine used and interfaced with GROMACS is CP2K [@kuhneCP2KElectronicStru
 
 Given that our method KIMMDY, which will be introduced in @sec-main-kimmdy, stands for Kinetic Monte Carlo Molecular Dynamics, it makes sense to also explain what kinetic Monte Carlo (kMC) is.
 Monte Carlo methods in general are methods that use random sampling to solve a numerical problem.
-In kinetic Monte Carlo, we are modelling the time progression through a collection of states connected by processes with known transition rates.
+In kinetic Monte Carlo, we are modeling the time progression through a collection of states connected by processes with known transition rates.
 The simplest example is rejection-free kMC (rf-kMC) [@bortzNewAlgorithmMonte1975;@gillespieGeneralMethodNumerically1976]:
 
 We start at time $t=0$ in a state $S_k$ and collect the rates $r_{ki}$ for all processes leading to new states $S_l$.
@@ -1694,7 +1694,7 @@ Assuming a bond has been chosen to be hydrolyzed, KIMMDY then gets the recipe to
 For simplicity, only a small portion of the complete molecule is shown around the peptide bond in @fig-peptide-water and @fig-top.
 The plugin only had to specify bonds that are to be deleted and the new ones to create; KIMMDY takes care of higher-order interactions.
 For example, deleting the peptide bond $\ce{4\ C - 6\ N}$ will also remove the angle $\ce{6\ N - 4\ C - 5\ O}$ and the dihedral $\ce{7\ H - 6\ N - 4\ C - 5\ O}$ and so forth.
-Similarly, the atoms that where previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have nonbonded interactions.
+Similarly, the atoms that were previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have nonbonded interactions.
 Newly formed bonds such as $\ce{9\ OW - 4\ C}$ will create the corresponding angles, dihedrals and pairs for 1--4 interactions.
 Even improper dihedrals that are defined in the residuetypes, such as those for peptide bonds between amino acids, are re-created based on the residuetype recorded in the topology.
 If the basic operations are not sufficient or non-standard changes are required, a `RecipeStep` can also bring a custom function that is free to modify the topology in any way necessary.
@@ -2061,7 +2061,7 @@ However, looking at slices through the fibril system (@fig-sasa-y-slice and @fig
 
 More quantitatively, plotting the SASA against the radial distance from the center in the x-y-plane for peptide bonds in the overlap region reveals no significant increase of the SASA for the outer triple helices (@fig-sasa-r).
 
-![SASA of the peptide bonds in the overlap region of the collagen fibril (z-coordinate between 30 and 60\ nN) plotted against their radial distance from the center in the x-y plane. Black lines are linear models. 1\ nN refers to the 1\ nN shear pulling setup.](./plots/kimmdy/sasa_radial_distance.png){#fig-sasa-r}
+![SASA of the peptide bonds in the overlap region of the collagen fibril (z-coordinate between 30 and 60\ nm) plotted against their radial distance from the center in the x-y plane. Black lines are linear models. 1\ nN refers to the 1\ nN shear pulling setup.](./plots/kimmdy/sasa_radial_distance.png){#fig-sasa-r}
 
 I discarded the hypothesis that pulling would "squeeze out" water from the fibril, as instead the extension of the chains creates more surface area.
 Thus, the SASA remains high and the influence of nearby triple helices can be assumed negligible for a large fraction of the peptide bonds.
@@ -2198,7 +2198,7 @@ Eric Hartmann and Denis Kiesewetter then applied this to the large collagen syst
 ![Schema of successive HAT reactions after homolytic bond scission simulated in KIMMDY.](./figures/kimmdy/kimmdy-hat-schema.png){#fig-hat-schema}
 
 After many consecutive HAT reactions, the dwell time for the residues was analyzed and two compounds stood out.
-The first is the familiar dihydroxyphenylalanine or DOPA (@fig-dopa), which forms a stable radical at one of the hydroxides.
+The first is the familiar dihydroxyphenylalanine or DOPA (@fig-dopa), which forms a stable radical at one of the hydroxyl groups.
 The second is a new face, the pyridinoline cross-link (PYD, @fig-pyd).
 It can also form a stable radical at its hydroxide, as BDE calculations then revealed (@fig-hat-bdes).
 Furthermore, when Daniel Sucerquia calculated the expected EPR spectrum of the PYD radical it makes up for part of the missing intensity that is seen in experimental spectra compared to just using DOPA.
@@ -2519,10 +2519,11 @@ XC: exchange correlation functional \
 ZI: zwitterionic intermediate \
 ZMBH: Center for Molecular Biology of Heidelberg University
 
-$N_\mathrm{A}$: Avogadro's constant (6.022E-23) \
-$k_{\mathrm{B}}$: Boltzmann constant \
-$h$: Planck constant \
-$\hbar$: reduced Planck constant \
+$N_\mathrm{A}$: Avogadro constant (6.022×10^23^ mol^-1^) \
+$k_{\mathrm{B}}$: Boltzmann constant (1.380649×10^−23^ J\ K^-1^) \
+$h$: Planck constant (6.626070×10^−34^ J\ Hz^−1^)\
+$\hbar$: reduced Planck constant (1.054572×10^−34^\ J\ s) \
+$R$: gas constant ($N_\mathrm{A} k_{\mathrm{B}}$)
 
 \clearpage
 
