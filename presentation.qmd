@@ -1,8 +1,8 @@
 ---
 title: |
-  Dissecting cleavage mechanisms \
-  in tensed collagen fibrils \
-  using reactive molecular dynamics simulations
+  Dissecting Cleavage Mechanisms \
+  in Tensed Collagen Fibrils \
+  using Reactive Molecular Dynamics Simulations
 # date: today
 # date-format: long
 author: Jannik Buhr
@@ -13,7 +13,6 @@ format:
     center-title-slide: false
     theme: ./www/presentation.scss
     css: ./www/presentation.css
-    # logo: ./www/mpi-logo-head.svg
     width: 1920
     height: 1080
     margin: 0.04
@@ -21,9 +20,9 @@ format:
     code-copy: true
     code-link: true
     title-slide-attributes:
-      data-background-image: ./figures/render-qm-break.png
+      data-background-image: ./figures/render-qm-break-flipped.png
       data-background-size: contain
-      data-background-position: 50% 140%
+      data-background-position: 50% 150%
     citations-hover: true
     reference-links: false
     preview-links: false
@@ -68,7 +67,7 @@ Citrus fruits contain **Vitamin C** ( 🟠 )
 1747, HMS Salisbury, James Lind performs the first clinical trial with a control group [@lindTreatiseScurvyThree1772]
 
 :::{.footer}
-Image sources:\
+Image sources:
 left: The Capture of Chandernagore, March 1757 by Dominic Serres, the Elder in 1771, oil on canvas.\
 right: Riftbound, the League of Legends TCG ©Riot Games
 :::
@@ -105,7 +104,7 @@ right: Riftbound, the League of Legends TCG ©Riot Games
 ![Hydroxyproline (Hyp)](img/hydroxyproline.svg)
 :::
 
-:::{#motif .absolute bottom=0% left=0%}
+:::{#motif .absolute bottom=2% left=0%}
 X,Y: proline or hydroxyproline
 
 **Prolyl hydroxylase** ( 🟠 )
@@ -162,7 +161,7 @@ X,Y: proline or hydroxyproline
 
 # Goals {.center}
 
-> for this talk and by extension my thesis
+> for this talk, and by extension, my thesis
 
 ## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
 

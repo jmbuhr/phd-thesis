@@ -39,20 +39,30 @@
 }
 
 .title p {
+  justify-content: left;
   text-align: left;
-  margin-top: 10rem;
-  margin-bottom: 1rem;
+  margin-top: 7rem;
+  margin-bottom: 4rem;
+  margin-left: 2rem;
 }
 
 .reveal .quarto-title-block .quarto-title-authors {
-  justify-content: right;
-  text-align: right;
+  justify-content: left;
+  text-align: left;
+  margin-left: 2rem;
   color: var(--mpi-green);
+}
+.reveal .quarto-title-block .quarto-title-authors .quarto-title-author {
+  padding: 0;
 }
 
 .quarto-title-author-name {
   font-size: 5rem;
   font-weight: bold;
+}
+
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
 }
 
 .align {
