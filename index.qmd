@@ -126,7 +126,7 @@ Als Hauptkomponente von Sehnen, Bändern und anderem Bindegewebe muss es extreme
 Frühere Studien fanden Mechanoradikale in gespannten Kollagenfasern mittels Elektronenspinresonanz.
 Wie Homolyse, die Reaktion, die eben diese Radikale produziert, mit anderen, nicht-radikalischen und im wässrigen Medium erwartbaren Reaktionen in Konkurrenz steht, war bislang unklar.
 Vor kurzem wurde gezeigt, dass basenkatalysierte Hydrolyse selbst durch kleine Kräfte beschleunigt wird.
-In dieser Arbeit bringe ich diese augenscheinlich gegenteiligen Beobachtungen mit zwei ergänzenden, computerbasierten Methoden in Einklang.
+In dieser Arbeit bringe ich diese augenscheinlich gegenteiligen Beobachtungen mit zwei sich ergänzenden, computerbasierten Methoden in Einklang.
 Hybride quantenmechanische/molekularmechanische Simulationen enthüllen den komplexen Mechanismus der Hydrolysereaktion und zeigen, wie die chemische Umgebung des Lösungsmittels essentiell ist und dass die einzigartige Struktur von Kollagen die Reaktionsbarriere der basenkatalysierten Hydrolyse erhöht.
 Dann präsentiere ich eine neue Methode, die in Zusammenarbeit mit zwei Kollegen entstanden ist:
 KIMMDY (Kinetic Monte Carlo Molecular Dynamics) ermöglicht Reaktionen in molekulardynamischen Simulationen auf eine Weise, die Zeitskalen überspannt und ist ein flexibles Framework, das einfach um neue Chemie erweiterbar ist.
@@ -235,7 +235,7 @@ and the "Brazen Buccaneer" (@fig-rifbound) in the card game "Riftbound", also by
 As we now know, scurvy is a result of vitamin C deficiency, which in turn leads to issues with the biosynthesis of collagen.
 This thesis is not about scurvy directly, but it is about collagen.
 
-Collagen is the most abundant protein in mammals (going by mass, that is; serum albumin fans may disagree on the counting method) [@verzarAgingCollagenFiber1964].
+Collagen is the most abundant protein in mammals^[going by mass, that is; serum albumin fans may disagree on the counting method] [@verzarAgingCollagenFiber1964].
 As our primary structural protein, it makes up connective tissue, cartilage, skin, and tendons.
 Fascinatingly, it is both a component in structures that need stability, such as bones, as well as in those that need flexibility, such as blood vessels.
 The prevalence and necessity of properly formed collagen explains many of the symptoms of scurvy and also why I chose this obscure 18th-century ailment as a small introductory story from history.
@@ -251,7 +251,7 @@ But to understand the relationship at a molecular level, we need to look into ho
 
 The biosynthesis of collagen starts with the pre-pro-peptide^[Yes, the naming scheme got a little out of hand.] at ribosomes in the cytosol.
 Collagen is characterized by the rather unusual motif Glycine-X-Y (Gly-X-Y), where X and Y are frequently proline (Pro) or 4-hydroxyproline (Hyp) (see @fig-glycine, @fig-proline, @fig-hydroxyproline) and have a slightly higher propensity for alanine (Ala) [@ricard-blumCollagenFamily2011].
-At this stage though, what will be hydroxyproline is still proline.
+At this stage, however, what will become hydroxyproline is still proline.
 The pre-pro-collagen peptide makes its way to the endoplasmic reticulum (ER) through an N-terminal signal sequence, which gets cleaved off at its destination.
 We now have the collagen pro-peptide (pro-collagen).
 
@@ -1555,7 +1555,7 @@ As such, sections of text will be similar and may only have minor adaptations fo
 Let us picture a user who has a new type of reaction that they want to simulate within MD.
 They are already familiar with their MD engine GROMACS and have the files to simulate their system without any reactions.
 After going to our documentation website, they install KIMMDY.
-KIMMDY can just be installd from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g., with `uv tool install -p 3.11 kimmdy`.
+KIMMDY can just be installed from the Python package index (PyPI) with `pip install`, but to speed up installing dependencies, especially those of our machine learning plugins, we recommend using [`uv`](https://docs.astral.sh/uv/), e.g., with `uv tool install -p 3.11 kimmdy`.
 Now the `kimmdy` command is available on the command line.
 Typing `kimmdy --help` brings up more options:
 
