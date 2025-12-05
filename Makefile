@@ -1,6 +1,6 @@
 .PHONY: all pdf html preview plots
 
-all: pdf html
+all: pdf html presentation
 
 pdf:
 	quarto render index.qmd --to pdf 
@@ -21,4 +21,4 @@ plots:
 # sudo apt install pdftk-java 
 report:
 	cp index.pdf buhr_jannik_komplett.pdf
-	pdftk index.pdf cat 8-r12 output buhr_jannik_plagiatspruefung.pdf
+	pdftk index.pdf cat 8-r10 output buhr_jannik_plagiatspruefung.pdf

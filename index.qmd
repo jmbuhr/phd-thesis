@@ -2543,7 +2543,4 @@ $\hbar$: reduced Planck constant \
 ::: {#refs}
 :::
 
-\clearpage
-
-{{< pagebreak >}}
 
