@@ -97,7 +97,7 @@ format-links:
 
 :::: {.content-visible when-format="html"}
 ::: {.callout-tip}
-You are reading the web version of this thesis. In the left sidebar, you also find the [print version](./index.pdf) and the [presentation](./presentation.html) for the defense in the sidebar or via these links.
+You are reading the web version of this thesis. You also find the [print version](./index.pdf) and the [presentation](./presentation.html) for the defense in the sidebar or via these links.
 :::
 ::: {.callout-tip}
 If you are reading this notice, this thesis is not yet defended.
@@ -1143,7 +1143,7 @@ k &= &\frac{k_1 k_2 [OH^{-}]}{k_1+k_2},
 \end{array}
 $${#eq-total-k}
 
-with the concentration of hydroxide $[OH^{-}]$ coming in as 10^-(14 - 7.4)^ at the experimental pH of 7.4 and a temperature of 21° C (294.15\ K).
+with the concentration of hydroxide $[OH^{-}]$ coming in as 10^-(14 - 7.4)^ at the experimental pH of 7.4 and a temperature of 21\ °C (294.15\ K).
 The auxiliary attempt frequency $A1$ was assumed fixed such that $A1*[OH^{-}]=A$ matches the average attempt frequency $A$ gathered from the AFM experiments.
 Together this results in a theoretical reaction rate of 10^-3^\ s^-1^.
 
@@ -1277,7 +1277,7 @@ Note that the hydroxide is also part of this pull group, as otherwise it would a
 
 Once the QM atoms and the hydroxide have been designated by the workflow, the QM/MM system is set up.
 To this end, it creates the necessary index files that GROMACS uses to label groups of atoms as, e.g., QM atoms or pull groups and fills templates for other input files such as `mdp` for GROMACS and `inp` for CP2K
-A short 100 step QM/MM warm-up simulation with a small delta t of just 0.2\ fs increases the stability of the system before the actual approach trajectory is run.
+A short 100-step QM/MM warm-up simulation with a small delta t of just 0.2\ fs increases the stability of the system before the actual approach trajectory is run.
 During the warm-up the hydroxide is kept at its original distance by an umbrella potential.
 The workflow then checks for successful warm-ups and continues with the approach simulation.
 The approach is simulated at a timestep of 1\ fs and typically takes around 2\ ps.
@@ -1305,7 +1305,7 @@ Most sampling simulations managed to run their entire 5\ ps, but some terminated
 
 ![Histogram of the number of umbrella sampling windows per hydroxide attack trajectory. \break](./plots/qm/wethyd_us_n_windows_hist.png){#fig-hist-n-windows}
 
-![Histogram oft the achieved simulation lengths of the umbrella window simulations.](./plots/qm/wethyd_us_n_time_points_hist.png){#fig-hist-n-points}
+![Histogram of the achieved simulation lengths of the umbrella window simulations.](./plots/qm/wethyd_us_n_time_points_hist.png){#fig-hist-n-points}
 
 ![Histograms of the coverage of the umbrella windows over the reaction coordinate of TS1.](./plots/qm/wethyd_us_histogram_example.png){#fig-hist-us}
 
@@ -1517,7 +1517,7 @@ This then allows for the next sampling MD and looking for follow-up reactions.
 
 When my colleagues Kai Riedmiller, Eric Hartmann, and I heard of this, we decided that such a scheme should be applicable not just to homolysis, but to all possible chemical reactions.
 The name KIMMDY was kept, but it was now realized as a user-friendly, extensible, and powerful framework written in Python and accessible via the command line and configuration files.
-Some of the figures I will show in this chapter have already been published in our manuscript, which is available on BioRxiv [@kimmdy2025] and at the time of writing under review at Nature Communications.
+Some of the figures I will show in this chapter have already been published in our manuscript, which is available on bioRxiv [@kimmdy2025] and at the time of writing under review at Nature Communications.
 As not only a joint first author paper, but also a collaborative software project with tens of thousands of lines of code added, removed, and changed, it is not straightforward to pin any given feature on a single one of us.
 For this thesis, I will do my best to highlight especially the parts on which I had a particular focus, but nonetheless it remains the product of an incredibly fruitful collaboration.
 
@@ -1527,8 +1527,8 @@ Possible reactions, such as bond rupture, hydrolysis, or hydrogen atom transfer 
 KIMMDY then takes care of executing the chosen reaction, stabilizing the system, and running the sampling simulations.
 In practice those are MD simulations, though KIMMDY is agnostic with regard to the type of simulation that generates the ensembles.
 The reaction plugins are also free to use any method necessary to obtain reaction rates based on the state of the system.
-This could be a heuristic fit to experimental data, a physical model, or a machine learned one.
-All are present in the currently available plugins, such as the machine learned model predicting HAT by Kai, a plugin based on Benedikt's original physical model for homolysis, or my heuristic model for peptide bond hydrolysis.
+This could be a heuristic fit to experimental data, a physical model, or a machine-learned one.
+All are present in the currently available plugins, such as the machine-learned model predicting HAT by Kai, a plugin based on Benedikt's original physical model for homolysis, or my heuristic model for peptide bond hydrolysis.
 But most importantly, we provide extensive documentation to enable any user to write their own reaction plugin and get started with KIMMDY: [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/).
 
 The structure of our documentation is based on the Diátaxis framework developed by Daniele Procida, who explains it further on [diataxis.fr](https://diataxis.fr/) [@Procida_Diataxis_documentation_framework].
@@ -1600,7 +1600,7 @@ Additional provided tools include `kimmdy-analysis` for post-simulation analysis
 
 ### Configuration and input/output
 
-KIMMDY is controlled via the command-line interface (CLI) and a `yaml` formatted configuration file.
+KIMMDY is controlled via the command-line interface (CLI) and a YAML-formatted configuration file.
 In there, every task KIMMDY performs has a corresponding configuration section.
 The sequence of tasks KIMMDY executes is also defined in this configuration, making KIMMDY highly flexible.
 The configuration file contains input files such as the topology and initial coordinates,
@@ -1609,7 +1609,7 @@ For the complete documentation of all options, see the automatically updated lis
 
 When the `yaml` file, typically named `kimmdy.yml`, is opened in a properly configured code editor supporting the [language server protocol](https://microsoft.github.io/language-server-protocol/overviews/lsp/overview/),
 such as the popular [Visual Studio Code](https://code.visualstudio.com/) or [Neovim](https://neovim.io/),
-the user will automatically get features such as auto completion for keywords and options (@fig-kimmdy-completion), hover documentation (@fig-kimmdy-hover).
+the user will automatically get features such as autocompletion for keywords and options (@fig-kimmdy-completion), hover documentation (@fig-kimmdy-hover).
 They will also see warnings for missing, unknown keys or incompatible values (@fig-kimmdy-warnings).
 This reduces the likelihood of disappointing application crashes, because the validity of the input can be checked before KIMMDY is even started.
 Not everything can be checked before runtime, such as the availability of some plugin dependencies or the existence of input files, but further consistency checks are front-loaded at the start of KIMMDY, such that it stops earlier rather than later in a run.
@@ -1636,7 +1636,7 @@ In the example shown in @fig-kmdy-yml, the first task is an MD simulation.
 ### Ensemble generation
 
 In theory, KIMMDY can work with any ensemble generation method that results in atomistic trajectories.
-This includes *ab initio* MD, machine learned potential (MLP) simulations, classical MD, or other ensemble generation methods.
+This includes *ab initio* MD, machine-learned potential (MLP) simulations, classical MD, or other ensemble generation methods.
 In practice, the KIMMDY architecture is oriented towards GROMACS [@abrahamGROMACSHighPerformance2015;@berendsenGROMACSMessagepassingParallel1995] simulations, limiting the immediate uses to unbiased MD, biased MD, and in the near-future MLP simulations.
 
 KIMMDY interfaces with GROMACS via its command-line interface, which makes KIMMDY robust to GROMACS version changes.
@@ -1671,9 +1671,9 @@ The example only asks the hydrolysis plugin for rates, which are then passed on 
 KIMMDY makes use of Adaptive kMC.
 It collects all reaction rates from the plugins and uses a user-selected choice of kMC algorithm to sample a reaction from the distribution.
 For a more detailed theoretical background of kMC than @sec-kmc, please also refer to the SI of @kimmdy2025.
-Choices for kMC algorithms currently include rejection free kMC ("rfkmc"), "extrande" [@voliotisStochasticSimulationBiomolecular2016], a modified version of extrande ("extrande_mod"), rejection free kMC with multiple choices at the same time ("multi_rfkmc"), as well as a debugging option that always chooses the first (or last) reaction.
+Choices for kMC algorithms currently include rejection-free kMC ("rfkmc"), "extrande" [@voliotisStochasticSimulationBiomolecular2016], a modified version of extrande ("extrande_mod"), rejection-free kMC with multiple choices at the same time ("multi_rfkmc"), as well as a debugging option that always chooses the first (or last) reaction.
 Individual reactions can declare their preferred algorithm in addition to the global choice of kMC algorithm.
-In this thesis only rejection free kMC is used.
+In this thesis only rejection-free kMC is used.
 
 ### Topology module {#sec-top}
 
@@ -1822,7 +1822,7 @@ Subsequently, a short equilibration ensures the states are Markovian, i.e., samp
 
 To this end, KIMMDY generates a merged topology that transitions between state A (educt) and state B (product).
 KIMMDY supports two modes of slow-growth.
-In "morse-only" mode, breaking or forming bonds are modeled entirely with morse potentials, where the unbound is mimicked by a morse potential with parameters such that the shape matches the van der Waals potential of the two now non-bonded atoms.
+In "morse-only" mode, breaking or forming bonds are modeled entirely with Morse potentials, where the unbound is mimicked by a Morse potential with parameters such that the shape matches the van der Waals potential of the two now non-bonded atoms.
 In "full" slow-growth mode all parameters around the affected atoms are transitioned, where non-bonded parameters are modeled using pair potentials. Slow-growth of non-bonded parameters, especially for van der Waals interactions, can quickly lead to high energies and forces due to the exponential nature of the potential.
 As such the best choice of KIMMDY options and mdp parameters to relax the structure between reactions and sampling depends on the system.
 An example trajectory of a reaction including slow-growth can be seen at <https://youtu.be/tgS5uleN288> (or directly in the web version of my thesis at [jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)) and is visualized in @fig-slow-growth.
@@ -2245,7 +2245,7 @@ Additional analysis uncovered that solvent accessibility of peptide bonds remain
 Proline residues, which are part of the characteristic Gly-X-Y motif in collagen, appear to offer some protection against hydrolysis by reducing solvent accessibility, even though they experience higher mechanical strain.
 The findings from the QM/MM simulations strongly suggest that the influence of solvent accessibility should be greater than how it is currently modeled, but more data is required to answer this question quantitatively.
 This provides an opportunity to build a more accurate model for hydrolysis in the future.
-One approach could be a machine learned emulator trained on QM/MM data that predicts reaction barriers based on the local chemical environment of each peptide bond, similar to the HAT model by Kai Riedmiller [@riedmillerSubstitutingDensityFunctional2024].
+One approach could be a machine-learned emulator trained on QM/MM data that predicts reaction barriers based on the local chemical environment of each peptide bond, similar to the HAT model by Kai Riedmiller [@riedmillerSubstitutingDensityFunctional2024].
 However, due to the complexity of the reaction mechanism, this still poses a considerable challenge.
 The homolysis reaction on the other hand could also be modeled more accurately, by using more information about the chemical environment than just the current bond stretching and the BDE.
 
@@ -2427,13 +2427,13 @@ Especially research software rarely gets the recognition it deserves, despite be
 - PLUMED: [plumed.org](https://www.plumed.org/) [@tribelloPLUMED2New2014]
 - VMD: [ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/) [@vmd]
 - R: [r-project.org](https://www.r-project.org/) [@rcoreteamLanguageEnvironmentStatistical2018]
-  - tidyverse: [tidyverse.org](https://www.tidyverse.org/) [@wickhamWelcomeTidyverse2019]
+  - Tidyverse: [tidyverse.org](https://www.tidyverse.org/) [@wickhamWelcomeTidyverse2019]
 - Python: [python.org](https://www.python.org/)
-  - pandas: [pandas.pydata.org](https://pandas.pydata.org/) [@teamPandasdevPandasPandas2025;@mckinney-proc-scipy-2010]
-  - polars: [pola-rs.github.io/polars/](https://pola-rs.github.io/polars/)
-  - numpy: [numpy.org](https://numpy.org/) [@harris2020array]
-  - matplotlib: [matplotlib.org/](https://matplotlib.org/) [@Hunter:2007]
-  - plotnine: [plotnine.org/](https://plotnine.org/) [@plotnine]
+  - Pandas: [pandas.pydata.org](https://pandas.pydata.org/) [@teamPandasdevPandasPandas2025;@mckinney-proc-scipy-2010]
+  - Polars: [pola-rs.github.io/polars/](https://pola-rs.github.io/polars/)
+  - Numpy: [numpy.org](https://numpy.org/) [@harris2020array]
+  - Matplotlib: [matplotlib.org/](https://matplotlib.org/) [@Hunter:2007]
+  - Plotnine: [plotnine.org/](https://plotnine.org/) [@plotnine]
   - MDAnalysis: [mdanalysis.org](https://www.mdanalysis.org/) [@michaud-agrawalMDAnalysisToolkitAnalysis2011;@gowersMDAnalysisPythonPackage2016]
   - uv: [docs.astral.sh/uv/](https://docs.astral.sh/uv/)
 - moldraw (ketcher): [moldraw.com](https://moldraw.com)
@@ -2459,7 +2459,7 @@ BD: Bürgi-Dunitz angle \
 BDE: bond dissociation energy \
 CGTO: contracted Gaussian-type orbitals \
 CLI: command-line interface \
-COM: center of Mass \
+COM: center of mass \
 cryo-EM: cryo-electron microscopy \
 CSA: cross-sectional area \
 DAG: directed acyclic graph \
@@ -2487,7 +2487,7 @@ LJ: Lennard Jones \
 LLMs: large language models \
 MD: molecular dynamics \
 ML: machine learning \
-MLP: machine learned potential \
+MLP: machine-learned potential \
 MM: molecular mechanics \
 MO: molecular orbital \
 MPI: message passing interface \
