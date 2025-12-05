@@ -1,5 +1,7 @@
 .PHONY: all pdf html preview plots
 
+thesis: pdf html report
+
 all: pdf html presentation
 
 pdf:

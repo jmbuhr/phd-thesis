@@ -313,9 +313,8 @@ As a structural protein, collagen can be under a lot of stress, especially in te
 Take, for example, the semimembranosus muscle, the medial of the three hamstring muscles in the thigh.
 Its namesake tendon has a cross-sectional area (CSA) of around 100\ mm^2^ [@sahinisReliabilityDistalHamstring2021] and has to transfer forces up to 1\ kN [@besierKneeMuscleForces2009], which leads to a stress of 10\ MPa.
 More demanding or rapid exercises can lead to even higher forces, such as 4\ kN on the Achilles tendon during vertical jumping [@fukashiroComparisonDirectlyMeasured1993].
-In this case it also has a higher CSA of around 450\ mm^2^ [@sponbeckAchillesTendonCross2017], so nature is coming prepared,
-but this still leads to stresses of around 9\ MPa.
-Or the patellar tendon, which in countermovement jumps has to withstand peak forces of 4\ kN [@finniVivoHumanTriceps2000], but at a CSA of only around 100\ mm^2^ [@svenssonMechanicalPropertiesHuman2012], leading to peak stresses of around 40\ MPa.
+In this case it also has a higher CSA of around 450\ mm^2^ [@sponbeckAchillesTendonCross2017], so nature is coming prepared, but this still leads to stresses of around 9\ MPa.
+Or take the patellar tendon, which in countermovement jumps has to withstand peak forces of 4\ kN [@finniVivoHumanTriceps2000], but at a CSA of only around 100\ mm^2^ [@svenssonMechanicalPropertiesHuman2012], leading to peak stresses of around 40\ MPa.
 These stresses can become even higher when you take into account the effective CSA, that is the collagen content of the tendon (the part that actually transduces forces), excluding the water content of around 60% [@chimichWaterContentAlters1992].
 One just has to wonder: What do these forces do to the molecular structure of collagen?
 
@@ -373,7 +372,7 @@ In the second half of the chapter, our new tool will be deployed to directly com
 
 Lastly, there is one additional goal that can only be read between the lines.
 I hope for this thesis to be more than a mere enumeration of achievements and instead also provide some joy to the reader.
-This is why the historical anecdote about scurvy is included and why the upcoming [Methods and theory](#sec-methods) chapter takes on a more educational tone.
+This is why the historical anecdote about scurvy is included and why the upcoming [Methods and theory](#sec-methods) chapter takes on a more educational and, at times, conversational tone.
 
 \clearpage
 
@@ -1199,7 +1198,7 @@ For now, what is more important than how the workflow is built, is what it does 
 Each system (the triple helix and each of the chains individually) starts as a PDB file.
 It is converted to GROMACS coordinates and a topology with `gmx pdb2gmx`.
 All simulations use the `amber99sb-star-ildnp` force field and partial charges for the hydroxide ion in its MM representation were ported from CHARMM36 [@brooksCHARMMBiomolecularSimulation2009].
-A box is created with a minimum distance to the protein of 2\ nm on each side with each dimension, then scaled by 130%.
+A box is created with a minimum distance to the protein of 2\ nm in each dimension, then scaled by 130%.
 This ensures sufficient space, especially in the direction of pulling.
 The protein is then solvated in TIP3P water and neutralized with 0.15\ M NaCl to mimic physiological salt concentration.
 After energy minimization, the system is equilibrated first in the NVT ensemble (constant number of particles, volume, and temperature) and then in the NPT ensemble (constant number of particles, pressure, and temperature) while applying position restraints to the protein atoms for 100\ ps each.
@@ -1691,14 +1690,14 @@ After an atom is deleted, the topology is re-indexed by default.
 To use the `Topology` in an MD simulation, a new `top` file is generated from the internal topology object.
 
 The example focuses on peptide bond hydrolysis.
-Assuming a bond has been chosen for to be hydrolyzed, KIMMDY then gets the recipe to be executed.
+Assuming a bond has been chosen to be hydrolyzed, KIMMDY then gets the recipe to be executed.
 For simplicity, only a small portion of the complete molecule is shown around the peptide bond in @fig-peptide-water and @fig-top.
 The plugin only had to specify bonds that are to be deleted and the new ones to create; KIMMDY takes care of higher-order interactions.
 For example, deleting the peptide bond $\ce{4\ C - 6\ N}$ will also remove the angle $\ce{6\ N - 4\ C - 5\ O}$ and the dihedral $\ce{7\ H - 6\ N - 4\ C - 5\ O}$ and so forth.
 Similarly, the atoms that where previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have nonbonded interactions.
 Newly formed bonds such as $\ce{9\ OW - 4\ C}$ will create the corresponding angles, dihedrals and pairs for 1--4 interactions.
 Even improper dihedrals that are defined in the residuetypes, such as those for peptide bonds between amino acids, are re-created based on the residuetype recorded in the topology.
-If the basic operations are not sufficient or non-standard changes are required, a `RecipeStep` can also bring a custom function that is free to modify the topology however necessary.
+If the basic operations are not sufficient or non-standard changes are required, a `RecipeStep` can also bring a custom function that is free to modify the topology in any way necessary.
 
 ::::{#fig-top layout="[1,1.3]" fig-scap="Simplified graph representation of a peptide bond undergoing hydrolysis." layout-valign="top"}
 ![The peptide bond (magenta) between $\ce{4\ C}$ and $\ce{6\ N}$ is to be hydrolyzed. $\ce{9\ OW}$ (O Water) will be bound to $\ce{4\ C}$ and the two HW atoms will be bound to $\ce{6\ N}$.](./assets/top-before.svg){#fig-top-before fig-scap="Topology before hydrolysis."}
@@ -1730,7 +1729,7 @@ SOL 100
 ```
 
 Topology and force field objects are easy to inspect and modify when working on a reaction plugin or interactively working with KIMMDY code in a notebook.
-Even the topology visualizations in @fig-top were initially created with KIMMDY code.
+Even the topology visualizations in @fig-top were originally created with KIMMDY code.
 The order of operations when describing a reaction does not matter, because KIMMDY keeps a consistent state at each step.
 For example, @lst-topology shows how @fig-top-after is created from @fig-top-before and what the output of inspecting the topology object looks like (@lst-topology-output).
 
@@ -1905,8 +1904,7 @@ To compare two reactions in KIMMDY, reaction rates are required.
 
 ### The hydrolysis and homolysis plugins {#sec-hyd-hom-plugins}
 
-Rates for homolysis use the physical model developed by Benedikt Rennekamp [@rennekampHybridKineticMonte2020], which follows a Bell-Evans model [@bellModelsSpecificAdhesion1978;@evansDynamicStrengthMolecular1997].
-That is as follows:
+Rates for homolysis use the physical model developed by Benedikt Rennekamp [@rennekampHybridKineticMonte2020], which follows a Bell-Evans model [@bellModelsSpecificAdhesion1978;@evansDynamicStrengthMolecular1997]:
 Bonds are modeled using a Morse potential (@eq-energy-morse and @fig-morse-potential) in the MD simulation.
 The potential is shifted by the work already performed on the bond by the external force, which is calculated as the bond elongation multiplied with the force on the bond at the average bond distance.
 This assumes that the system is well equilibrated under the external force.
@@ -1916,7 +1914,7 @@ $$
 F(\overline{r}) = 2 \beta D^{-\beta (\overline{r} - r_0)} \left(1 - e^{-\beta (\overline{r} - r_0)}\right),
 $${#eq-force-morse}
 
-with $\beta=\sqrt{k / (2~D)}$,the spring constant $k$, and the dissociation energy $D$.
+with $\beta=\sqrt{\frac{k}{2D}}$,the spring constant $k$, and the dissociation energy $D$.
 
 ![The derivative of the Morse potential, i.e., the force as a function of the bond distance r.](./img/morse-force.png){#fig-morse-force .column-margin fig-scap="Derivative of the Morse potential."}
 
