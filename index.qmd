@@ -21,7 +21,7 @@ referees:
 date: 2026-02-12
 published-title: Date of the defense
 repo-url: https://github.com/jmbuhr/phd-thesis/
-repo-actions: [edit, source, issue]
+repo-actions: [source, issue]
 link-citations: true
 link-references: true
 csl: ./assets/nature-mod.csl
@@ -2000,6 +2000,8 @@ $${#eq-hydrolysis-rate}
 Both the force and the SASA can be time-dependent or averaged over the entire state.
 Once a peptide bond has been chosen to react by the kMC step, the hydrolysis plugin calculates the optimal solvent molecule to execute the attack based on distance and angles (Bürgi-Dunitz and Flippin-Lodge, see @fig-bd).
 
+The code for the hydrolysis plugin is available at [github.com/graeter-group/kimmdy-hydrolysis](https://github.com/graeter-group/kimmdy-hydrolysis) and the homolysis plugin is bundled with other built-in reactions at [github.com/graeter-group/kimmdy-reactions](https://github.com/graeter-group/kimmdy-reactions).
+
 ### System setup
 
 In addition to the single chain and triple helix systems as introduced for @sec-main-qm (just without the QM/MM), a complete collagen fibril is introduced.
@@ -2018,6 +2020,8 @@ The same temperature is used in the rate calculations for all reactions.
 The external forces applied range from no external force to 3\ nN.
 In the case of the complete collagen fibril, an additional, more physiological, sheared pulling was introduced by sampling the force on each triple helix from a Gaussian distribution with a standard deviation of 30\ \% of the mean force centered around the nominal external force.
 This mimics the effect of unequal loading under strain in a real tendon or ligament.
+
+The code for the entire setup and analysis is available at [github.com/graeter-group/kimmdy-hydrolysis-examples](https://github.com/graeter-group/kimmdy-hydrolysis-examples).
 
 \clearpage
 
@@ -2405,6 +2409,8 @@ class Atom:
 {{< pagebreak >}}
 
 ## Additional software and resources {-}
+
+The source code for this thesis and for auxiliary figures is available at [github.com/jmbuhr/phd-thesis](https://github.com/jmbuhr/phd-thesis).
 
 I would like to highlight a couple of additional resources that were instrumental not only during the research for my PhD, but also for the writing of this thesis.
 This is important to me, because I strongly believe in Open Source and Open Science.

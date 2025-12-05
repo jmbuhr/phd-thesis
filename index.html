@@ -2529,6 +2529,7 @@ Figure&nbsp;4.13: Force response of the homolysis and hydrolysis reaction rates.
 \cdot \mathrm{rate}_{\mathrm{exp}}(F_{bond,t})
 \tag{4.7}\]</span></span></p>
 <p>Both the force and the SASA can be time-dependent or averaged over the entire state. Once a peptide bond has been chosen to react by the kMC step, the hydrolysis plugin calculates the optimal solvent molecule to execute the attack based on distance and angles (Bürgi-Dunitz and Flippin-Lodge, see <a href="#fig-bd" class="quarto-xref">Figure&nbsp;3.7</a>).</p>
+<p>The code for the hydrolysis plugin is available at <a href="https://github.com/graeter-group/kimmdy-hydrolysis">github.com/graeter-group/kimmdy-hydrolysis</a> and the homolysis plugin is bundled with other built-in reactions at <a href="https://github.com/graeter-group/kimmdy-reactions">github.com/graeter-group/kimmdy-reactions</a>.</p>
 </section>
 <section id="system-setup" class="level3 page-columns page-full" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="system-setup"><span class="header-section-number">4.2.2</span> System setup</h3>
@@ -2544,6 +2545,7 @@ Figure&nbsp;4.14: A collagen fibril.
 </figcaption>
 </figure>
 </div></div><p>The fibril was solvated and neutralized with 0.15&nbsp;M NaCl. After an energy minimization using the steepest descent method, a 10&nbsp;ns NVT equilibration and then a 10&nbsp;ns NPT equilibration were performed. It was then equilibrated under the different external forces ranging from 0 to 3&nbsp;nN per chain for 2&nbsp;ns and the convergence of the pulling simulation was verified based on the distances between the pull groups. The equilibration was followed by 2&nbsp;ns of sampling simulations, during which bond distances where recorded with PLUMED <span class="citation" data-cites="tribelloPLUMED2New2014">[<a href="#ref-tribelloPLUMED2New2014" role="doc-biblioref">113</a>]</span>. Likewise, a single triple helix out of a collagen fibril and a single peptide out of the same triple helix where solvated in TIP3 water, neutralized with 0.15&nbsp;M NaCl, energy minimized and equilibrated under NVT and NPT ensembles at a temperature of 300&nbsp;K. The same temperature is used in the rate calculations for all reactions. The external forces applied range from no external force to 3&nbsp;nN. In the case of the complete collagen fibril, an additional, more physiological, sheared pulling was introduced by sampling the force on each triple helix from a Gaussian distribution with a standard deviation of 30&nbsp;% of the mean force centered around the nominal external force. This mimics the effect of unequal loading under strain in a real tendon or ligament.</p>
+<p>The code for the entire setup and analysis is available at <a href="https://github.com/graeter-group/kimmdy-hydrolysis-examples">github.com/graeter-group/kimmdy-hydrolysis-examples</a>.</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
@@ -3072,6 +3074,7 @@ Listing&nbsp;5.4: Excerpts from the code of KIMMDY.
 </section>
 <section id="additional-software-and-resources" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="additional-software-and-resources">Additional software and resources</h2>
+<p>The source code for this thesis and for auxiliary figures is available at <a href="https://github.com/jmbuhr/phd-thesis">github.com/jmbuhr/phd-thesis</a>.</p>
 <p>I would like to highlight a couple of additional resources that were instrumental not only during the research for my PhD, but also for the writing of this thesis. This is important to me, because I strongly believe in Open Source and Open Science. Many of these projects are maintained by volunteers and researchers that put in a lot of effort to make them available to the community without expecting anything in return. Especially research software rarely gets the recognition it deserves, despite being a crucial part of modern science.</p>
 <section id="knowledge-resources" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="knowledge-resources">Knowledge resources</h3>

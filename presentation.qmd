@@ -33,7 +33,7 @@ format:
       buttons: true
     multiplex: false
     footer: |
-      <https://github.com/jmbuhr/phd-thesis>, [manuscript](./index.html)
+      [jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)
     footnotes-hover: true
 reference-location: document
 favicon: ./img/water.png
@@ -48,7 +48,6 @@ execute:
   warning: false
   cache: false
 ---
-
 
 # Introduction {.center}
 
