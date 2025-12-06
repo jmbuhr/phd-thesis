@@ -126,11 +126,11 @@ Als Hauptkomponente von Sehnen, Bändern und anderem Bindegewebe muss es extreme
 Frühere Studien fanden Mechanoradikale in gespannten Kollagenfasern mittels Elektronenspinresonanz.
 Wie Homolyse, die Reaktion, die eben diese Radikale produziert, mit anderen, nicht-radikalischen und im wässrigen Medium erwartbaren Reaktionen in Konkurrenz steht, war bislang unklar.
 Vor kurzem wurde gezeigt, dass basenkatalysierte Hydrolyse selbst durch kleine Kräfte beschleunigt wird.
-In dieser Arbeit bringe ich diese augenscheinlich gegenteiligen Beobachtungen mit zwei sich ergänzenden, computerbasierten Methoden in Einklang.
+In dieser Arbeit bringe ich diese augenscheinlich widersprüchlichen Beobachtungen mit zwei sich ergänzenden, computerbasierten Methoden in Einklang.
 Hybride quantenmechanische/molekularmechanische Simulationen enthüllen den komplexen Mechanismus der Hydrolysereaktion und zeigen, wie die chemische Umgebung des Lösungsmittels essentiell ist und dass die einzigartige Struktur von Kollagen die Reaktionsbarriere der basenkatalysierten Hydrolyse erhöht.
 Dann präsentiere ich eine neue Methode, die in Zusammenarbeit mit zwei Kollegen entstanden ist:
 KIMMDY (Kinetic Monte Carlo Molecular Dynamics) ermöglicht Reaktionen in molekulardynamischen Simulationen auf eine Weise, die Zeitskalen überspannt und ist ein flexibles Framework, das einfach um neue Chemie erweiterbar ist.
-Mittels KIMMDY zeige ich, wie Kraftkonzentration in komplexen, quervernetzten Kollagenfibrillen Kräfte in Regime verschieben kann, in denen Homolyseraten die der Hydrolyse übertreffen.
+Mittels KIMMDY zeige ich, wie Kraftkonzentration in komplexen, quervernetzten Kollagenfibrillen Kräfte in Regime verschieben kann, in denen Homolyseraten diejenigen der Hydrolyse übertreffen.
 
 :::: {.content-visible when-format="html"}
 ```{=html}
@@ -250,7 +250,7 @@ But to understand the relationship at a molecular level, we need to look into ho
 ![Hydroxyproline.](img/hydroxyproline.svg){#fig-hydroxyproline .column-margin width=50%}
 
 The biosynthesis of collagen starts with the pre-pro-peptide^[Yes, the naming scheme got a little out of hand.] at ribosomes in the cytosol.
-Collagen is characterized by the rather unusual motif Glycine-X-Y (Gly-X-Y), where X and Y are frequently proline (Pro) or 4-hydroxyproline (Hyp) (see @fig-glycine, @fig-proline, @fig-hydroxyproline) and have a slightly higher propensity for being alanine (Ala) [@ricard-blumCollagenFamily2011].
+Collagen is characterized by the rather unusual motif Glycine-X-Y (Gly-X-Y), where X and Y are frequently proline (Pro) or 4-hydroxyproline (Hyp) (see @fig-glycine, @fig-proline, @fig-hydroxyproline) and have a slightly higher propensity to be alanine (Ala) [@ricard-blumCollagenFamily2011].
 At this stage, however, what will become hydroxyproline is still proline.
 The pre-pro-collagen peptide makes its way to the endoplasmic reticulum (ER) through an N-terminal signal sequence, which gets cleaved off at its destination.
 We now have the collagen pro-peptide (pro-collagen).
@@ -262,7 +262,7 @@ We now have the collagen pro-peptide (pro-collagen).
 At the ER, two enzymes, prolyl and lysyl hydroxylase, do their work and turn some of the lysines (@fig-lysine) and prolines into hydroxylysines (@fig-hydroxylysine) and hydroxyprolines, respectively.
 Both of these enzymes need vitamin C as a cofactor, so remember to eat your oranges.
 Pro-collagen consists of a triple helix made up of the individual processed pro-peptides, where two strands share the same composition (alpha 1) and a third has a different composition (alpha 2).
-Pro-collagen is processed once more in the Golgi apparatus with the addition of oligosaccharides until finally being secreted to the outside of the cell.
+Pro-collagen is processed once more in the Golgi apparatus with the addition of oligosaccharides, before finally being secreted to the outside of the cell.
 
 Due to the high content of glycine (@fig-glycine), proline (@fig-proline) and hydroxyproline (@fig-hydroxyproline), collagen peptides, and by extension also the triple helices, can be wound very tightly.
 This is because glycine is the smallest amino acid and proline brings unusual stiffness due to its $\Phi$ dihedral angle being locked at -65° by the peptide bond nitrogen ($\ce{N}$) being part of a ring structure.
@@ -466,7 +466,7 @@ $$V_{nonbonded} = V_{electrostatic} + V_{van der Waals}$${#eq-energy-nonbonded}
 
 The bonded and non-bonded terms are illustrated by examples in @fig-mm.
 For each of these terms we find approximations that are easy to compute on modern hardware, which typically means that exponentials are avoided in favor of polynomials obtained through Taylor expansion [@taylorMethodusIncrementorumDirecta1715].
-For example, while we can describe the potential energy in a bond between two atoms with a Morse potential [@morseDiatomicMoleculesAccording1929] (@eq-energy-morse, @fig-morse-potential):
+For example, while the potential energy in a bond between two atoms can be described with a Morse potential [@morseDiatomicMoleculesAccording1929] (@eq-energy-morse, @fig-morse-potential):
 
 ![A Morse potential.](./img/morse-potential.png){#fig-morse-potential .column-margin fig-scap="Morse potential."}
 
@@ -928,7 +928,7 @@ With the Hohenberg-Kohn theorems [@hohenbergInhomogeneousElectronGas1964]:
 1. The ground state energy is a unique functional of the electron density: \
 $E=E_0[\eta_0(r)]$
 
-2. The electron density function that minimizes the energy is the correct electron density: \
+2. The electron density function that minimizes the energy is the true electron density: \
 $\forall \eta : E[\eta(r)]\ge E_0[\eta_0(r)]$,
 
 we can apply the basic principles to larger systems, because we now "only" have to compute the electron density function as opposed to all individual electron wavefunctions.
@@ -957,7 +957,7 @@ A linear combination of basis functions makes up a molecular orbital (MO) for on
 For the basis functions, we have the choice between Slater-type orbitals (STO), which are the typical atomic orbitals
 $Nx^a y^b z^c e^{-\zeta r}$ (where $N$ is a normalization constant, $a,b,c$ control the angular momentum, and $\zeta$ controls the width)
 and Gaussian-type orbitals (GTO) $Nx^a y^b z^c e^{-\zeta r^2}$.
-Gaussians have the added benefit that the product of two gaussians is another Gaussian, which makes them mathematically favored to work with, even though they are less physical.
+Gaussians have the added benefit that the product of two Gaussians is another Gaussian, which makes them mathematically favored to work with, even though they are less physical.
 Contracting multiple GTOs via a linear combination (CGTO) is used to mimic a single STO at lower computational cost.
 
 A minimal basis set encompasses one basis function for each atomic orbital (AO).
@@ -1175,7 +1175,7 @@ The dynamic nature of the protons in the QM region (meaning they can hop between
 The triple helix initial structure is a cut-out from a _Homo sapiens_ collagen type I fibril without cross-links that was obtained from ColBuilder [@obarska-kosinskaColBuilderServerBuild2021].
 It is composed of three chains (A, B, and C) with individual lengths of 45, 43, and 45 amino acids, respectively (@fig-render-triple-single).
 The N-terminus (displayed on the left of each molecular render, @fig-render-triple-single, @fig-sites, @fig-qm-system) was acetyl-capped (ACE), while the C-terminus was capped with an N-methyl group (NME) in PyMOL [@PyMOL] to account for the fact that the actual collagen protein is longer than the cut-out simulated here.
-From this point onwards, everything is handled by my custom automated simulation and analysis pipeline.
+From this point onward, everything is handled by my custom automated simulation and analysis pipeline.
 The code for this is available at [github.com/graeter-group/hydrolysis-qmmm-workflow](https://github.com/graeter-group/hydrolysis-qmmm-workflow).
 This version does not include the outputs of the simulations, as those would be way too large.
 They are instead archived locally at the Heidelberg Institute for Theoretical Studies (HITS) and available upon request.
@@ -1330,7 +1330,7 @@ The attacking hydroxide is not forced to remain a hydroxide as it approaches the
 It can be protonated by the surrounding QM water, delocalizing the negative charge over the QM region.
 Likewise, the carbonyl oxygen can be stabilized by hydrogen bridges or even fully protonated when the TI is formed.
 This led to an unexpected progression of the reaction, where instead of the addition reaction, forming the TI, a substitution reaction can take place whereby the original carbonyl $\ce{O}$ gets displaced by the attacking hydroxide.
-This effectively results in no reaction taking place.
+This effectively results in no net reaction taking place.
 However, this was a rare event and only 62 out of 6359 umbrella windows had to be discarded for sampling the wrong reaction.
 The decision to discard a window was made based on a distance criterion as shown in @fig-hyd-filter.
 Windows where the average distance of the carbonyl $\ce{C}$ to the carbonyl $\ce{O}$ exceeds 0.155\ nm were deemed accidental substitution reactions and those where the sum of the average distances of $\ce{C}$ to the carbonyl $\ce{O}$ and $\ce{C}$ to the hydroxide $\ce{O}$ was lower than 0.277\ nm were deemed as collapsing TIs and also excluded.
@@ -1471,7 +1471,7 @@ However, the broad sampling makes it harder to attribute the results to any spec
 While a difference in free energy was found for the activation energy of the hydroxide attack between single chain and triple helix systems, the small effect size does not fully explain the prevalence of the competing reaction (homolytic backbone cleavage) that is observed experimentally in tissue samples.
 
 Furthermore, there is a risk of survivorship bias.
-Finding the set of parameters that allow simulating the reaction without crashing and the initial selection of the hydrolysis sites is likely to favor easier-to-access and easier-to-simulate systems.
+Finding the set of parameters that allows simulating the reaction without crashing and the initial selection of the hydrolysis sites is likely to favor easier-to-access and easier-to-simulate systems.
 This is also apparent in @fig-carbonyl-orientation, which shows that the current selection of peptide bonds tends to have the carbonyl oxygen point away from the helix, making the tetrahedral intermediate easier-to-access by the solvent molecules.
 It also highlights sites of future simulations to mitigate this bias.
 The trajectories that are harder to simulate are those with a rougher free energy landscape and those with higher energy states.
@@ -1681,7 +1681,7 @@ From the initially user-supplied topology, an internal `Topology` object is buil
 The force field, as well as topology _includes_, are explicitly resolved, meaning every interaction has individual parameters.
 This enables the use of GRAPPA (see @sec-grappa) for parametrizing on-the-fly, but is still compatible with established force fields, like Amber [@caseAmberTools2023] or Charmm [@brooksCHARMMBiomolecularSimulation2009].
 The `Topology` supports breaking bonds, creating bonds, and deleting hydrogen atoms.
-For all of these actions, the interaction terms, like bonds, angles, dihedrals, pair exclusions etc., are updated accordingly.
+For all of these actions, the interaction terms, like bonds, angles, dihedrals, pair exclusions, etc., are updated accordingly.
 Furthermore, it identifies, and keeps track of possible radicals and whether it needs parametrization due to some modifications.
 Creating bonds, deleting bonds, and moving atoms do not change the index of the atoms stored in the topology.
 This ensures compatibility with standard analysis techniques, but residues are not necessarily continuous in the resulting topology afterward.
@@ -1943,7 +1943,7 @@ k_{homolysis} = A\,\text{e}^{\left(\frac{-\Delta E}{RT}\right)}
 $${#eq-hom-rate}
 
 Rates for hydrolysis are also force-dependent.
-The experiments by Pill et al. [@pillMechanicalActivationDrastically2019] already allow fitting a model to match external forces applied to a single peptide bond to bond lifetimes and thus reaction rates (@fig-force-response).
+The experiments by Pill et al. [@pillMechanicalActivationDrastically2019] already allow fitting a model to match external forces applied to a single peptide bond with bond lifetimes and thus reaction rates (@fig-force-response).
 Because they observed a bi-exponential decay at 0.7\ nN and thus fit two Bell models, one for the region below 0.7 and one for above 0.7,
 in order to obtain continuous rates to use in KIMMDY, the two models were interpolated around 0.7\ nN in a log-linear fashion.
 The rates as one would obtain them if the theoretical energy barriers from their _ab initio_ QM calculations were used, are also shown.
@@ -1954,8 +1954,8 @@ In the KIMMDY plugin for hydrolysis, the choice between experimental and theoret
 Crucially, the hydrolysis plugin cannot simply use the difference of the bond extension to the equilibrium distance defined in the force field to relate to externally applied forces.
 When forces are applied just like in @fig-render-triple-single, an externally applied force of 0\ nN should relate to a force of 0\ nN in the model from the AFM experiments.
 However, when no force is applied, the average equilibrium bond distances of all bonds are not equal to the equilibrium distance of the Morse potential from the force field.
-This is due to the entropic contributions in the simulation and statistical mechanics:
-The probability $P_i$ of finding a system in a state $i$ is given by the Boltzmann distribution as a function of the states' energy $E_i$ by @eq-boltzman.
+This is due to the entropic contributions in the simulation and the laws of statistical mechanics:
+The probability $P_i$ of finding a system in a state $i$ is given by the Boltzmann distribution as a function of the states' energy $E_i$ by @eq-boltzman:
 
 $$
 P_{i}\propto e^{(-{\frac {E_{i}}{k_{\mathrm{B}} T}})}
@@ -2039,12 +2039,12 @@ At this time, the pH value only enters the rate calculation as a global input pa
 So by just looking at @eq-hydrolysis-rate, we can calculate that a drop in pH from 7.4 to pH 7.0, as one would expect to see physiologically, e.g., in muscle tissue during exercise [@streetInterstitialPHHuman2001], is expected to reduce the rate by a factor of 2.5.
 This is because it only contributes linearly to the pre-exponential factor.
 
-### Solvent accessibility of peptide bonds in the fibril is diverse {#sec-sasa}
+### Solvent accessibility of peptide bonds in the fibril is heterogeneous {#sec-sasa}
 
 The solvent accessible surface area (SASA) warrants a deeper look.
 
 @fig-sasa explores the SASA of the peptide bonds in the three systems under no force and 1\ nN of pulling (with shear pulling for the fibril).
-The SASA encompasses 7 orders of magnitude, but plenty of peptide bonds remain relatively accessible even in the fibril system compared to the reference SASA of the peptide bond in a Glycine-Glycine dipeptide.
+The SASA encompasses seven orders of magnitude, but plenty of peptide bonds remain relatively accessible even in the fibril system compared to the reference SASA of the peptide bond in a Glycine-Glycine dipeptide.
 This is especially true under force, as the backbones of the chains get stretched out, making the peptide bonds even more accessible.
 Also note how the shape of the distribution for the triple helix matches the shape for the fibril.
 
@@ -2105,7 +2105,7 @@ The effect is attenuated when just the N-terminal side of the peptide bond is a 
 In nature, the metallopeptidases that cleave collagen peptides (collagenase) are also less likely to cleave between proline residues according to the MEROPS database [@rawlingsMEROPSDatabaseProteolytic2018]
 ([ebi.ac.uk/merops/cgi-bin/pepsum?id=M10.001](https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=M10.001), see ID M10.001 and up)
 
-However, because in the current model the SASA ratio only goes into the hydrolysis rate calculation linearly, its influence on the final rate is small compared to the influence of the bond stretching by external force (@fig-rates-proline).
+However, because the SASA ratio only enters into the hydrolysis rate calculation linearly in the current model, its influence on the final rate is small compared to the influence of the bond stretching by external force (@fig-rates-proline).
 
 ![Distribution of hydrolysis rates by proline participation for the fibril setup with increasing shear pulling forces.](./plots/kimmdy/rates-proline.png){#fig-rates-proline}
 

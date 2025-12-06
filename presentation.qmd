@@ -653,7 +653,7 @@ $${#eq-hydrolysis-rate}
 ![](./img/peptide-water.png)
 :::
 
-## Solvent accessibility in the fibril is diverse
+## Solvent accessibility in the fibril is heterogeneous
 
 ![](./plots/kimmdy/sasa.png)
 
