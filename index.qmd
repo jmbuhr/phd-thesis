@@ -2035,7 +2035,7 @@ Please note that some of the results of this section have also already been disc
 
 With KIMMDY it is now possible to rapidly sample variations of various parameters, one of which is the pH value.
 This is visualized in extended data @fig-ext-hyd-ph, which explores the impact of external force and the pH value on the two systems already introduced for QM/MM in @sec-main-qm, the single peptide chain and the triple helix.
-At this time, the pH value only enters the rate calculation as a global input parameter and is not affected by the outcome of the molecular dynamics sampling step.
+In the current model, the pH value only enters the rate calculation as a global input parameter and is not affected by the outcome of the molecular dynamics sampling step.
 So by just looking at @eq-hydrolysis-rate, we can calculate that a drop in pH from 7.4 to pH 7.0, as one would expect to see physiologically, e.g., in muscle tissue during exercise [@streetInterstitialPHHuman2001], is expected to reduce the rate by a factor of 2.5.
 This is because it only contributes linearly to the pre-exponential factor.
 
@@ -2089,13 +2089,13 @@ The effect of pulling on bond strain and solvent accessibility in the collagen f
 
 @fig-sasa-pro explores the impact of shear pulling on the internal bond forces as calculated via @eq-force-morse and the solvent accessibility of the peptide bond.
 The average force is a function of how much the average bond distance in the simulation differs from the equilibrium bond distance in the force field.
-As such it is expected to have positive values due to entropic contributions in the simulation and the asymmetric nature of the Morse potential (@fig-morse-potential).
-In @fig-mean-bond-f, the distributions of the average force are classified by the type of bond and whether one or both of the participating atoms is part of a proline residue.
+As such, it is expected to have positive values due to entropic contributions in the simulation and the asymmetric nature of the Morse potential (@fig-morse-potential, also see @sec-hyd-hom-plugins).
+In @fig-mean-bond-f, the distributions of the average force are classified by the type of bond and whether one or both of the participating atoms are part of a proline residue.
 The bond types and atoms involved are visually explained in @fig-top-bond-f.
 
-In equilibrium (0\ nN external pulling), the peptide bond (bond type C-N) tends have a higher extension compared to its equilibrium distance ($r_0$) when it is between two prolines than if no prolines are involved.
-The same is true if the $\ce{N}$ of the peptide bond is contributed by a proline and the $\ce{C}$ by some other amino acid (cyan curve) for part of the bimodal distribution.
-If just the C-terminal end is from a proline (yellow curve) the situation is the same as if no proline is part of the bond (black curve).
+In equilibrium (0\ nN external pulling), the peptide bond (bond type C-N) tends to have a higher extension compared to its equilibrium distance ($r_0$) when it is between two prolines compared to the extension if no prolines are involved.
+The same is true if the $\ce{N}$ of the peptide bond is contributed by a proline and the $\ce{C}$ by some other amino acid (cyan curve) for one part of the bimodal distribution.
+If just the C-terminal end is from a proline (yellow curve), the situation is the same as if no proline is part of the bond (black curve).
 Under external force (1\ nN), the peptide bonds with two prolines or the proline $\ce{N}$ are under the highest strain.
 The $\ce{C_{\alpha}}-\ce{C}$ bond (with atom types CT-C) is under more strain in non-proline residues,
 but the $\ce{N}-\ce{C_{\alpha}}$ bond (with atom types N-CT) is more strained in prolines due to the ring structure.
@@ -2150,7 +2150,7 @@ We were able to simulate direct competition of the two reactions and provide qua
 But directly connecting quantitative values from experiments to simulated reaction rates remains a challenge.
 KIMMDY bridges the gap between AFM experiments on single peptides and large scale biomolecular simulations of collagen fibrils, but we are still missing a concrete link to experimental data of real tissues.
 Zapp et al. pulled with stresses of 2-40\ MPa on tissue samples of tendons and saw signals of radicals in EPR measurements [@zappMechanoradicalsTensedTendon2020], but it is unclear how the number of radicals could be quantified in a way that would map down to reaction rates at the molecular level.
-The external pulling force (with shear pulling) at which we see the first homolysis reaction rates at the second timescale in the KIMMDY simulations is greater than 0.6\ nN per chain (see @fig-rates-fibril-shear) and hydrolysis would be predicted to occur before that according to the model based on AFM experiments.
+The external pulling force (with shear pulling) at which we see the first homolysis reaction rates at the second timescale in the KIMMDY simulations is greater than 0.6\ nN per chain (see @fig-rates-fibril-shear) and hydrolysis would be predicted to occur before that, according to the model based on AFM experiments.
 This force equates to 1.8\ nN per triple helix, which has a cross-sectional area of 1.77\ nm^2^ (1.5\ nm diameter) and thus results in a stress of 1.02 GPa, which is two to three orders of magnitude higher than what is used in experiments and what is measured physiologically (@sec-intro-mech), even with taking into account that only 60% of the tendon weight would be collagen and subtracting the water content to get an effective CSA.
 Together this suggests that the forces within complex biological systems can momentarily and locally confined exceed computationally determined thresholds due to irregularities as they can only be modeled to a limited extent even with the large collagen fibril simulation system.
 Thus, a model for the missing scale between complete tendons and sections of fibrils would be highly interesting for studying force propagation.
@@ -2159,7 +2159,7 @@ The current model for hydrolysis only takes the pH value into account in the for
 Combining KIMMDY with advances in constant pH simulations in GROMACS [@ahoScalableConstantPH2022] could allow for a more fine-grained influence and lead to more accurate predictions of the hydrolysis rate.
 
 Likewise, the influence of the solvent accessibility of the peptide bond is highly likely to be underestimated in the current model for multiple reasons.
-Firstly, as shown in @sec-main-qm, the mobility of protons, the formation of hydrogen bonds and in general the arrangement of water and hydroxide molecules around the peptide bond is crucial for the hydrolysis reaction.
+Firstly, as shown in @sec-main-qm, the mobility of protons, the formation of hydrogen bonds, and in general the arrangement of water and hydroxide molecules around the peptide bond is crucial for the hydrolysis reaction.
 So is the angle of attack of the hydroxide towards the electrophilic center.
 It is a current limitation of the simple model that SASA only influences the rate linearly, which becomes clear especially when looking at the range of possible values in the collagen fibril system.
 The SASA only entering the rate calculation linearly is a very conservative assumption.
@@ -2195,31 +2195,30 @@ Kai Riedmiller trained a graph neural network to emulate the reaction energy bar
 Evgeni Ulanov showed in simulations of small n-alkyl radicals that KIMMDY robustly reproduces the overall reaction dynamics compared to experiments, with only slight deviations for the most prominent shifts relative to each other.
 Eric Hartmann and Denis Kiesewetter then applied this to the large collagen system.
 
-![Schema of successive HAT reactions after homolytic bond scission simulated in KIMMDY.](./figures/kimmdy/kimmdy-hat-schema.png){#fig-hat-schema}
+![Schema of successive HAT reactions after homolytic bond scission simulated in KIMMDY [@kimmdy2025].](./figures/kimmdy/kimmdy-hat-schema.png){#fig-hat-schema}
 
 After many consecutive HAT reactions, the dwell time for the residues was analyzed and two compounds stood out.
 The first is the familiar dihydroxyphenylalanine or DOPA (@fig-dopa), which forms a stable radical at one of the hydroxyl groups.
 The second is a new face, the pyridinoline cross-link (PYD, @fig-pyd).
 It can also form a stable radical at its hydroxide, as BDE calculations then revealed (@fig-hat-bdes).
-Furthermore, when Daniel Sucerquia calculated the expected EPR spectrum of the PYD radical it makes up for part of the missing intensity that is seen in experimental spectra compared to just using DOPA.
+Furthermore, when Daniel Sucerquia calculated the expected EPR spectrum of the PYD radical, this radical was shown to make up for part of the missing intensity that is seen in experimental spectra compared to just using DOPA (@fig-hat-epr).
 This is an exciting discovery, because it suggests that not only is collagen more likely to break at or near the cross-links [@rennekampHybridKineticMonte2020], nature also came prepared with a radical scavenger in the very vicinity.
 
-![phenylalanine](./img/phenylalanine.svg){#fig-phe .column-margin width=50%}
+![Phenylalanine.](./img/phenylalanine.svg){#fig-phe .column-margin width=50%}
 
-![Dihydroxyphenylalanine, (DOPA)](./img/dopa.svg){#fig-dopa .column-margin width=60%}
+![Dihydroxyphenylalanine (DOPA).](./img/dopa.svg){#fig-dopa .column-margin width=60%}
 
-![Center of a pyridinoline crosslink](./img/pyridinoline-center.svg){#fig-pyd .column-margin width=60%}
+![Center of a pyridinoline crosslink.](./img/pyridinoline-center.svg){#fig-pyd .column-margin width=60%}
 
 :::{#fig-dopa-pyd layout-ncol=2}
 ![](./figures/kimmdy/kimmdy-hat-bdes.svg){#fig-hat-bdes}
 
 ![](./figures/kimmdy/kimmdy-hat-epr.svg){#fig-hat-epr}
 
-Analysis of the DOPA and PYD radicals.
+Analysis of the DOPA and PYD radicals. The figures are from our manuscript [@kimmdy2025].
 (a) Bond dissociation energy BDE of PYD (blue line) and DOPA (orange line) compared to a distribution of BDE of abstractions processes in different amino acids from [@treydeBondDissociationEnergies2022] (gray bars).
 (b) Experimental EPR spectrum compared to theoretical EPR spectrum for a DOPA and PYD radical.
 :::
-
 
 \clearpage
 
@@ -2246,8 +2245,9 @@ Proline residues, which are part of the characteristic Gly-X-Y motif in collagen
 The findings from the QM/MM simulations strongly suggest that the influence of solvent accessibility should be greater than how it is currently modeled, but more data is required to answer this question quantitatively.
 This provides an opportunity to build a more accurate model for hydrolysis in the future.
 One approach could be a machine-learned emulator trained on QM/MM data that predicts reaction barriers based on the local chemical environment of each peptide bond, similar to the HAT model by Kai Riedmiller [@riedmillerSubstitutingDensityFunctional2024].
-However, due to the complexity of the reaction mechanism, this still poses a considerable challenge.
-The homolysis reaction on the other hand could also be modeled more accurately, by using more information about the chemical environment than just the current bond stretching and the BDE.
+Due to the complexity of the reaction mechanism, this still poses a considerable challenge,
+but the plethora of QM/MM simulations of the entire hydrolysis reaction presented here provide a great starting point as training data and reference systems.
+The homolysis reaction could also be modeled more accurately, by using more information about the chemical environment than just the current bond stretching and the BDE.
 
 Beyond the specific question of hydrolysis versus homolysis, KIMMDY enabled the simulation of radical dynamics through hydrogen atom transfer reactions.
 This led to the discovery that pyridinoline cross-links can act as radical scavengers, complementing DOPA, which helped explain previously unaccounted features in experimental EPR spectra.
@@ -2265,7 +2265,7 @@ While we now have experimental lifetimes of peptide bonds [@pillMechanicalActiva
 This could be achieved with an AFM setup with a medium containing a probe for radicals or the products of their follow-up reactions with the solvent (reactive oxygen species) such as 2',7'-Dichlorodihydrofluorescein (DCFH2, @fig-dcfh2) [@chen27DichlorodihydrofluoresceinFluorescentProbe2010].
 Combining this with the experimental setup of Pill et al. [@pillMechanicalActivationDrastically2019], could directly test the predictions made by KIMMDY about the competition of hydrolysis and homolysis under force.
 
-![2',7'-Dichlorodihydrofluorescein (DCFH2)](./img/dcfh2.svg){#fig-dcfh2 .column-margin}
+![2',7'-Dichlorodihydrofluorescein (DCFH2).](./img/dcfh2.svg){#fig-dcfh2 .column-margin}
 
 Quite a while ago I was working on my Bachelor's thesis in the lab of Matthias Mayer at the Center for Molecular Biology of Heidelberg University (ZMBH).
 During a group meeting I presented my findings and came across two seemingly contradictory data points, about which I then stated: "... and now I'm just confused."
@@ -2300,7 +2300,7 @@ Extended QM/MM sampling statistics.
 :::: {#fig-tiprot-filtering layout="[[1, 1]]"}
 ![Protonation states before filtering.](./plots/qm/wethyd_us_tiprots_no_filter_example.png)
 
-![Protonation states after filtering.](./plots/qm/wethyd_us_tiprots_filtered_example.png)
+![Protonation states after filtering. \break](./plots/qm/wethyd_us_tiprots_filtered_example.png)
 
 The effect of filtering out side reactions for one affected example.
 ::::
