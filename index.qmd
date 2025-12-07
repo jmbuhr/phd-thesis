@@ -410,8 +410,8 @@ We can use either Hamiltonian mechanics @eq-hamilton
 
 $$
 \begin{array}{rcl}
-\frac{dr_i}{dt} &=& \frac{\delta H}{\delta p_i} \\
-\frac{dp_i}{dt} &=& -\frac{\delta H}{\delta r_i},
+\frac{dr_i}{\mathop{dt}} &=& \frac{\delta H}{\delta p_i} \\
+\frac{dp_i}{\mathop{dt}} &=& -\frac{\delta H}{\delta r_i},
 \end{array}
 $${#eq-hamilton}
 
@@ -422,7 +422,7 @@ Or we can use Newton's equations of motion @eq-newton
 $$
 \begin{array}{rcl}
 F  &=& ma \\
--\frac{dV}{dr} &=& m\frac{d^2r}{dt^2},
+-\frac{dV}{\mathop{dr}} &=& m\frac{d^2r}{\mathop{dt}^2},
 \end{array}
 $${#eq-newton}
 
@@ -514,7 +514,7 @@ with the effective dielectric constant $\epsilon$.
 Here, the charge $Q$ of an atom is not just the result of ionization.
 Instead, it includes so-called partial charges, where the total electron density of a molecule has been (artificially) assigned beforehand to individual atoms based on quantum mechanical calculation procedures like the Restrained Electrostatic Potential (RESP) [@baylyWellbehavedElectrostaticPotential2002].
 
-Those non-bonded interactions are sometimes scaled down when atoms are, albeit not directly, connected by being part of the same dihedral, which is then called a 1--4 interaction and are usually omitted when atoms are direct or second neighbors.
+Those non-bonded interactions are sometimes scaled down when atoms are, albeit not directly, connected by being part of the same dihedral, which is then called a 1--4 interaction, and are usually omitted when atoms are direct or second neighbors.
 The contributions are then already integrated into the bonded terms.
 
 ### Force fields and topologies
@@ -525,7 +525,7 @@ The answer comes in the form of force fields.
 
 Many PhD students before me and other clever people have performed more detailed quantum mechanical _ab initio_ calculations to figure out what those parameters should be, like, for example, the force constant $k$ (in @eq-energy-harmonic) for a bond between two particular atoms.
 This will vary by molecule and chemical environment; not every carbon ($\ce{C}$) to carbon bond is the same, but we can group similar atoms into "atomtypes".
-In protein simulations a popular choice are the Amber force fields [@caseAmberTools2023].
+In protein simulations, a popular choice are the Amber force fields [@caseAmberTools2023].
 Since the early version developed in 1994, Amber94 [@cornellSecondGenerationForce1995] has been continuously refined.
 Amber99 improved upon it with RESP partial charges [@wangHowWellDoes2000] and provided a basis for further modifications.
 The parameters are not only fit to _ab initio_ QM calculations.
@@ -535,7 +535,7 @@ Other well-known force fields include CHARMM [@brooksCHARMMBiomolecularSimulatio
 The choice of a force field is one of the many crucial choices when setting up a molecular dynamics simulation, as different force fields have been optimized for different types of molecules or observables.
 Amber was chosen as it is specifically geared towards protein simulations.
 We will be going through examples from this force field, because how a force field is structured will be relevant to @sec-main-kimmdy in particular.
-Specifically, the lines shown are from a version of the files [@sorinExploringHelixCoilTransition2005] ported to the molecular dynamics engine GROMACS [@abrahamGROMACSHighPerformance2015] that I have been using during the course of my PhD.
+Specifically, the lines shown in the upcoming listings (@lst-ff, @lst-nonbonded) are from a version of the files [@sorinExploringHelixCoilTransition2005] ported to the molecular dynamics engine GROMACS [@abrahamGROMACSHighPerformance2015] that I have been using during the course of my PhD.
 
 Just like the total energy function @eq-energy-total, the main entry point for the force field (`forcefield.itp`, @lst-ff) includes references to the non-bonded and bonded parameters.
 In addition to that, it also holds more general parameters, such as the combination rule used to compute Lennard-Jones (LJ) parameters for a pair of atoms and the fudge parameters, which are factors for scaling down LJ and Coulomb (QQ) parameters for 1--4 interactions.
@@ -579,7 +579,7 @@ This is defined in the `topology`.
 The topology of a system lists all molecules and atoms of a system and how they are connected.
 So while a force field lists all potential interactions between types of atoms that it knows about, a topology is a concrete instance of the interactions and their parameters.
 The topology files shown are in the format of my MD engine of choice, GROMACS.
-A topology file (@lst-top) may include the force field and then list a number of moleculetypes that can then be used to describe the system with the number of each type listed in the molecules section.
+A topology file (@lst-top) may include the force field and then list a number of "moleculetypes" that can then be used to describe the system with the number of each type listed in the molecules section.
 Note though that a topology is only concerned with connectivity and types, but not with coordinates.
 Coordinates are specified in a separate file such as a `.gro` or `.pdb` [@bermanProteinDataBank2014] file, excerpts of which can be seen in @lst-gro and @lst-pdb.
 When GROMACS creates a topology from coordinates, it uses information such as the "residuetype" to fill out and assign interactions.
@@ -598,7 +598,7 @@ The same is done for higher-order interactions such as angles and dihedrals.
 A special case is the `pairs` section, which indicates pairs of atoms that have scaled LJ and Coulomb terms, usually due to them being part of a 1--4 interaction.
 This section also allows one to specify the Coulomb and van der Waals parameters directly.
 
-```{#lst-top .ini lst-cap="Select simplified lines from a .top file of a capped glycine dipeptide"}
+```{#lst-top .ini lst-cap="Selected, simplified lines from a .top file of a capped glycine dipeptide"}
 #include "./amber99sb-star-ildnp.ff/forcefield.itp"
 
 [ moleculetype ]
@@ -627,13 +627,13 @@ NA               110
 CL               110
 ```
 
-```{#lst-bonded .ini lst-cap="Select simplified lines from ffbonded.itp"}
+```{#lst-bonded .ini lst-cap="Selected, simplified lines from ffbonded.itp"}
 [ bondtypes ]
 ; i   j  func    b0        kb
   CT  HC   1     0.10900   284512.0
 ```
 
-```{#lst-rtp .ini lst-cap="Select lines from aminoacids.rtp"}
+```{#lst-rtp .ini lst-cap="Selected lines from aminoacids.rtp"}
 [ ACE ]
  [ atoms ]
   HH31    HC           0.11230     1
@@ -737,7 +737,7 @@ The interactions for the slowly decaying electrostatic interactions, on the othe
 Particle Mesh Ewald (PME) [@dardenParticleMeshEwald1993] is based on Ewald summation [@ewaldBerechnungOptischerUnd1921], but operates on a grid.
 Charges are assigned to the nearest grid point and forces on grid points as the result of Coulomb interactions are redistributed to the atoms around the grid point.
 Having a grid and periodic boundary conditions allows the PME method to solve the problem in frequency space after a Fourier transform, simplifying the computation down to a single sum over the grid.
-With this, PME scales with $N log(N)$.
+With this, PME scales with $\mathcal{O}(N\log{N})$.
 
 If we had to compute which particle is within the cutoff distance of which other particle for all particles at every step, we would not have gained much from using a cutoff in the first place.
 To alleviate this, a buffered neighbor list is used.
@@ -766,7 +766,7 @@ This free energy profile is sometimes also called the potential of mean force (P
 ![Because the harmonic potential holding each umbrella window in place along the reaction coordinate $\xi$ is often also called an umbrella potential, I was initially quite confused: "That's not how you hold an umbrella!" It starts to make more sense when referring to the histograms of the umbrella windows (lots of small umbrellas, @fig-hist-us), but I nonetheless made this squirrel holding an upside-down umbrella for a seminar using a combination of manual painting and StableDiffusion [@rombachHighResolutionImageSynthesis2022] running locally via InvokeAI [@InvokeaiInvokeAI2025].](img/umbrella-squirrel.png){#fig-squirrel .column-margin fig-scap="Squirrel holding upside-down umbrella."}
 
 The weighted histogram analysis method (WHAM) [@kumarWeightedHistogramAnalysis1992;@souailleExtensionWeightedHistogram2001;@hubG_whamAFreeWeighted2010] is then used to analyze the resulting forces and collective variable values.
-With a reaction coordinate $\xi$ the goal is to find the free energy profile $A(\xi)$.
+With a reaction coordinate $\xi$, the goal is to find the free energy profile $A(\xi)$.
 Given the probability $P(\xi)$ for visiting a point in phase space along the reaction coordinate, the free energy is given by @eq-energy-profile.
 
 $$
@@ -774,9 +774,9 @@ A(\xi) = -k_{\mathrm{B}} T \ln P(\xi),
 $${#eq-energy-profile}
 
 with the temperature $T$ and the Boltzmann constant $k_\mathrm{B}$.
-In the limit of infinite sampling we could just run our simulations forever to obtain the true probability distribution $P$, but with the umbrella windows along the reaction coordinate we can speed things up.
+In the limit of infinite sampling, we could just run our simulations forever to obtain the true probability distribution $P$, but with the umbrella windows along the reaction coordinate we can speed things up.
 Each umbrella window $i$ from 1 to $n$ produces a biased probability distribution $P_i^{bias}(\xi)$ with the biasing umbrella potential $V_i(\xi)$ and the free-energy contribution from the biasing potential $F_i$.
-Together the free energy of one window is described in terms of the biased distributions by @eq-energy-profile-from-bias.
+Together, the free energy of one window is described in terms of the biased distributions by @eq-energy-profile-from-bias.
 
 $$
 A_i(\xi) = −k_{\text{B}} T \ln P_i^\text{bias}(\xi) - V_i(\xi) + F_i
@@ -818,7 +818,7 @@ For example, a harmonic bond may start with a spring constant $k_\mathrm{A}$ and
 
 A key limitation of MM is that bonds can not form or break, i.e., chemistry can not happen, because all connectivity and parameters thereof have to be defined ahead of the simulation.
 So, let us take a look at a more detailed but also computationally expensive technique.
-In Quantum mechanical (QM) simulations, we are no longer treating atoms as indivisible units and instead also simulate the electrons around the nuclei to some extent.
+In quantum mechanical (QM) simulations, we are no longer treating atoms as indivisible units and instead also simulate the electrons around the nuclei to some extent.
 To what extent depends on the concrete method and implementation.
 We will be looking at density functional theory (DFT) in particular, but first we need to lay some groundwork.
 The overarching idea of MD remains, but the form of our energy function will change quite a bit.
@@ -843,7 +843,7 @@ Furthermore, the Born rule [@bornZurQuantenmechanikStossvorgaenge1926] tells us 
 So the probability of finding a particle in a volume slice $dr$ is equal to the integral over $dr$, normalized such that @eq-born-rule holds:
 
 $$
-\int_{-\infty}^{\infty}{ \Psi^*(r)\Psi(r) dr}=P=1
+\int_{-\infty}^{\infty}{ \Psi^*(r)\Psi(r)\mathop{dr}}=P=1
 $${#eq-born-rule}
 
 The Schrödinger equation is still incredibly hard to solve for, but we can get a step closer by invoking the Born-Oppenheimer approximation [@bornZurQuantentheorieMolekeln1927]:
@@ -855,10 +855,10 @@ As far as the electrons are concerned, the nuclei are pretty much stationary.
 This leads us to the electronic Schrödinger equation (@eq-el-schroedinger-small):
 
 $$
-\hat{H}_{el}(\mathbf {r} ,\mathbf {R} )\Psi_{el} (\mathbf {r} ,\mathbf {R} )=E_{el}\Psi_{el} (\mathbf {r} ,\mathbf {R} )
+\hat{H}_{\text{el}}(\mathbf {r} ,\mathbf {R} )\Psi_{\text{el}} (\mathbf {r} ,\mathbf {R} )=E_{\text{el}}\Psi_{\text{el}} (\mathbf {r} ,\mathbf {R} )
 $${#eq-el-schroedinger-small}
 
-In the following, $\Psi$ will refer to $\Psi_{el}$ and we can expand the equation to @eq-el-schroedinger
+In the following, $\Psi$ will refer to $\Psi_{\text{el}}$ and we can expand the equation to @eq-el-schroedinger
 
 $$
 \begin{array}{rcl}
@@ -938,7 +938,7 @@ we can apply the basic principles to larger systems, because we now "only" have 
 In Kohn-Sham Density Functional Theory (KS DFT) [@kohnSelfConsistentEquationsIncluding1965] we compute the energy of electrons by assuming that the density consists of a single Slater determinant (non-interacting limit) (@eq-ks-dft), which we can then treat like in the Hartree-Fock method (i.e., with a variational, self-consistent field approach).
 
 $$
-E[\rho ]=T[\rho ]+\int d\mathbf {r} \,v_{\text{ext}}(\mathbf {r} )\rho (\mathbf {r} )+E_{\text{Coulomb}}[\rho ]+E_{\text{xc}}[\rho],
+E[\rho ]=T[\rho ]+\int \mathop{d\mathbf{r}} \,v_{\text{ext}}(\mathbf {r} )\rho (\mathbf {r} )+E_{\text{Coulomb}}[\rho ]+E_{\text{xc}}[\rho],
 $${#eq-ks-dft}
 
 with electron density $\rho$, kinetic energy $T$, external potential $v$, position in space $\mathbf{r}$, and the errors from electron-electron exchange and correlation lumped into an exchange correlation energy $E_{\text{xc}}$.
@@ -986,7 +986,7 @@ The new Hamiltonian of the QM subsystem consists of the original Hamiltonian wit
 (@eq-qmmm, from the GROMACS documentation [@HybridQuantumClassicalSimulations]):
 
 $$
-H^{QM/MM} =
+H^{\text{QM/MM}} =
 H^{QM}_\text{{el}}-\sum_i^n\sum_J^M\frac{e^2 Q_J}{4\pi\epsilon_0r_{iJ}}+\sum_A^N\sum_J^M\frac{e^2 Z_A Q_J}{e\pi\epsilon_0 R_{AJ}},
 $${#eq-qmmm}
 
@@ -994,8 +994,8 @@ with the number of electrons $n$ and nuclei $N$ in the QM region and the number 
 Here, "charged" also includes partial charges, not just ions.
 
 $H^{QM}_{el}$ is the original electronic Hamiltonian of an isolated QM system.
-The first double sum (n,M) is the electrostatic interaction between the QM electrons and the MM atoms.
-The second double sum (N,M) is the electrostatic interaction of the QM nuclei with the MM atoms.
+The first double sum ($n$,$M$) is the electrostatic interaction between the QM electrons and the MM atoms.
+The second double sum ($N$,$M$) is the electrostatic interaction of the QM nuclei with the MM atoms.
 Lennard-Jones and Coulomb interactions between QM atoms are excluded in the MM Hamiltonian to avoid double counting, but Lennard-Jones interactions between QM and MM atoms are calculated.
 Bonded interactions at the QM-MM interface that contain at most one QM atom are described by MM.
 Bonds crossing the QM-MM interface are capped with a so-called link atom, a hydrogen that only exists in the QM region.
