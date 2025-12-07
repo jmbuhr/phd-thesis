@@ -161,7 +161,7 @@ With KIMMDY, I reveal how force concentration in complex cross-linked collagen f
 
 ## Acknowledgments {-}
 
-Firstly, I want to thank Frauke and the past and present members of our research group that were part of my journey.
+Firstly, I want to thank Frauke Gräter and the past and present members of our research group that were part of my journey.
 I couldn't have wished for a better environment for my PhD, and am grateful for the perfect mix of advice, support, and freedom in my research.
 Special thanks go to my colleagues Eric Hartmann and Kai Riedmiller for being a great team when developing KIMMDY and many insightful scientific discussions.
 
@@ -218,13 +218,13 @@ The first got cider, the second vitriol, the third vinegar.
 The fourth got citrus fruits such as oranges and lemons, and again the next just a pint of seawater, while the last group got a paste made of balsam of Peru, garlic, myrrh, mustard seed, and radish root [@lindTreatiseScurvyThree1772].
 As the HMS Salisbury makes its way back to Plymouth at the end of May, the citrus fruits have run out, but the two sailors that had been assigned them as a cure have already recovered.
 
-![The ability icon for "REMOVE SCURVY", ©Riot\ Games.](img/orange.png){#fig-remove-scurvy .column-margin fig-scap="Remove scurvy." width=30%}
+![The ability icon for "REMOVE SCURVY", ©\ Riot\ Games.](img/orange.png){#fig-remove-scurvy .column-margin fig-scap="Remove scurvy." width=30%}
 
 James Lind was neither the first to use citrus fruits as a cure nor the first to conduct such an experiment [@baronSailorsScurvyJames2009]; however, he is widely regarded as the first to include control groups.
 This arguably makes it the first clinical trial in history.
 I leave the details for historians to debate.
 
-![The Brazen Buccaneer card from Riftbound, the League of Legends trading card game, ©Riot\ Games.](./img/riftbound-buccaneer.png){#fig-rifbound .column-margin width=80%}
+![The Brazen Buccaneer card from Riftbound, the League of Legends trading card game, ©\ Riot\ Games.](./img/riftbound-buccaneer.png){#fig-rifbound .column-margin width=80%}
 
 At that time, nobody knew the true cause of scurvy and even Lind himself had various incorrect theories as to the cause and why specifically citrus fruits helped.
 But they did help, and their ability to treat and prevent scurvy has even made it into popular culture to the extent that there are video game characters that include citrus fruits as part of their appearance to signify them being seafaring.
@@ -270,7 +270,7 @@ This makes collagen an excellent candidate as a structural protein.
 
 At this point, it is worth noting that there are currently 28 known members of the collagen family.
 All of which contain at least one such triple helix, but what happens after varies.
-For this work, the most important members are of the fibrillar type (type I to VI, excluding IV), where understandably the early numbers also constitute the most common forms.
+For this work, the most important members are of the fibrillar type (type I to VI, excluding IV), where understandably the early numbers also constitute the most common forms^[Because numbering often happens in the order of discovery and the more common something is the more likely it is to be discovered and characterized.].
 More specifically, we will be looking at collagen type I, which is the chief component of tendons, bones, skin, and blood vessels.
 
 Collagen peptidases (collagenases) on the outer membrane of the cell cleave off the ends, leaving us with tropo-collagen.
@@ -399,7 +399,7 @@ The challenge is now to find a representation in which it becomes feasible to de
 
 As the phrase, usually attributed to statistician George Box, goes: "All models are wrong, but some are useful."
 So let us start with one of the most simplified ones that will allow us to simulate large systems.
-Afterward, we will add more detail and then finally combine both methods.
+Afterward, we will add more detail and then finally combine the simplified with the detailed method.
 
 We can describe our system as a collection of all the atomic positions $\vec{r}$ in 3-dimensional space and their momenta $\vec{p}$, where both vectors are of length 3N with N being the number of atoms.
 If we can propagate this system through time, we get a path through the 6N-dimensional phase space that we call a trajectory.
@@ -456,11 +456,11 @@ Let us assume our system is made up of different kinds of balls connected with s
 
 The total potential energy of our system is described as the sum of bonded and non-bonded terms @eq-energy-total, which we can further decompose with @eq-energy-bonded and @eq-energy-nonbonded.
 
-$$V_{total} = V_{bonded} + V_{nonbonded}$${#eq-energy-total}
+$$V_{\text{total}} = V_{\text{bonded}} + V_{\text{nonbonded}}$${#eq-energy-total}
 
-$$V_{bonded} = V_{bonds}+V_{angles}+V_{dihedrals}$${#eq-energy-bonded}
+$$V_{\text{bonded}} = V_{\text{bonds}}+V_{\text{angles}}+V_{\text{dihedrals}}$${#eq-energy-bonded}
 
-$$V_{nonbonded} = V_{electrostatic} + V_{van der Waals}$${#eq-energy-nonbonded}
+$$V_{\text{non-bonded}} = V_{\text{electrostatic}} + V_{\text{van der Waals}}$${#eq-energy-nonbonded}
 
 ![Excerpt from a glycine dipeptide with representative MM bonded terms, a bond $\mathrm{r}$, an angle $\alpha$, a dihedral $\mathrm{\phi}$ as well as non-bonded terms $\mathrm{nb}$ and 1--4.](./figures/gly-mm-annotated.png){#fig-mm fig-scap="Bonded energy terms." width=60%}
 
@@ -472,18 +472,18 @@ For example, while the potential energy in a bond between two atoms can be descr
 
 ![A harmonic potential.](./img/harmonic-potential.png){#fig-harmonic-potential .column-margin fig-scap="Harmonic potential."}
 
-$$V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2,$${#eq-energy-morse}
+$$V_{\text{Morse}}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2,$${#eq-energy-morse}
 
 with the well depth $D$, the equilibrium bond distance $r_0$ and $\beta$ relating to the force constant $k$ via $\beta=\sqrt{\frac{k}{2D}}$,
 in practice this is often simplified to a harmonic potential (@eq-energy-harmonic, @fig-harmonic-potential):
 
-$$V_{harmonic}(r) = \frac{1}{2} k (r - r_0)^2$${#eq-energy-harmonic}
+$$V_{\text{harmonic}}(r) = \frac{1}{2} k (r - r_0)^2$${#eq-energy-harmonic}
 
 This is a good approximation in the low-energy regime and has the added bonus that our molecule is unlikely to fall apart due to the infinitely scaling potential instead of the plateau in the Morse potential.
 Likewise, angles between three atoms can also be approximated with harmonic potentials.
 Finally, bonded connections between four atoms give rise to dihedral angles that are periodic in nature and are thus represented with cosines (@eq-energy-cosine) as the result of a Fourier series [@fourierMemoirePropagationChaleur2013].
 
-$$V_{cosine}(\phi) = k( 1 + \cos(n \phi - \phi_0))$${#eq-energy-cosine}
+$$V_{\text{cosine}}(\phi) = k( 1 + \cos(n \phi - \phi_0))$${#eq-energy-cosine}
 
 Sometimes additional bonded terms labelled "improper dihedrals" are used to, e.g., enforce planarity of certain molecules by adding potential energy for out-of-plane bending.
 
@@ -494,7 +494,7 @@ While the long-range attraction scales with $1/R^6$, the short-range repulsion f
 This is why in practice the Lennard-Jones potential [@lennard-jonesCohesion1931] is used instead of a more accurate formulation, simplifying computations (@eq-lennard-jones, @fig-lj-potential).
 
 $$
-V_{vdw}(r_{ab})=4\epsilon_{ij} \left[(\frac{\sigma_{ij}}{r_{ij}})^{12}-(\frac{\sigma_{ij}}{r_{ij}})^6 \right],
+V_{\text{vdw}}(r_{ab})=4\epsilon_{ij} \left[(\frac{\sigma_{ij}}{r_{ij}})^{12}-(\frac{\sigma_{ij}}{r_{ij}})^6 \right],
 $${#eq-lennard-jones}
 
 where $r$ is the distance between two atoms $i$ and $j$ and $\sigma$ and $\epsilon$ are parameters that depend on the pair of atoms.
@@ -504,7 +504,7 @@ where $r$ is the distance between two atoms $i$ and $j$ and $\sigma$ and $\epsil
 The electrostatic or Coulomb [@coulombFirstMemoirElectricity1785] term (@eq-coulomb and @fig-coulomb-potential) is also summed for all pairs of atoms.
 
 $$
-V_{Coulomb}(r_{ij})=\frac{Q_a Q_b}{\epsilon r^2},
+V_{\text{Coulomb}}(r_{ij})=\frac{Q_a Q_b}{\epsilon r^2},
 $${#eq-coulomb}
 
 with the effective dielectric constant $\epsilon$.
@@ -696,7 +696,7 @@ From the equipartition theorem [@boltzmannEinigeAllgemeineSatze1871] it follows 
 as a function of the individual particle velocities.
 
 $$
-T = \frac{E_{kin}}{\frac{3}{2}N k_{\mathrm{B}}}
+T = \frac{E_{\text{kin}}}{\frac{3}{2}N k_{\mathrm{B}}}
 = \frac{
 \langle \sum_{i=1}^{N} \frac{1}{2} m_i v_i^2  \rangle
 }{\frac{3}{2}N k_{\mathrm{B}}},
@@ -779,13 +779,13 @@ Each umbrella window $i$ from 1 to $n$ produces a biased probability distributio
 Together the free energy of one window is described in terms of the biased distributions by @eq-energy-profile-from-bias.
 
 $$
-A_i(\xi) = −k_{\mathrm{B}} T \ln P_i^\mathrm{bias}(\xi) - V_i(\xi) + F_i
+A_i(\xi) = −k_{\text{B}} T \ln P_i^\text{bias}(\xi) - V_i(\xi) + F_i
 $${#eq-energy-profile-from-bias}
 
 Next, the weights $w_i$ of @eq-wham are adjusted to minimize statistical error.
 
 $$
-P(\xi) = \sum_{i=1}^{n} w_i P_i^{\mathrm{bias}}(\xi)
+P(\xi) = \sum_{i=1}^{n} w_i P_i^{\text{bias}}(\xi)
 $${#eq-wham}
 
 This makes it another self-consistent method, aided by the fact the umbrella windows, or rather their histograms along the reaction coordinate, $\xi$ overlap.
@@ -938,7 +938,7 @@ we can apply the basic principles to larger systems, because we now "only" have 
 In Kohn-Sham Density Functional Theory (KS DFT) [@kohnSelfConsistentEquationsIncluding1965] we compute the energy of electrons by assuming that the density consists of a single Slater determinant (non-interacting limit) (@eq-ks-dft), which we can then treat like in the Hartree-Fock method (i.e., with a variational, self-consistent field approach).
 
 $$
-E[\rho ]=T[\rho ]+\int d\mathbf {r} \,v_{\text{ext}}(\mathbf {r} )\rho (\mathbf {r} )+E_{\text{coulomb}}[\rho ]+E_{\text{xc}}[\rho],
+E[\rho ]=T[\rho ]+\int d\mathbf {r} \,v_{\text{ext}}(\mathbf {r} )\rho (\mathbf {r} )+E_{\text{Coulomb}}[\rho ]+E_{\text{xc}}[\rho],
 $${#eq-ks-dft}
 
 with electron density $\rho$, kinetic energy $T$, external potential $v$, position in space $\mathbf{r}$, and the errors from electron-electron exchange and correlation lumped into an exchange correlation energy $E_{\text{xc}}$.
@@ -987,7 +987,7 @@ The new Hamiltonian of the QM subsystem consists of the original Hamiltonian wit
 
 $$
 H^{QM/MM} =
-H^{QM}_{el}-\sum_i^n\sum_J^M\frac{e^2 Q_J}{4\pi\epsilon_0r_{iJ}}+\sum_A^N\sum_J^M\frac{e^2 Z_A Q_J}{e\pi\epsilon_0 R_{AJ}},
+H^{QM}_\text{{el}}-\sum_i^n\sum_J^M\frac{e^2 Q_J}{4\pi\epsilon_0r_{iJ}}+\sum_A^N\sum_J^M\frac{e^2 Z_A Q_J}{e\pi\epsilon_0 R_{AJ}},
 $${#eq-qmmm}
 
 with the number of electrons $n$ and nuclei $N$ in the QM region and the number of charged MM atoms $M$.
@@ -1694,7 +1694,7 @@ Assuming a bond has been chosen to be hydrolyzed, KIMMDY then gets the recipe to
 For simplicity, only a small portion of the complete molecule is shown around the peptide bond in @fig-peptide-water and @fig-top.
 The plugin only had to specify bonds that are to be deleted and the new ones to create; KIMMDY takes care of higher-order interactions.
 For example, deleting the peptide bond $\ce{4\ C - 6\ N}$ will also remove the angle $\ce{6\ N - 4\ C - 5\ O}$ and the dihedral $\ce{7\ H - 6\ N - 4\ C - 5\ O}$ and so forth.
-Similarly, the atoms that were previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have nonbonded interactions.
+Similarly, the atoms that were previously excluded due to being bound or part of a 1--3 or 1--4 interaction will now have non-bonded interactions.
 Newly formed bonds such as $\ce{9\ OW - 4\ C}$ will create the corresponding angles, dihedrals and pairs for 1--4 interactions.
 Even improper dihedrals that are defined in the residuetypes, such as those for peptide bonds between amino acids, are re-created based on the residuetype recorded in the topology.
 If the basic operations are not sufficient or non-standard changes are required, a `RecipeStep` can also bring a custom function that is free to modify the topology in any way necessary.
@@ -1921,25 +1921,25 @@ with $\beta=\sqrt{\frac{k}{2D}}$,the spring constant $k$, and the dissociation e
 The effective potential (@eq-v-eff)
 
 $$
-V_{eff}(r)=V_{morse}(r)-F(\overline{r})~r,
+V_{eff}(r)=V_{\text{Morse}}(r)-F(\overline{r})~r,
 $${#eq-v-eff}
 
 has a minimum and a maximum given by @eq-r-min
 
 $$
-r_{min/max}=r_0 - \frac{1}{\beta} \left( \beta~D \pm \sqrt{\frac{\beta^2D^{2}-2D\beta F(\overline{r})} {2\beta D} } \right),
+r_{\text{min/max}}=r_0 - \frac{1}{\beta} \left( \beta~D \pm \sqrt{\frac{\beta^2D^{2}-2D\beta F(\overline{r})} {2\beta D} } \right),
 $${#eq-r-min}
 
 and consequently provides the energy barrier $\Delta E$ for force-dependent homolysis via @eq-hom-barrier:
 
 $$
-\Delta E = V_{eff}(r_{max}) - V_{eff}(r_{min}),
+\Delta E = V_{eff}(r_{\text{max}}) - V_{eff}(r_{\text{min}}),
 $${#eq-hom-barrier}
 
 which is then used in the Arrhenius equation (@eq-arrhenius) to obtain a reaction rate (@eq-hom-rate).
 
 $$
-k_{homolysis} = A\,\text{e}^{\left(\frac{-\Delta E}{RT}\right)}
+k_{\text{homolysis}} = A\,\text{e}^{\left(\frac{-\Delta E}{RT}\right)}
 $${#eq-hom-rate}
 
 Rates for hydrolysis are also force-dependent.
@@ -1992,7 +1992,7 @@ Since the concentration of $\ce{OH^{-}}$ is proportional to the probability that
 
 $$
 \mathrm{Rate}(bond, t) = \
-\frac{\mathrm{SASA}(bond, t)}{\mathrm{SASA}_{max}} \cdot \
+\frac{\mathrm{SASA}(bond, t)}{\mathrm{SASA}_{\text{max}}} \cdot \
 \frac{c_{\ce{OH^{-}}}}{c_{\ce{OH^{-}}_{\mathrm{exp}}}} \
 \cdot \mathrm{rate}_{\mathrm{exp}}(F_{bond,t})
 $${#eq-hydrolysis-rate}
