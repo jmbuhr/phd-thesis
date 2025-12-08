@@ -13,7 +13,7 @@ author:
         url: https://www.iwr.uni-heidelberg.de/en
       - name: Heidelberg Institute for Theoretical Studies (HITS)
         url: https://h-its.org/
-      - name: Max Planck-Institute for Polymer Studies (MPI-P)
+      - name: Max Planck Institute for Polymer Studies (MPI-P)
         url: https://www.mpip-mainz.mpg.de
 referees:
   - name: Prof. Dr. Frauke Gräter
