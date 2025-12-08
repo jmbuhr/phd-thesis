@@ -40,7 +40,6 @@ bibliography: ./references.bib
 mermaid-format: png
 nocite:
   - "@allaireQuarto2022c"
-#engine: jupyter
 execute:
   eval: true
   echo: false

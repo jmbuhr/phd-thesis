@@ -22,11 +22,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="1.7776533"
-     inkscape:cx="907.37605"
-     inkscape:cy="371.83854"
-     inkscape:window-width="2560"
-     inkscape:window-height="1371"
+     inkscape:zoom="0.62849535"
+     inkscape:cx="1185.3707"
+     inkscape:cy="416.86864"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -889,36 +889,6 @@
        y="524.882812"
        id="use274" />
   </g>
-  <g
-     fill="rgb(0%, 0%, 0%)"
-     fill-opacity="1"
-     id="g280">
-    <use
-       xlink:href="#glyph-1-9"
-       x="1902.425781"
-       y="674.871094"
-       id="use278" />
-  </g>
-  <g
-     fill="rgb(0%, 0%, 0%)"
-     fill-opacity="1"
-     id="g284">
-    <use
-       xlink:href="#glyph-1-4"
-       x="1925.917969"
-       y="674.472656"
-       id="use282" />
-  </g>
-  <g
-     fill="rgb(0%, 0%, 0%)"
-     fill-opacity="1"
-     id="g288">
-    <use
-       xlink:href="#glyph-2-1"
-       x="1953.769531"
-       y="676.644531"
-       id="use286" />
-  </g>
   <path
      fill="none"
      stroke-width="0.0666667"
@@ -1139,5 +1109,21 @@
        x="1147.833127"
        y="594.03125"
        id="use352" />
+  </g>
+  <g
+     fill="#000000"
+     fill-opacity="1"
+     id="g168-3"
+     transform="translate(1291.559,280.4373)">
+    <use
+       xlink:href="#glyph-1-1"
+       x="605.07031"
+       y="397.95703"
+       id="use164-6" />
+    <use
+       xlink:href="#glyph-1-7"
+       x="629.95032"
+       y="397.95703"
+       id="use166-7" />
   </g>
 </svg>
