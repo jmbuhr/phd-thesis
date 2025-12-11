@@ -87,6 +87,13 @@ right: Riftbound, the League of Legends TCG ©Riot Games
 ![](./figures/render-fibril-black-cropped.png)
 :::::
 
+
+:::{.footer}
+Image sources:
+foot: Scientfic Animations, <https://scientificanimations.com/wiki-images/>,
+SEM: Hughes et al., Figure 5d of @collagenSEM2005.
+:::
+
 ## The Gly-X-Y motif allows tight turns and packing
 
 ![](./figures/hyd/triple-gly-pro.png)
