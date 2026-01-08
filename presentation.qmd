@@ -10,6 +10,7 @@ author: Jannik Buhr
 csl: ./assets/nature-mod.csl
 format:
   revealjs:
+    auto-animate-duration: 0.3
     center-title-slide: false
     theme: ./www/presentation.scss
     css: ./www/presentation.css
@@ -74,19 +75,33 @@ right: Riftbound, the League of Legends TCG ©Riot Games
 
 ## Collagen keeps us together
 
-::::: {layout="[[3,5,6],[1,1],[-1,60,-1]]"}
-![](./img/Magnified_view_of_a_Tendon_cropped.png){}
+::: {.columns}
+::: {.column width="40%"}
+![](./figures/render-chain-c-tubes-cpk-cropped.png)
 
-![](img/collagen-sem.png){}
-
-
-![](./figures/render-chain-c-tubes-cpk-cropped.png){}
-
-![](./figures/render-triple-tubes-cpk-cropped.png){}
+![](./figures/render-triple-tubes-cpk-cropped.png)
 
 ![](./figures/render-fibril-black-cropped.png)
-:::::
 
+![](img/collagen-sem.png){}
+:::
+::: {.column width="30%"}
+<br>
+
+- single peptide
+
+<br>
+
+- triple helix
+
+<br>
+
+- collagen fibril
+:::
+::: {.column width="30%"}
+![](./img/Magnified_view_of_a_Tendon_cropped.png){}
+:::
+:::
 
 :::{.footer}
 Image sources:
@@ -139,15 +154,30 @@ X,Y: proline or hydroxyproline
 
 ## Collagen I is cross-linked
 
-::: {layout="[[5,1,1,1],[1,1,1]]"}
+:::: {layout="[[4.5,1,0.1,1,0.1,1],[1,1,1]]"}
 ![](./figures/hyd/crosslinks-closer.png)
 
-![Lysine](img/lysine.svg)
+![Lysine](img/lysine.svg){#lysine}
 
-![Hydroxylysine](img/hydroxylysine.svg)
-
-![Center of a pyridinoline crosslink](./img/pyridinoline-center.svg)
+:::{.arrow}
+→
 :::
+
+![Hydroxylysine](img/hydroxylysine.svg){#hydroxylysine}
+
+:::{.arrow}
+→
+:::
+
+![Center of a pyridinoline crosslink](./img/pyridinoline-center.svg){#pyridinoline}
+::::
+
+<style>
+.arrow {
+  margin-top: 8.5%;
+  font-weight: bold;
+}
+</style>
 
 **Lysyl-hydroxylase** ( 🟠 )
 
@@ -171,13 +201,21 @@ X,Y: proline or hydroxyproline
 
 ## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
 
+::: {.columns}
+::: {.column width="70%"}
 ![](./img/hyd-vs-hom-reaction.svg)
 
-"Base-Catalyzed **Peptide Hydrolysis** Is **Insensitive** to Mechanical Stress", Xia et al. [@xiaBaseCatalyzedPeptideHydrolysis2011]
-
-vs.
-
 "Mechanical Activation Drastically **Accelerates** Amide Bond Hydrolysis, Matching Enzyme Activity", Pill et al. [@pillMechanicalActivationDrastically2019]
+:::
+::: {.column width="30%"}
+[What **factors** influence their **competition**?]{.fragment}
+
+[What is the influence of the **collagen structure**?]{.fragment}
+
+[Why do we still see **radicals**?]{.fragment}
+:::
+:::
+
 
 ## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
 
@@ -244,44 +282,22 @@ $m$: mass
 :::
 ::::
 
-## Force Fields and Topologies
-
-::::{layout="[[5,4]]"}
-:::d
-![Bond $\mathrm{r}$, angle $\mathrm{\alpha}$, dihedral $\mathrm{\phi}$, non-bonded terms $\mathrm{nb}$, $\mathrm{1-4}$.](./figures/gly-mm-annotated.png)
+:::{#popup .fragment}
+Connectivity and parameters pre-defined!
 :::
 
-:::d
-```{#lst-nonbonded .ini lst-cap="Select lines from ffnonbonded.itp"}
-[ atomtypes ]
-; name at.num  mass    charge ptype  sigma      epsilon
-C       6      12.01   0.0000  A   3.39967e-01  3.59824e-01
-CA      6      12.01   0.0000  A   3.39967e-01  3.59824e-01
-H       1       1.008  0.0000  A   1.06908e-01  6.56888e-02
-```
-
-```{#lst-top .ini lst-cap="Select simplified lines from a .top file of a capped glycine dipeptide"}
-[ moleculetype ]
-; Name            nrexcl
-Protein             3
-
-[ atoms ]
-; nr  type resnr residue  atom  cgnr   charge  mass  typeB ..
-  1    CT     1    ACE    CH3    1  -0.3662   12.01
-  2    HC     1    ACE   HH31    2   0.1123   1.008
-
-[ bonds ]
-;  ai    aj funct    c0    c1      c2    c3
-    1     2     1
-    1     3     1
-
-[ angles ]
-;  ai    aj    ak funct   c0   c1   c2    c3
-    2     1     3     1
-```
-:::
-::::
-
+<style>
+#popup {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 20%;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+</style>
 
 ## So how do we do chemistry?
 
@@ -758,6 +774,46 @@ This work was supported by the Klaus Tschira Foundation and has received funding
 :::
 
 # Appendix {.center}
+
+## Force Fields and Topologies
+
+::::{layout="[[5,4]]"}
+:::d
+![Bond $\mathrm{r}$, angle $\mathrm{\alpha}$, dihedral $\mathrm{\phi}$, non-bonded terms $\mathrm{nb}$, $\mathrm{1-4}$.](./figures/gly-mm-annotated.png)
+:::
+
+:::d
+```{#lst-nonbonded .ini lst-cap="Select lines from ffnonbonded.itp"}
+[ atomtypes ]
+; name at.num  mass    charge ptype  sigma      epsilon
+C       6      12.01   0.0000  A   3.39967e-01  3.59824e-01
+CA      6      12.01   0.0000  A   3.39967e-01  3.59824e-01
+H       1       1.008  0.0000  A   1.06908e-01  6.56888e-02
+```
+
+```{#lst-top .ini lst-cap="Select simplified lines from a .top file of a capped glycine dipeptide"}
+[ moleculetype ]
+; Name            nrexcl
+Protein             3
+
+[ atoms ]
+; nr  type resnr residue  atom  cgnr   charge  mass  typeB ..
+  1    CT     1    ACE    CH3    1  -0.3662   12.01
+  2    HC     1    ACE   HH31    2   0.1123   1.008
+
+[ bonds ]
+;  ai    aj funct    c0    c1      c2    c3
+    1     2     1
+    1     3     1
+
+[ angles ]
+;  ai    aj    ak funct   c0   c1   c2    c3
+    2     1     3     1
+```
+:::
+::::
+
+
 
 ## KIMMDY finds a new radical scavanging candidate in collagen
 
