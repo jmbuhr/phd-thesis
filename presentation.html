@@ -922,22 +922,28 @@ doi:10.1101/2025.07.02.662624</p>
     ">
     </iframe>
     
+<blockquote>
 <p><em>also a good excuse to show the mol* plugin I wrote for our documentation</em></p>
+</blockquote>
 </div>
 </section>
 <section id="slow-growth-to-execute-even-complex-reactions-like-hydrolysis" class="slide level2">
 <h2>Slow-growth to execute even complex reactions like hydrolysis</h2>
-<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="d quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="./plots/kimmdy/slow-growth.png"></p>
+<blockquote>
+<p>Does <strong>not</strong> have to follow the <strong>chemically</strong><br>
+accurate <strong>reaction coordinate</strong></p>
+</blockquote>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="d quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="./img/slow-growth-annotation.png"></p>
 </div>
 </div>
 </div>
-<p><video data-src="./www/gly-hydrolysis.mp4" class="absolute fragment" style="top: 0%; right: 0%; width: 52%; " controls=""><a href="./www/gly-hydrolysis.mp4">Video</a></video></p>
+<p><video data-src="./www/gly-hydrolysis.mp4" class="absolute fragment" style="top: 5%; right: 0%; width: 52%; " controls=""><a href="./www/gly-hydrolysis.mp4">Video</a></video></p>
 </section></section>
 <section>
 <section id="applying-kimmdy-to-collagen-hydrolysis-and-homolysis" class="title-slide slide level1 center">
@@ -950,48 +956,34 @@ doi:10.1101/2025.07.02.662624</p>
 <img data-src="./img/hyd-vs-hom-reaction.svg" class="r-stretch"></section>
 <section id="applying-kimmdy-to-collagen-hydrolysis-and-homolysis-2" class="slide level2">
 <h2>Applying KIMMDY to collagen <span class="blue">hydrolysis</span> and <span class="red">homolysis</span></h2>
-<div class="quarto-layout-panel" data-layout="[1,0.2,1]">
-<div class="quarto-layout-row">
-<div class="d quarto-layout-cell" style="flex-basis: 45.5%;justify-content: center;">
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>Arrhenius equation</p>
-<p><span id="eq-arrhenius"><span class="math display">\[
-k = A\,\mathrm{e}^{\left(\frac{-E_\mathrm{a}}{RT}\right)}
-\tag{2}\]</span></span></p>
+<p><span class="math display">\[
+k = A\,\mathrm{e}^{\left(\frac{-\mathbf{E_\mathrm{a}}}{RT}\right)}
+\]</span></p>
+<div class="cl">
 <p><span class="math inline">\(A\)</span>: pre-exponential factor (attempt frequency)<br>
 <span class="math inline">\(R\)</span>: gas constant<br>
 <span class="math inline">\(T\)</span>: temperature</p>
-<p><img data-src="./img/morse-potential.png" width="500"></p>
-<p><span id="eq-energy-morse"><span class="math display">\[V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2 \tag{3}\]</span></span></p>
 </div>
-<div class="d quarto-layout-cell" style="flex-basis: 9.1%;justify-content: flex-start;">
-
-</div>
-<div class="d quarto-layout-cell" style="flex-basis: 45.5%;justify-content: flex-start;">
-<p><strong>Homolysis</strong></p>
-<p>Benedikt Rennekamp <span class="citation" data-cites="rennekampHybridKineticMonte2020">[<a href="#/references" role="doc-biblioref" onclick="">6</a>]</span>,<br>
-Bell-Evans model <span class="citation" data-cites="bellModelsSpecificAdhesion1978 evansDynamicStrengthMolecular1997">[<a href="#/references" role="doc-biblioref" onclick="">9</a>, <a href="#/references" role="doc-biblioref" onclick="">10</a>]</span>.</p>
-<p><strong>Hydrolysis</strong></p>
-<p>Same force calculation with a twist</p>
-</div>
-</div>
-</div>
-</section>
-<section id="hydrolysis-reaction-rate-is-modeled-after-experimental-data" class="slide level2">
-<h2>Hydrolysis reaction rate is modeled after experimental data</h2>
-<div class="quarto-layout-panel" data-layout="[3,3,1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
-<p><img data-src="./plots/kimmdy/force-response.png"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
-<p><img data-src="./plots/plots/pill-energies.png"></p>
-</div>
-<div class="r-stack quarto-layout-cell" style="flex-basis: 14.3%;justify-content: center;">
-<p><img data-src="./img/hydrolysis-reaction-vertical-ts2.svg"></p>
-<p><img data-src="./img/hydrolysis-reaction-vertical-ts1.svg" class="fragment"></p>
-</div>
-</div>
-</div>
+</div><div class="column" style="width:50%;">
+<p>Morse potential</p>
+<p><img data-src="./img/morse-potential.png" style="width:40.0%"></p>
+<!-- $$V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2$${#eq-energy-morse} -->
+</div></div>
+<hr>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="homolysis"><span class="red">Homolysis</span></h3>
+<p><strong>Physical</strong> (Bell-Evans <span class="citation" data-cites="bellModelsSpecificAdhesion1978 evansDynamicStrengthMolecular1997">[<a href="#/references" role="doc-biblioref" onclick="">9</a>, <a href="#/references" role="doc-biblioref" onclick="">10</a>]</span>) model<br>
+by Benedikt Rennekamp <span class="citation" data-cites="rennekampHybridKineticMonte2020">[<a href="#/references" role="doc-biblioref" onclick="">6</a>]</span></p>
+</div><div class="column" style="width:50%;">
+<h3 id="hydrolysis"><span class="blue">Hydrolysis</span></h3>
+<p>Hybrid <strong>physical</strong> + <strong>experimental</strong> model<br>
+based on <strong>AFM</strong> data by Pill et al. <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span></p>
+<p><img data-src="./plots/kimmdy/force-response.png" style="width:50.0%"></p>
+</div></div>
 </section>
 <section id="hydrolysis-rate-incorporates-sasa" class="slide level2">
 <h2>Hydrolysis rate incorporates SASA</h2>
@@ -1042,45 +1034,73 @@ Bell-Evans model <span class="citation" data-cites="bellModelsSpecificAdhesion19
 \frac{\mathrm{SASA}(bond, t)}{\mathrm{SASA}_{max}} \cdot \
 \frac{c_{OH^-}}{c_{OH^-_{\mathrm{exp}}}} \
 \cdot \mathrm{rate}_{\mathrm{exp}}(F_{bond,t})
-\tag{4}\]</span></span></p>
+\tag{2}\]</span></span></p>
 <div class="absolute" style="left: 50%; bottom: 0px; width: 25%; ">
 <p><img data-src="./img/peptide-water.png"></p>
 </div>
 </section>
 <section id="solvent-accessibility-in-the-fibril-is-heterogeneous" class="slide level2">
 <h2>Solvent accessibility in the fibril is heterogeneous</h2>
+<div class="nomar">
 <p><img data-src="./plots/kimmdy/sasa.png"></p>
-<div class="quarto-layout-panel" data-layout="[[7,3,3]]">
+</div>
+<style>
+.nomar p, .nomar img {
+  margin-bottom: -1.5rem;
+}
+.faded {
+  opacity: 0.7;
+}
+</style>
+<div class="faded quarto-layout-panel" data-layout="[-1,2.5,2,2,-0.4,2.5,2,2,-1]">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 53.9%;justify-content: center;">
-<p><img data-src="./figures/hyd/crosslinks-wide.png"></p>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 6.5%;justify-content: flex-start;">
+<p>&nbsp;</p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
-<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped.png"></p>
+<div class="quarto-layout-cell" style="flex-basis: 16.2%;justify-content: center;">
+<p><img data-src="./figures/hyd/crosslinks-wide-rotated.png"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 23.1%;justify-content: center;">
-<p><img data-src="./figures/render-triple-tubes-cpk-cropped.png"></p>
+<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped-rotated.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk-cropped-rotated.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 2.6%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.2%;justify-content: center;">
+<p><img data-src="./figures/hyd/crosslinks-wide-rotated.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: center;">
+<p><img data-src="./figures/render-chain-c-tubes-cpk-cropped-rotated.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: center;">
+<p><img data-src="./figures/render-triple-tubes-cpk-cropped-rotated.png"></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 6.5%;justify-content: flex-start;">
+<p>&nbsp;</p>
 </div>
 </div>
 </div>
 </section>
 <section id="peptide-bonds-near-the-center-are-still-accessible" class="slide level2">
 <h2>Peptide bonds near the center are still accessible</h2>
-<div class="quarto-layout-panel" data-layout="[[2,-1], [4,3]]">
+<div class="quarto-layout-panel" data-layout="[[1,-1], [2,-1]]">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
-<p><img data-src="./plots/kimmdy/sasa_y_slice.png"></p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./plots/kimmdy/sasa_z_slice.png"></p>
 </div>
-<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
 </div>
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 57.1%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
 <p><img data-src="./plots/kimmdy/sasa_radial_distance.png"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
-<p><img data-src="./plots/kimmdy/sasa_z_slice.png"></p>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
 </div>
 </div>
 </div>
@@ -1124,14 +1144,20 @@ Bell-Evans model <span class="citation" data-cites="bellModelsSpecificAdhesion19
 <div class="columns">
 <div class="column" style="width:30%;">
 <p><img data-src="./figures/render-qm-ti.png"></p>
-<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
+<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png" style="width:80.0%"></p>
 <p><img data-src="./plots/kimmdy/rates.png"></p>
 </div><div class="column" style="width:40%;">
 <ul>
-<li class="fragment"><p><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
-<a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p></li>
-<li class="fragment"><p><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong>.<br>
-<strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></p></li>
+<li class="fragment"><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
+<a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></li>
+</ul>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong>.<br>
+<strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></li>
+</ul>
+<p><br></p>
+<ul>
 <li class="fragment"><p><strong>Thesis</strong> and <strong>slides</strong> available at<br>
 <a href="https://jmbuhr.de/phd-thesis">jmbuhr.de/phd-thesis</a></p></li>
 <li class="fragment"><p>Eat your <strong>oranges</strong>! 🟠</p></li>
@@ -1270,6 +1296,10 @@ Listing&nbsp;2: Select simplified lines from a .top file of a capped glycine dip
 </div>
 </div>
 </section>
+<section id="more-sasa" class="slide level2">
+<h2>More SASA</h2>
+
+<img data-src="./plots/kimmdy/sasa_y_slice.png" class="r-stretch"></section>
 <section id="kimmdy-finds-a-new-radical-scavanging-candidate-in-collagen" class="slide level2">
 <h2>KIMMDY finds a new radical scavanging candidate in collagen</h2>
 <div class="quarto-layout-panel" data-layout="[[1],[5,5,1,1]]">

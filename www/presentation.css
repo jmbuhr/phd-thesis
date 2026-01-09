@@ -80,6 +80,10 @@
   text-align: center;
 }
 
+.cl {
+  text-align: left;
+}
+
 /* thicker strikethrough */
 del {
   text-decoration-thickness: 0.1em;

@@ -579,19 +579,27 @@ Graph Attentional Protein Parametrization by Leif Seute [@seuteGrappaMachineLear
 :::d
 {{< mol-url ./assets/npt-just-ala.gro >}}
 
-_also a good excuse to show the mol* plugin I wrote for our documentation_
+> _also a good excuse to show the mol* plugin I wrote for our documentation_
 :::
 
 
 ## Slow-growth to execute even complex reactions like hydrolysis
 
-::::{layout="[1,1]"}
+::::{layout-ncol=2}
+:::d
 ![](./plots/kimmdy/slow-growth.png)
 
+> Does **not** have to follow the **chemically**\
+> accurate **reaction coordinate**
+:::
+
+:::d
 ![](./img/slow-growth-annotation.png)
+:::
+
 ::::
 
-![](./www/gly-hydrolysis.mp4){.absolute top=0% right=0% width=52% .fragment}
+![](./www/gly-hydrolysis.mp4){.absolute top=5% right=0% width=52% .fragment}
 
 # Applying KIMMDY to collagen<br>[hydrolysis]{.blue} and [homolysis]{.red} {.center}
 
@@ -601,51 +609,48 @@ _also a good excuse to show the mol* plugin I wrote for our documentation_
 
 ## Applying KIMMDY to collagen [hydrolysis]{.blue} and [homolysis]{.red}
 
-:::: {layout="[1,0.2,1]"}
-:::d
+::::: {.columns}
+:::: {.column width="50%"}
 Arrhenius equation
 
 $$
-k = A\,\mathrm{e}^{\left(\frac{-E_\mathrm{a}}{RT}\right)}
-$${#eq-arrhenius}
+k = A\,\mathrm{e}^{\left(\frac{-\mathbf{E_\mathrm{a}}}{RT}\right)}
+$$
 
+:::cl
 $A$: pre-exponential factor (attempt frequency)\
 $R$: gas constant \
 $T$: temperature
-
-![](./img/morse-potential.png){width=500px}
-
-$$V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2$${#eq-energy-morse}
-:::
-
-:::d
-:::
-
-:::d
-**Homolysis**
-
-Benedikt Rennekamp [@rennekampHybridKineticMonte2020],\
-Bell-Evans model [@bellModelsSpecificAdhesion1978;@evansDynamicStrengthMolecular1997].
-
-**Hydrolysis**
-
-Same force calculation with a twist
 :::
 ::::
+:::: {.column width="50%"}
+Morse potential
 
-## Hydrolysis reaction rate is modeled after experimental data
+![](./img/morse-potential.png){width=40%}
 
-::::{layout="[3,3,1]"}
-![](./plots/kimmdy/force-response.png)
-
-![](./plots/plots/pill-energies.png)
-
-:::{.r-stack}
-![](./img/hydrolysis-reaction-vertical-ts2.svg)
-
-![](./img/hydrolysis-reaction-vertical-ts1.svg){.fragment}
-:::
+<!-- $$V_{morse}(r) = D \left(1 - e^{-\beta(r - r_0)}\right)^2$${#eq-energy-morse} -->
 ::::
+:::::
+
+<hr>
+
+::: {.columns}
+::: {.column width="50%"}
+### [Homolysis]{.red}
+
+**Physical** (Bell-Evans [@bellModelsSpecificAdhesion1978;@evansDynamicStrengthMolecular1997]) model\
+by Benedikt Rennekamp [@rennekampHybridKineticMonte2020]
+
+:::
+::: {.column width="50%"}
+### [Hydrolysis]{.blue}
+
+Hybrid **physical** + **experimental** model\
+based on **AFM** data by Pill et al. [@pillMechanicalActivationDrastically2019]
+
+![](./plots/kimmdy/force-response.png){width=50%}
+:::
+:::
 
 ## Hydrolysis rate incorporates SASA
 
@@ -688,9 +693,9 @@ SASA
 :::{layout="[[7,3,3]]"}
 ![](./figures/hyd/crosslinks-wide.png)
 
-![](./figures/render-chain-c-tubes-cpk-cropped.png){}
+![](./figures/render-chain-c-tubes-cpk-cropped.png)
 
-![](./figures/render-triple-tubes-cpk-cropped.png){}
+![](./figures/render-triple-tubes-cpk-cropped.png)
 :::
 
 
@@ -707,24 +712,40 @@ $${#eq-hydrolysis-rate}
 
 ## Solvent accessibility in the fibril is heterogeneous
 
+:::nomar
 ![](./plots/kimmdy/sasa.png)
-
-:::{layout="[[7,3,3]]"}
-![](./figures/hyd/crosslinks-wide.png)
-
-![](./figures/render-chain-c-tubes-cpk-cropped.png){}
-
-![](./figures/render-triple-tubes-cpk-cropped.png){}
 :::
+
+<style>
+.nomar p, .nomar img {
+  margin-bottom: -1.5rem;
+}
+.faded {
+  opacity: 0.7;
+}
+</style>
+
+::: {layout="[-1,2.5,2,2,-0.4,2.5,2,2,-1]" .faded}
+![](./figures/hyd/crosslinks-wide-rotated.png)
+
+![](./figures/render-chain-c-tubes-cpk-cropped-rotated.png)
+
+![](./figures/render-triple-tubes-cpk-cropped-rotated.png)
+
+![](./figures/hyd/crosslinks-wide-rotated.png)
+
+![](./figures/render-chain-c-tubes-cpk-cropped-rotated.png)
+
+![](./figures/render-triple-tubes-cpk-cropped-rotated.png)
+:::
+
 
 ## Peptide bonds near the center are still accessible
 
-::: {layout="[[2,-1], [4,3]]"}
-![](./plots/kimmdy/sasa_y_slice.png)
+::: {layout="[[1,-1], [2,-1]]"}
+![](./plots/kimmdy/sasa_z_slice.png)
 
 ![](./plots/kimmdy/sasa_radial_distance.png)
-
-![](./plots/kimmdy/sasa_z_slice.png)
 :::
 
 ## Homolysis becomes competitive with hydrolysis by force concentration
@@ -750,7 +771,7 @@ $${#eq-hydrolysis-rate}
 ::: {.column width="30%"}
 ![](./figures/render-qm-ti.png)
 
-![](./plots/qm/wethyd_us_deltaE_comparison.png)
+![](./plots/qm/wethyd_us_deltaE_comparison.png){width=80%}
 
 ![](./plots/kimmdy/rates.png)
 :::
@@ -758,8 +779,12 @@ $${#eq-hydrolysis-rate}
 - **KIMMDY** is a versatile tool for **reactive MD** simulations:\
   [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
 
+<br>
+
 - **Triple helix** marginally **impedes hydrolysis**.\
   **Homolysis** becomes competitive to **hydrolysis** due to **force concentration**
+
+<br>
 
 - **Thesis** and **slides** available at\
 [jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)
@@ -843,6 +868,9 @@ Protein             3
 :::
 ::::
 
+## More SASA
+
+![](./plots/kimmdy/sasa_y_slice.png)
 
 
 ## KIMMDY finds a new radical scavanging candidate in collagen
