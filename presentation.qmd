@@ -154,18 +154,20 @@ X,Y: proline or hydroxyproline
 
 ## Collagen I is cross-linked
 
-:::: {layout="[[4.5,1,0.1,1,0.1,1],[1,1,1]]"}
+:::: {layout="[[-2,7,-2],[-2,1,0.7,1,0.7,1,-2]]"}
 ![](./figures/hyd/crosslinks-closer.png)
 
 ![Lysine](img/lysine.svg){#lysine}
 
 :::{.arrow}
+**Lysyl-hydroxylase** ( 🟠 )\
 →
 :::
 
 ![Hydroxylysine](img/hydroxylysine.svg){#hydroxylysine}
 
 :::{.arrow}
+**Lysyl oxidase**\
 →
 :::
 
@@ -177,13 +179,15 @@ X,Y: proline or hydroxyproline
   margin-top: 8.5%;
   font-weight: bold;
 }
+#buccaneer {
+  width: 10%;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+}
 </style>
 
-**Lysyl-hydroxylase** ( 🟠 )
-
-**Lysyl oxidase**
-
-![](./img/riftbound-buccaneer.png){.fragment .fade-up }
+![](./img/riftbound-buccaneer.png){.fragment .fade-up #buccaneer}
 
 ## A rather radical discovery: mechanoradicals in collagen
 
@@ -205,9 +209,14 @@ X,Y: proline or hydroxyproline
 ::: {.column width="70%"}
 ![](./img/hyd-vs-hom-reaction.svg)
 
-"Mechanical Activation Drastically **Accelerates** Amide Bond Hydrolysis, Matching Enzyme Activity", Pill et al. [@pillMechanicalActivationDrastically2019]
+["Mechanical Activation Drastically **Accelerates** Amide Bond **Hydrolysis**,\
+Matching Enzyme Activity", Pill et al., 2019 [@pillMechanicalActivationDrastically2019]]{.fragment}
 :::
 ::: {.column width="30%"}
+[[**Hydrolysis**]{.blue}\
+vs.\
+[**Homolysis**]{.red}]{.fragment .hyd-v-hom}
+
 [What **factors** influence their **competition**?]{.fragment}
 
 [What is the influence of the **collagen structure**?]{.fragment}
@@ -446,11 +455,19 @@ $FL$: Flippin-Lodge angle, 0°
 ![](./plots/qm/wethyd_us_deltaE_comparison.png)
 
 :::d
+<!--
 $\bar{\Delta G}$ of (±SEM) TS1 - Educt
 
 Single chain: 102.5 ±\ 2.6\ kJ/mol
 
 Triple helix: 111.6\ ±\ 6.6\ kJ/mol
+-->
+
+$\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
+
+**Rate reduction** due to triple helix:\
+
+**30 to 40** times.
 :::
 ::::
 :::::
@@ -495,26 +512,37 @@ Image source: Right: Martin Grandjean (vector), McGeddon (picture), US Air Force
 
 ::: {.columns}
 ::: {.column width="50%"}
-![](./figures/kimmdy-schema.png){width="700"}
+![](./figures/kimmdy-schema.png){width="650px"}
 :::
 ::: {.column width="50%"}
 with Eric Hartmann and Kai Riedmiller,\
 inspired by Benedikt Rennekamp [@rennekampHybridKineticMonte2020]
 
+<br>
+
 [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
 
-![](img/kimmdy-screenshot.png)
+![](img/kimmdy-screenshot.png){.screenshot}
 
-Buhr\*, J., Hartmann\*, E., Riedmiller\*, K., et al.\
-KIMMDY: A biomolecular reaction emulator.\
-bioRxiv. (2025) doi:10.1101/2025.07.02.662624\
-_\*These authors contributed equally to this work._ [@kimmdy2025]
+<br>
 
+Read now on **bioRxiv**:\
+_KIMMDY: A biomolecular reaction emulator_ [@kimmdy2025],\
+or soon in **Nature Communications**.
 :::
 :::
+
+<style>
+.screenshot {
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+</style>
 
 :::footer
-Schema made by Denis Kieswetter for @kimmdy2025
+Schema made by Denis Kieswetter for @kimmdy2025\
+doi:10.1101/2025.07.02.662624
 :::
 
 ## KIMMDY is easy to use
@@ -536,6 +564,8 @@ Schema made by Denis Kieswetter for @kimmdy2025
 
 ![](./assets/top-after.svg)
 ::::
+
+**KIMMDY** takes care of the complicated **topology** modifications.
 
 ## Parametrization interface to obtain parameters after a reaction
 
@@ -721,14 +751,15 @@ $${#eq-hydrolysis-rate}
 ![](./figures/render-qm-ti.png)
 
 ![](./plots/qm/wethyd_us_deltaE_comparison.png)
+
+![](./plots/kimmdy/rates.png)
 :::
 ::: {.column width="40%" .incremental}
-- **Triple helix** marginally **impedes hydrolysis**
-
 - **KIMMDY** is a versatile tool for **reactive MD** simulations:\
   [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
 
-- **Homolysis** becomes competitive to **hydrolysis** due to **force concentration**
+- **Triple helix** marginally **impedes hydrolysis**.\
+  **Homolysis** becomes competitive to **hydrolysis** due to **force concentration**
 
 - **Thesis** and **slides** available at\
 [jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)
@@ -738,7 +769,6 @@ $${#eq-hydrolysis-rate}
 ::: {.column width="30%"}
 ![](./figures/kimmdy-schema.png)
 
-![](./plots/kimmdy/rates.png)
 :::
 :::
 

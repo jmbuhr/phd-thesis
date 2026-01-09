@@ -340,12 +340,23 @@ right: Riftbound, the League of Legends TCG ©Riot Games</p>
 </section>
 <section id="collagen-i-is-cross-linked" class="slide level2">
 <h2>Collagen I is cross-linked</h2>
-<div class="quarto-layout-panel" data-layout="[[4.5,1,0.1,1,0.1,1],[1,1,1]]">
+<div class="quarto-layout-panel" data-layout="[[-2,7,-2],[-2,1,0.7,1,0.7,1,-2]]">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 58.4%;justify-content: center;">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 18.2%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 63.6%;justify-content: center;">
 <p><img data-src="./figures/hyd/crosslinks-closer.png"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: flex-start;">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 18.2%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 23.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 11.9%;justify-content: flex-start;">
 <div id="lysine" class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/lysine.svg"></p>
@@ -353,10 +364,11 @@ right: Riftbound, the League of Legends TCG ©Riot Games</p>
 </figure>
 </div>
 </div>
-<div class="arrow quarto-layout-cell" style="flex-basis: 1.3%;justify-content: flex-start;">
-<p>→</p>
+<div class="arrow quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<p><strong>Lysyl-hydroxylase</strong> ( 🟠 )<br>
+→</p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 11.9%;justify-content: flex-start;">
 <div id="hydroxylysine" class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/hydroxylysine.svg"></p>
@@ -364,16 +376,20 @@ right: Riftbound, the League of Legends TCG ©Riot Games</p>
 </figure>
 </div>
 </div>
-<div class="arrow quarto-layout-cell" style="flex-basis: 1.3%;justify-content: flex-start;">
-<p>→</p>
+<div class="arrow quarto-layout-cell" style="flex-basis: 8.3%;justify-content: flex-start;">
+<p><strong>Lysyl oxidase</strong><br>
+→</p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 13.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 11.9%;justify-content: flex-start;">
 <div id="pyridinoline" class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="./img/pyridinoline-center.svg"></p>
 <figcaption>Center of a pyridinoline crosslink</figcaption>
 </figure>
 </div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 23.8%;justify-content: flex-start;">
+<p>&nbsp;</p>
 </div>
 </div>
 </div>
@@ -382,10 +398,14 @@ right: Riftbound, the League of Legends TCG ©Riot Games</p>
   margin-top: 8.5%;
   font-weight: bold;
 }
+#buccaneer {
+  width: 10%;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+}
 </style>
-<p><strong>Lysyl-hydroxylase</strong> ( 🟠 )</p>
-<p><strong>Lysyl oxidase</strong></p>
-<p><img data-src="./img/riftbound-buccaneer.png" class="fragment fade-up"></p>
+<p><img data-src="./img/riftbound-buccaneer.png" id="buccaneer" class="fragment fade-up"></p>
 </section>
 <section id="a-rather-radical-discovery-mechanoradicals-in-collagen" class="slide level2">
 <h2>A rather radical discovery: mechanoradicals in collagen</h2>
@@ -413,8 +433,12 @@ right: Riftbound, the League of Legends TCG ©Riot Games</p>
 <div class="columns">
 <div class="column" style="width:70%;">
 <p><img data-src="./img/hyd-vs-hom-reaction.svg"></p>
-<p>“Mechanical Activation Drastically <strong>Accelerates</strong> Amide Bond Hydrolysis, Matching Enzyme Activity”, Pill et al. <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span></p>
+<p><span class="fragment">“Mechanical Activation Drastically <strong>Accelerates</strong> Amide Bond <strong>Hydrolysis</strong>,<br>
+Matching Enzyme Activity”, Pill et al., 2019 <span class="citation" data-cites="pillMechanicalActivationDrastically2019">[<a href="#/references" role="doc-biblioref" onclick="">4</a>]</span></span></p>
 </div><div class="column" style="width:30%;">
+<p><span class="fragment hyd-v-hom"><span class="blue"><strong>Hydrolysis</strong></span><br>
+vs.<br>
+<span class="red"><strong>Homolysis</strong></span></span></p>
 <p><span class="fragment">What <strong>factors</strong> influence their <strong>competition</strong>?</span></p>
 <p><span class="fragment">What is the influence of the <strong>collagen structure</strong>?</span></p>
 <p><span class="fragment">Why do we still see <strong>radicals</strong>?</span></p>
@@ -760,9 +784,17 @@ F  &amp;=&amp; ma \\
 <div class="g2x1 quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
 <div class="d">
-<p><span class="math inline">\(\bar{\Delta G}\)</span> of (±SEM) TS1 - Educt</p>
-<p>Single chain: 102.5 ±&nbsp;2.6&nbsp;kJ/mol</p>
-<p>Triple helix: 111.6&nbsp;±&nbsp;6.6&nbsp;kJ/mol</p>
+<!--
+$\bar{\Delta G}$ of (±SEM) TS1 - Educt
+
+Single chain: 102.5 ±\ 2.6\ kJ/mol
+
+Triple helix: 111.6\ ±\ 6.6\ kJ/mol
+-->
+<p><span class="math inline">\(\Delta\Delta G\)</span> 9.02&nbsp;±4.41 kJ/mol (±SEM)</p>
+<p><strong>Rate reduction</strong> due to triple helix:<br>
+</p>
+<p><strong>30 to 40</strong> times.</p>
 </div>
 </div>
 </div>
@@ -807,19 +839,28 @@ F  &amp;=&amp; ma \\
 <h2>Kinetic Monte Carlo Molecular Dynamics: KIMMDY</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="./figures/kimmdy-schema.png" width="700"></p>
+<p><img data-src="./figures/kimmdy-schema.png" width="650"></p>
 </div><div class="column" style="width:50%;">
 <p>with Eric Hartmann and Kai Riedmiller,<br>
 inspired by Benedikt Rennekamp <span class="citation" data-cites="rennekampHybridKineticMonte2020">[<a href="#/references" role="doc-biblioref" onclick="">6</a>]</span></p>
+<p><br></p>
 <p><a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p>
-<p><img data-src="img/kimmdy-screenshot.png"></p>
-<p>Buhr*, J., Hartmann*, E., Riedmiller*, K., et al.<br>
-KIMMDY: A biomolecular reaction emulator.<br>
-bioRxiv. (2025) doi:10.1101/2025.07.02.662624<br>
-<em>*These authors contributed equally to this work.</em> <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span></p>
+<p><img data-src="img/kimmdy-screenshot.png" class="screenshot"></p>
+<p><br></p>
+<p>Read now on <strong>bioRxiv</strong>:<br>
+<em>KIMMDY: A biomolecular reaction emulator</em> <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span>,<br>
+or soon in <strong>Nature Communications</strong>.</p>
 </div></div>
+<style>
+.screenshot {
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+</style>
 <div class="footer">
-<p>Schema made by Denis Kieswetter for <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span></p>
+<p>Schema made by Denis Kieswetter for <span class="citation" data-cites="kimmdy2025">[<a href="#/references" role="doc-biblioref" onclick="">7</a>]</span><br>
+doi:10.1101/2025.07.02.662624</p>
 </div>
 </section>
 <section id="kimmdy-is-easy-to-use" class="slide level2">
@@ -855,6 +896,7 @@ bioRxiv. (2025) doi:10.1101/2025.07.02.662624<br>
 </div>
 </div>
 </div>
+<p><strong>KIMMDY</strong> takes care of the complicated <strong>topology</strong> modifications.</p>
 </section>
 <section id="parametrization-interface-to-obtain-parameters-after-a-reaction" class="slide level2">
 <h2>Parametrization interface to obtain parameters after a reaction</h2>
@@ -1083,19 +1125,19 @@ Bell-Evans model <span class="citation" data-cites="bellModelsSpecificAdhesion19
 <div class="column" style="width:30%;">
 <p><img data-src="./figures/render-qm-ti.png"></p>
 <p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
+<p><img data-src="./plots/kimmdy/rates.png"></p>
 </div><div class="column" style="width:40%;">
 <ul>
-<li class="fragment"><p><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong></p></li>
 <li class="fragment"><p><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
 <a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p></li>
-<li class="fragment"><p><strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></p></li>
+<li class="fragment"><p><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong>.<br>
+<strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></p></li>
 <li class="fragment"><p><strong>Thesis</strong> and <strong>slides</strong> available at<br>
 <a href="https://jmbuhr.de/phd-thesis">jmbuhr.de/phd-thesis</a></p></li>
 <li class="fragment"><p>Eat your <strong>oranges</strong>! 🟠</p></li>
 </ul>
 </div><div class="column" style="width:30%;">
 <p><img data-src="./figures/kimmdy-schema.png"></p>
-<p><img data-src="./plots/kimmdy/rates.png"></p>
 </div></div>
 </section></section>
 <section>

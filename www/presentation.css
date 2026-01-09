@@ -57,8 +57,13 @@
 }
 
 .quarto-title-author-name {
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.hyd-v-hom {
+  font-size: 7rem;
 }
 
 .reveal .slide-number > a[href*='title-slide'] {
