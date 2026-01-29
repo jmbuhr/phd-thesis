@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="51.234264mm"
+   height="18.500116mm"
+   viewBox="0 0 51.234264 18.500116"
+   version="1.1"
+   id="svg6800"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="hyd-dist.svg"
+   inkscape:export-filename="hyd-dist.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6802"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4.6658432"
+     inkscape:cx="66.333134"
+     inkscape:cy="37.720942"
+     inkscape:window-width="2552"
+     inkscape:window-height="1363"
+     inkscape:window-x="20"
+     inkscape:window-y="20"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs6797" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-36.425652,-13.241032)">
+    <image
+       width="11.262806"
+       height="4.7787609"
+       preserveAspectRatio="none"
+       xlink:href="../img/hyd-oh.png"
+       id="image6798"
+       x="76.39711"
+       y="21.574352"
+       style="display:inline;stroke-linecap:butt;stroke-linejoin:round" />
+    <image
+       width="20.114672"
+       height="18.500116"
+       preserveAspectRatio="none"
+       xlink:href="../img/peptide.png"
+       id="image15804"
+       x="36.425652"
+       y="13.241032"
+       style="display:inline;stroke-linecap:butt;stroke-linejoin:round" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:0.529167, 0.529167;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 50.137857,24.089409 h 25.30083"
+       id="path15906"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round"
+       x="62.9235"
+       y="23.074276"
+       id="text15985"><tspan
+         sodipodi:role="line"
+         id="tspan15983"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="62.9235"
+         y="23.074276">d</tspan></text>
+  </g>
+</svg>

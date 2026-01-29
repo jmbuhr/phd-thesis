@@ -437,6 +437,15 @@ $FL$: Flippin-Lodge angle, 0°
 
 ![](./figures/render-qm-ti.png){width=80%}
 
+## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
+
+![](./figures/render-qm-ti-annotations.png){.absolute top=10% right=8% width=18%}
+
+![](./figures/render-qm-ti.png){.absolute bottom=10% right=0 width=35%}
+
+![](./plots/qm/wethyd_us_tiprots_filtered_example.png){width=50%}
+
+![](./figures/hyd-dist.png){.absolute bottom=5% left=0% width=30%}
 
 ## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
 
@@ -448,13 +457,15 @@ $FL$: Flippin-Lodge angle, 0°
 
 ## The triple helix marginally impedes hydroxide attack thermodynamically
 
-:::::{layout="[[2,1]]" layout-valign="top" }
-![](./plots/qm/wethyd_us_profiles.png)
+:::::{layout="[[2,1]]"}
+![](./plots/qm/wethyd_us_profiles-labelpos.png)
 
-::::g2x1
+::::{.g2x1 .fragment}
+<br>
+<br>
 ![](./plots/qm/wethyd_us_deltaE_comparison.png)
 
-:::d
+:::{.d}
 <!--
 $\bar{\Delta G}$ of (±SEM) TS1 - Educt
 
@@ -471,6 +482,9 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 :::
 ::::
 :::::
+
+
+![](./figures/hyd-dist.png){.absolute bottom=25% left=46% width=18%}
 
 
 ## Proton mobility in explicit QM solvent molecules allows breaking of the peptide bond
@@ -659,22 +673,21 @@ SASA
 ::::: {.columns}
 :::: {.column width="45%"}
 :::{.fragment}
-![](img/szasza.png){width=800px}
+![](img/sasa.png){width=800px}
 :::
 ::::
 :::: {.column width="45%"}
 ::::
 :::::
 
-
 ## Hydrolysis rate incorporates SASA
 
-~~Szasza~~ SASA = Solvent Accessible Surface Area
+SASA = Solvent Accessible Surface Area
 
 ::::: {.columns}
 :::: {.column width="45%"}
 :::d
-![](img/szasza.png){width=800px}
+![](img/sasa.png){width=800px}
 :::
 ::::
 :::: {.column width="45%"}
