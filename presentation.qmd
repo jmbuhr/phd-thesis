@@ -160,8 +160,9 @@ X,Y: proline or hydroxyproline
 ![Lysine](img/lysine.svg){#lysine}
 
 :::{.arrow}
-**Lysyl-hydroxylase** ( 🟠 )\
-→
+**Lysyl hydroxylase**\
+→\
+( 🟠 )
 :::
 
 ![Hydroxylysine](img/hydroxylysine.svg){#hydroxylysine}
@@ -203,7 +204,7 @@ X,Y: proline or hydroxyproline
 
 > for this talk, and by extension, my thesis
 
-## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
+## Dissecting cleavage mechanisms in tensed collagen fibrils using<br>reactive molecular dynamics simulations
 
 ::: {.columns}
 ::: {.column width="70%"}
@@ -225,8 +226,7 @@ vs.\
 :::
 :::
 
-
-## Dissecting cleavage mechanisms in tensed collagen fibrils using reactive molecular dynamics simulations
+## Two complementary approaches
 
 <br>
 
@@ -257,7 +257,7 @@ vs.\
 ![](./img/molecule-density.png)
 :::
 
-How do we make the atoms move?
+How do we **make** the **atoms** **move**?
 
 $$
 \begin{array}{rcl}
@@ -291,24 +291,31 @@ $m$: mass
 :::
 ::::
 
-:::{#popup .fragment}
-Connectivity and parameters pre-defined!
+:::{.popup #pop1}
+**Connectivity** and parameters **pre-defined**!
+:::
+
+:::{.popup #pop2}
+So how do we do **chemistry**?
 :::
 
 <style>
-#popup {
+.popup {
   position: absolute;
-  bottom: 0%;
-  right: 0%;
-  width: 20%;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: 35%;
+  background-color: #f0f0f0;
   padding: 10px;
   border-radius: 6px;
-  text-align: center;
+}
+#pop1 {
+  bottom: 5%;
+  left: 10%;
+}
+#pop2 {
+  bottom: 5%;
+  right: 10%;
 }
 </style>
-
-## So how do we do chemistry?
 
 ## Quantum mechanics/molecular mechanics
 

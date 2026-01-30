@@ -63,7 +63,8 @@
 }
 
 .hyd-v-hom {
-  font-size: 7rem;
+  font-size: 7.5rem;
+  line-height: 1.5;
 }
 
 .reveal .slide-number > a[href*='title-slide'] {
