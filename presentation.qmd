@@ -24,6 +24,7 @@ format:
       data-background-image: ./figures/render-qm-break-flipped.png
       data-background-size: contain
       data-background-position: 50% 150%
+      data-background-justify: center
     citations-hover: true
     reference-links: false
     preview-links: false
@@ -500,7 +501,7 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 
 ![](./figures/render-qm-break.png){width=80%}
 
-## Discussion
+## Discussion of QM/MM results
 
 :::: {layout="[2,2,2]"}
 :::d
@@ -776,46 +777,80 @@ $${#eq-hydrolysis-rate}
 ![](./plots/kimmdy/rates.png)
 :::
 
-
-## Discussion and outlook
+## Discussion of KIMMDY results
 
 - **pH** just a factor, could be e.g. constant pH simulations [@ahoScalableConstantPH2022]
 - **SASA** influence **likely** to be **underestimated**
 - Need a link to real tissue **experiments**
 
+:::{#pep}
+![](./img/peptide-water.png)
+:::
+
+<style>
+#pep {
+  position: absolute;
+  top: 7%;
+  right: 0%;
+  width: 30%;
+}
+</style>
+
 # Concluding Thoughts {.center}
 
 ## Concluding Thoughts
 
-::: {.columns}
-::: {.column width="30%"}
+:::{.pop #popk .fragment}
+**KIMMDY** is a versatile tool for **reactive MD** simulations:\
+  [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
+
+![](./figures/kimmdy-schema.png){width=50%}
+:::
+
+<style>
+.pop {
+  position: absolute;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+#popk {
+  top: 7%;
+  left: 0%;
+  width: 47%;
+}
+#popq {
+  top: 7%;
+  right: 0%;
+  width: 45%;
+}
+#popr {
+  bottom: 5%;
+  right: 0%;
+  width: 45%;
+}
+</style>
+
+::::{.pop #popq .fragment}
+**Collagen triple helix impedes hydrolysis**
+
+:::{layout-ncol=2}
 ![](./figures/render-qm-ti.png)
 
-![](./plots/qm/wethyd_us_deltaE_comparison.png){width=80%}
+![](./plots/qm/wethyd_us_deltaE_comparison.png)
+:::
+::::
+
+:::{.pop #popr .fragment}
+[**Homolysis**]{.red} becomes competitive to [**hydrolysis**]{.blue} due to **force concentration**
+in **cross-linked** collagen fibrils
 
 ![](./plots/kimmdy/rates.png)
 :::
-::: {.column width="40%" .incremental}
-- **KIMMDY** is a versatile tool for **reactive MD** simulations:\
-  [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
 
-<br>
-
-- **Triple helix** marginally **impedes hydrolysis**.\
-  **Homolysis** becomes competitive to **hydrolysis** due to **force concentration**
-
-<br>
-
-- **Thesis** and **slides** available at\
-[jmbuhr.de/phd-thesis](https://jmbuhr.de/phd-thesis)
-
-- Eat your **oranges**! 🟠
-:::
-::: {.column width="30%"}
-![](./figures/kimmdy-schema.png)
-
-:::
-:::
 
 
 # Thank You! {.center}
@@ -849,6 +884,13 @@ This work was supported by the Klaus Tschira Foundation and has received funding
 :::
 
 # Appendix {.center}
+
+## Publications not included in this presentation
+
+1. Buhr et al., **Intrinsically disordered region of talin’s FERM domain functions as an initial PIP2 recognition site**, published at _Biophysical Journal_ (2022), [10.1016/j.bpj.2023.02.020](https://doi.org/10.1016/j.bpj.2023.02.020)
+2. Skafar et al., **Riboflavin metabolism shapes FSP1-driven ferroptosis resistance**, accepted at _Nature Cell Biology_
+3. Hartmann\*, Riedmiller\*, Buhr\* et al., **KIMMDY: A biomolecular reaction emulator**, submitted to _Nature Communications_
+4. Buhr et al., **Molecular mechanism of hydrolysis in the collagen triple helix under force**, submitted to _The Journal of Physical Chemistry B_
 
 ## Force Fields and Topologies
 

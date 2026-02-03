@@ -218,7 +218,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="./figures/render-qm-break-flipped.png" data-background-position="50% 150%" data-background-size="contain" class="quarto-title-block">
+<section id="title-slide" data-background-image="./figures/render-qm-break-flipped.png" data-background-justify="center" data-background-position="50% 150%" data-background-size="contain" class="quarto-title-block">
   <h1 class="title"><p>Dissecting Cleavage Mechanisms<br>
 in Tensed Collagen Fibrils<br>
 using Reactive Molecular Dynamics Simulations</p></h1>
@@ -819,8 +819,8 @@ Triple helix: 111.6\ ±\ 6.6\ kJ/mol
 <p><img data-src="./img/hydrolysis-reaction-vertical-ts2.svg" class="absolute" style="top: 5%; right: 0px; width: 18%; "></p>
 <p><img data-src="./figures/render-qm-break.png" style="width:80.0%"></p>
 </section>
-<section id="discussion" class="slide level2">
-<h2>Discussion</h2>
+<section id="discussion-of-qmmm-results" class="slide level2">
+<h2>Discussion of QM/MM results</h2>
 <div class="quarto-layout-panel" data-layout="[2,2,2]">
 <div class="quarto-layout-row">
 <div class="d quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
@@ -1140,13 +1140,24 @@ based on <strong>AFM</strong> data by Pill et al. <span class="citation" data-ci
 </div>
 </div>
 </section>
-<section id="discussion-and-outlook" class="slide level2">
-<h2>Discussion and outlook</h2>
+<section id="discussion-of-kimmdy-results" class="slide level2">
+<h2>Discussion of KIMMDY results</h2>
 <ul>
 <li><strong>pH</strong> just a factor, could be e.g.&nbsp;constant pH simulations <span class="citation" data-cites="ahoScalableConstantPH2022">[<a href="#/references" role="doc-biblioref" onclick="">11</a>]</span></li>
 <li><strong>SASA</strong> influence <strong>likely</strong> to be <strong>underestimated</strong></li>
 <li>Need a link to real tissue <strong>experiments</strong></li>
 </ul>
+<div id="pep">
+<p><img data-src="./img/peptide-water.png"></p>
+</div>
+<style>
+#pep {
+  position: absolute;
+  top: 7%;
+  right: 0%;
+  width: 30%;
+}
+</style>
 </section></section>
 <section>
 <section id="concluding-thoughts" class="title-slide slide level1 center">
@@ -1155,30 +1166,54 @@ based on <strong>AFM</strong> data by Pill et al. <span class="citation" data-ci
 </section>
 <section id="concluding-thoughts-1" class="slide level2">
 <h2>Concluding Thoughts</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
+<div id="popk" class="pop fragment">
+<p><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
+<a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></p>
+<p><img data-src="./figures/kimmdy-schema.png" style="width:50.0%"></p>
+</div>
+<style>
+.pop {
+  position: absolute;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+#popk {
+  top: 7%;
+  left: 0%;
+  width: 47%;
+}
+#popq {
+  top: 7%;
+  right: 0%;
+  width: 45%;
+}
+#popr {
+  bottom: 5%;
+  right: 0%;
+  width: 45%;
+}
+</style>
+<div id="popq" class="pop fragment">
+<p><strong>Collagen triple helix impedes hydrolysis</strong></p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="./figures/render-qm-ti.png"></p>
-<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png" style="width:80.0%"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="./plots/qm/wethyd_us_deltaE_comparison.png"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="popr" class="pop fragment">
+<p><span class="red"><strong>Homolysis</strong></span> becomes competitive to <span class="blue"><strong>hydrolysis</strong></span> due to <strong>force concentration</strong> in <strong>cross-linked</strong> collagen fibrils</p>
 <p><img data-src="./plots/kimmdy/rates.png"></p>
-</div><div class="column" style="width:40%;">
-<ul>
-<li class="fragment"><strong>KIMMDY</strong> is a versatile tool for <strong>reactive MD</strong> simulations:<br>
-<a href="https://graeter-group.github.io/kimmdy/">graeter-group.github.io/kimmdy/</a></li>
-</ul>
-<p><br></p>
-<ul>
-<li class="fragment"><strong>Triple helix</strong> marginally <strong>impedes hydrolysis</strong>.<br>
-<strong>Homolysis</strong> becomes competitive to <strong>hydrolysis</strong> due to <strong>force concentration</strong></li>
-</ul>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>Thesis</strong> and <strong>slides</strong> available at<br>
-<a href="https://jmbuhr.de/phd-thesis">jmbuhr.de/phd-thesis</a></p></li>
-<li class="fragment"><p>Eat your <strong>oranges</strong>! 🟠</p></li>
-</ul>
-</div><div class="column" style="width:30%;">
-<p><img data-src="./figures/kimmdy-schema.png"></p>
-</div></div>
+</div>
 </section></section>
 <section>
 <section id="thank-you" class="title-slide slide level1 center">
@@ -1252,6 +1287,15 @@ based on <strong>AFM</strong> data by Pill et al. <span class="citation" data-ci
 <section id="appendix" class="title-slide slide level1 center">
 <h1>Appendix</h1>
 
+</section>
+<section id="publications-not-included-in-this-presentation" class="slide level2">
+<h2>Publications not included in this presentation</h2>
+<ol type="1">
+<li>Buhr et al., <strong>Intrinsically disordered region of talin’s FERM domain functions as an initial PIP2 recognition site</strong>, published at <em>Biophysical Journal</em> (2022), <a href="https://doi.org/10.1016/j.bpj.2023.02.020">10.1016/j.bpj.2023.02.020</a></li>
+<li>Skafar et al., <strong>Riboflavin metabolism shapes FSP1-driven ferroptosis resistance</strong>, accepted at <em>Nature Cell Biology</em></li>
+<li>Hartmann*, Riedmiller*, Buhr* et al., <strong>KIMMDY: A biomolecular reaction emulator</strong>, submitted to <em>Nature Communications</em></li>
+<li>Buhr et al., <strong>Molecular mechanism of hydrolysis in the collagen triple helix under force</strong>, submitted to <em>The Journal of Physical Chemistry B</em></li>
+</ol>
 </section>
 <section id="force-fields-and-topologies-1" class="slide level2">
 <h2>Force Fields and Topologies</h2>
