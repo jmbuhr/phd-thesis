@@ -890,7 +890,7 @@ This work was supported by the Klaus Tschira Foundation and has received funding
 1. Buhr et al., **Intrinsically disordered region of talin’s FERM domain functions as an initial PIP2 recognition site**, published at _Biophysical Journal_ (2022), [10.1016/j.bpj.2023.02.020](https://doi.org/10.1016/j.bpj.2023.02.020)
 2. Skafar et al., **Riboflavin metabolism shapes FSP1-driven ferroptosis resistance**, accepted at _Nature Cell Biology_
 3. Hartmann\*, Riedmiller\*, Buhr\* et al., **KIMMDY: A biomolecular reaction emulator**, submitted to _Nature Communications_
-4. Buhr et al., **Molecular mechanism of hydrolysis in the collagen triple helix under force**, submitted to _The Journal of Physical Chemistry B_
+4. Buhr et al., **Collagen's Triple Helix Reduces the Susceptibility to Base-Catalyzed Hydrolysis**, submitted to _The Journal of Physical Chemistry B_
 
 ## Force Fields and Topologies
 
