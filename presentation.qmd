@@ -181,15 +181,7 @@ X,Y: proline or hydroxyproline
   margin-top: 8.5%;
   font-weight: bold;
 }
-#buccaneer {
-  width: 10%;
-  position: absolute;
-  bottom: 0%;
-  right: 0%;
-}
 </style>
-
-![](./img/riftbound-buccaneer.png){.fragment .fade-up #buccaneer}
 
 ## A rather radical discovery: mechanoradicals in collagen
 
@@ -199,7 +191,7 @@ X,Y: proline or hydroxyproline
 ![](./img/just-hom-reaction.svg)
 :::
 
-"Mechanoradicals in tensed tendon collagen as a source of oxidative stress", Zapp et al. [@zappMechanoradicalsTensedTendon2020]
+"**Mechanoradicals** in **tensed tendon collagen** as a source of oxidative stress", Zapp et al. (2020) [@zappMechanoradicalsTensedTendon2020]
 
 # Goals {.center}
 
@@ -212,7 +204,7 @@ X,Y: proline or hydroxyproline
 ![](./img/hyd-vs-hom-reaction.svg)
 
 ["Mechanical Activation Drastically **Accelerates** Amide Bond **Hydrolysis**,\
-Matching Enzyme Activity", Pill et al., 2019 [@pillMechanicalActivationDrastically2019]]{.fragment}
+Matching Enzyme Activity", Pill et al. (2019) [@pillMechanicalActivationDrastically2019]]{.fragment}
 :::
 ::: {.column width="30%"}
 [[**Hydrolysis**]{.blue}\
@@ -505,54 +497,65 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 
 :::: {layout="[2,2,2]"}
 :::d
-![](./plots/qm/wethyd_us_deltaE_comparison.png){width=500px}
+- Just **submitted** to _The Journal of Physical Chemistry B_
+:::
+
+
+
+:::d
+- Survivorship bias
+
 
 ![](./plots/qm/carbonyl_orientation_example.png){width=500px}
+
+![](./img/peptide.png){width=200px}
+
+![](./img/survivorship.svg){width=300px}
 :::
 
 :::d
-- Effect size?
-- Survivorship bias?
-- Cause?
-- Computational cost
-:::
+- Effect size
 
-:::d
-![](./img/survivorship.svg)
+![](./plots/qm/wethyd_us_deltaE_comparison.png){width=500px}
 
+$\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
+
+- Computational cost!
 :::
 
 ::::
 
 :::footer
-Image source: Right: Martin Grandjean (vector), McGeddon (picture), US Air Force (hit plot concept), CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=102017718
+Image source Airplane: Martin Grandjean (vector), McGeddon (picture), US Air Force (hit plot concept), CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=102017718
 :::
 
 # Kinetic Monte Carlo Molecular Dynamics: KIMMDY {.center}
 
 ## Kinetic Monte Carlo Molecular Dynamics: KIMMDY
 
-::: {.columns}
-::: {.column width="50%"}
+::::: {.columns}
+:::: {.column width="50%"}
 ![](./figures/kimmdy-schema.png){width="650px"}
-:::
-::: {.column width="50%"}
-with Eric Hartmann and Kai Riedmiller,\
-inspired by Benedikt Rennekamp [@rennekampHybridKineticMonte2020]
-
-<br>
+::::
+:::: {.column width="50%"}
+with **Eric** Hartmann and **Kai** Riedmiller,\
+inspired by **Benedikt** Rennekamp [@rennekampHybridKineticMonte2020]
 
 [graeter-group.github.io/kimmdy/](https://graeter-group.github.io/kimmdy/)
 
 ![](img/kimmdy-screenshot.png){.screenshot}
 
-<br>
 
 Read now on **bioRxiv**:\
 _KIMMDY: A biomolecular reaction emulator_ [@kimmdy2025],\
+
+:::{.fragment}
 or soon in **Nature Communications**.
+
+![](./img/otter-happy.gif){.absolute bottom=0% right=4% width=15%}
 :::
-:::
+::::
+:::::
 
 <style>
 .screenshot {
