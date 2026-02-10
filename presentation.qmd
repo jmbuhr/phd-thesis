@@ -73,7 +73,6 @@ left: The Capture of Chandernagore, March 1757 by Dominic Serres, the Elder in 1
 right: Riftbound, the League of Legends TCG ©Riot Games
 :::
 
-
 ## Collagen keeps us together
 
 ::: {.columns}
@@ -447,14 +446,6 @@ $FL$: Flippin-Lodge angle, 0°
 
 ![](./figures/hyd-dist.png){.absolute bottom=5% left=0% width=30%}
 
-## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
-
-![](./figures/render-qm-ti-annotations.png){.absolute top=10% right=8% width=18%}
-
-![](./figures/render-qm-ti.png){.absolute bottom=10% right=0 width=35%}
-
-![](./plots/qm/wethyd_us_tiprots_filtered.png){width=65%}
-
 ## The triple helix marginally impedes hydroxide attack thermodynamically
 
 :::::{layout="[[2,1]]"}
@@ -569,16 +560,6 @@ or soon in **Nature Communications**.
 Schema made by Denis Kieswetter for @kimmdy2025\
 doi:10.1101/2025.07.02.662624
 :::
-
-## KIMMDY is easy to use
-
-::::{layout="[[1.6223, 1.093], [1]]"}
-![](img/kimmdy-yml-hover.png)
-
-![](img/kimmdy-yml-completion.png)
-
-![](img/kimmdy-yml-warnings.png)
-::::
 
 ## KIMMDY is easy to extend to new chemistries
 
@@ -736,6 +717,10 @@ $${#eq-hydrolysis-rate}
 
 ## Solvent accessibility in the fibril is heterogeneous
 
+<br>
+
+peptide **bonds near the center** are still **accessible**
+
 :::nomar
 ![](./plots/kimmdy/sasa.png)
 :::
@@ -761,15 +746,6 @@ $${#eq-hydrolysis-rate}
 ![](./figures/render-chain-c-tubes-cpk-cropped-rotated.png)
 
 ![](./figures/render-triple-tubes-cpk-cropped-rotated.png)
-:::
-
-
-## Peptide bonds near the center are still accessible
-
-::: {layout="[[1,-1], [2,-1]]"}
-![](./plots/kimmdy/sasa_z_slice.png)
-
-![](./plots/kimmdy/sasa_radial_distance.png)
 :::
 
 ## Homolysis becomes competitive with hydrolysis by force concentration
@@ -933,6 +909,15 @@ Protein             3
 :::
 ::::
 
+## QM/MM simulations reveal mechanistic details of the tetrahedral intermediate formation
+
+![](./figures/render-qm-ti-annotations.png){.absolute top=10% right=8% width=18%}
+
+![](./figures/render-qm-ti.png){.absolute bottom=10% right=0 width=35%}
+
+![](./plots/qm/wethyd_us_tiprots_filtered.png){width=65%}
+
+
 ## More SASA
 
 ![](./plots/kimmdy/sasa_y_slice.png)
@@ -987,6 +972,17 @@ other BDEs by Wojtek Treyde.
 Schema based on a figure by Daniele Procida [@Procida_Diataxis_documentation_framework].
 :::
 
+## KIMMDY is easy to use
+
+::::{layout="[[1.6223, 1.093], [1]]"}
+![](img/kimmdy-yml-hover.png)
+
+![](img/kimmdy-yml-completion.png)
+
+![](img/kimmdy-yml-warnings.png)
+::::
+
+
 ## Running KIMMDY: Other cool features
 
 - checkpoints and restarting
@@ -1014,6 +1010,14 @@ Schema based on a figure by Daniele Procida [@Procida_Diataxis_documentation_fra
 ![](./plots/kimmdy/sasa_pro_boxplot_ratio.png)
 :::
 
+
+## Peptide bonds near the center are still accessible
+
+::: {layout="[[1,-1], [2,-1]]"}
+![](./plots/kimmdy/sasa_z_slice.png)
+
+![](./plots/kimmdy/sasa_radial_distance.png)
+:::
 
 
 ## Supplementary Information
