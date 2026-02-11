@@ -210,9 +210,7 @@ Matching Enzyme Activity", Pill et al. (2019) [@pillMechanicalActivationDrastica
 vs.\
 [**Homolysis**]{.red}]{.fragment .hyd-v-hom}
 
-[What **factors** influence their **competition**?]{.fragment}
-
-[What is the influence of the **collagen structure**?]{.fragment}
+[What is the influence of the **collagen structure** on their **competition**?]{.fragment}
 
 [Why do we still see **radicals**?]{.fragment}
 :::
@@ -474,6 +472,7 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 ::::
 :::::
 
+WHAM: Weighted Histogram Analysis Method [@grossfieldWHAMWeightedHistogram]
 
 ![](./figures/hyd-dist.png){.absolute bottom=25% left=46% width=18%}
 
@@ -486,23 +485,26 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 
 ## Discussion of QM/MM results
 
-:::: {layout="[2,2,2]"}
+::::: {layout="[2,2,2]"}
 :::d
-- Just **submitted** to _The Journal of Physical Chemistry B_
+- Currently in **peer review** at _The Journal of Physical Chemistry B_
 :::
 
 
-
-:::d
+::::d
 - Survivorship bias
+
+![](./figures/render-triple-tubes-cpk-cropped.png)
 
 
 ![](./plots/qm/carbonyl_orientation_example.png){width=500px}
 
-![](./img/peptide.png){width=200px}
+:::{.g2x2}
+![](./img/peptide.png)
 
-![](./img/survivorship.svg){width=300px}
+![](./img/survivorship.svg)
 :::
+::::
 
 :::d
 - Effect size
@@ -514,7 +516,7 @@ $\Delta\Delta G$ 9.02\ ±4.41 kJ/mol (±SEM)
 - Computational cost!
 :::
 
-::::
+:::::
 
 :::footer
 Image source Airplane: Martin Grandjean (vector), McGeddon (picture), US Air Force (hit plot concept), CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=102017718
