@@ -51,7 +51,7 @@ execute:
 
 # Introduction {.center}
 
-> Concerning ~~hobbits~~ collagen
+> Concerning collagen
 
 ## An orange a day keeps the scurvy away
 
