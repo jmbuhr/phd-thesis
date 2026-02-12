@@ -239,9 +239,7 @@ vs.\
 
 ## Molecular dynamics / Molecular Mechanics
 
-:::{layout="[1,2,2]"}
-![](./img/propionaldehyde.svg)
-
+:::{layout="[-1,2,2]"}
 ![](./img/molecule-cpk.png)
 
 ![](./img/molecule-density.png)
