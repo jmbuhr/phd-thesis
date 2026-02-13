@@ -99,9 +99,6 @@ format-links:
 ::: {.callout-tip}
 You are reading the web version of this thesis. You also find the [print version](./index.pdf) and the [presentation](./presentation.html) for the defense in the sidebar or via these links.
 :::
-::: {.callout-tip}
-If you are reading this notice, this thesis is not yet defended.
-:::
 ::::
 
 :::: {.content-visible when-format="pdf"}
